@@ -14,7 +14,7 @@ public class ListController {
 
 	@GetMapping("/list")
 	public String html() {
-		return "";
+		return "index";
 		
 	}
 	Logger logger = LoggerFactory.getLogger(this.getClass());

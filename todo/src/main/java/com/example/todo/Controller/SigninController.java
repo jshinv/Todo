@@ -32,11 +32,13 @@ public class SigninController {
 
 	@PostMapping("/signin")
 	public String signinPost(@ModelAttribute User user) {
-		User dbUser = userRepository.findByNickNameAndPassWord(user.getNickName(), user.getPassWord());
+		User dbUser = userRepository.findByNickNameAndPassWord(user.getNickName(),user.getPassWord());
 		if (dbUser != null) {
 			session.setAttribute("user_info", dbUser);
+			
 		}
 		return "redirect:/";
+	
 	}
 
 	@GetMapping("/signout")

@@ -18,26 +18,32 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class SigninController {
-	
+
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	HttpSession session;
 
 	@GetMapping("/signin")
 	public String signin() {
-		return "signin";
+		return "cus/signin";
 	}
 
 	@PostMapping("/signin")
 	public String signinPost(@ModelAttribute User user) {
-	User dbUser = userRepository.findByNickNameAndPassWord(user.getNickName(), user.getPassWord());
-	if(dbUser != null) {
-	session.setAttribute("user_info", dbUser);
+		User dbUser = userRepository.findByNickNameAndPassWord(user.getNickName(), user.getPassWord());
+		if (dbUser != null) {
+			session.setAttribute("user_info", dbUser);
+		}
+		return "redirect:/";
 	}
-	return "redirect:/";
+
+	@GetMapping("/signout")
+	public String signout() {
+		session.invalidate();
+		return "redirect:/";
 	}
-	
+
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 }

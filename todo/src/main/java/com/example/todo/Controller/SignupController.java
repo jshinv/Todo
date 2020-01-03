@@ -28,7 +28,7 @@ public class SignupController {
 	@PostMapping("/signup")
 	public String signupPost(@ModelAttribute User user) {
 	userRepository.save(user);
-	return "cus/signup";
+	return "cus/signIn";
 	}
 	
 	Logger logger = LoggerFactory.getLogger(this.getClass());

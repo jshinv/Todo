@@ -16,6 +16,7 @@ public class MainController {
 	public String html() {
 		return "index";
 	}
+	
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 

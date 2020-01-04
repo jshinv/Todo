@@ -73,10 +73,10 @@
 						<li th:if="${session.user_info} == null"><a href="/signin">
 								<span class="glyphicon glyphicon-log-in"></span> 로그인
 						</a></li>
-						<li th:if="${session.user_info} != null"><a href="/signout">
-								<span class="glyphicon glyphicon-log-out"></span> 로그아웃 /
-								[[${session.user_info.nickName} + '님 반갑습니다.']]
-						</a></li>
+						<li th:if="${session.user_info} != null">
+							<a>[[${session.user_info.nickName} + '님 반갑습니다!']]</a>
+							<a href="/signout">
+								<span class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
 
 						<!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

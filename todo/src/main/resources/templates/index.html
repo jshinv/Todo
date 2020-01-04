@@ -3,6 +3,32 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
 <head th:replace="common/head"></head>
 
+<style tyle="text/css">
+#todo {
+	display: inline-block;
+	position: static;
+	width: 200px;
+	height: 200px;
+	margin: 10px;
+	background: white;
+	border: 5px solid black;
+	padding: 5px;
+	box-sizing: border-box;
+}
+/* 하단바 스타일*/
+#footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 70px;
+	background: #ccc;
+}
+</style>
+
+
+
+
+
 
 <body>
 
@@ -40,12 +66,17 @@
 					<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 						<li class="nav-item active"><a class="nav-link"
 							href="javascript:;">Todo 1<span class="sr-only">(current)</span></a></li>
-						<li class="nav-item"><a class="nav-link" href="javascript:;">Todo 2</a></li>
-						<li class="nav-item"><a class="nav-link" href="javascript:;">Todo 3</a></li>
-						<li th:if = "${session.user_info} == null"><a href = "/signin">
-							<span class = "glyphicon glyphicon-log-in"></span> 로그인 </a></li>
-						<li th:if = "${session.user_info} != null"><a href = "/signout">
-							<span class = "glyphicon glyphicon-log-out"></span> 로그아웃 / [[${session.user_info.nickName} + '님 반갑습니다.']] </a></li>
+						<li class="nav-item"><a class="nav-link" href="javascript:;">Todo
+								2</a></li>
+						<li class="nav-item"><a class="nav-link" href="javascript:;">Todo
+								3</a></li>
+						<li th:if="${session.user_info} == null"><a href="/signin">
+								<span class="glyphicon glyphicon-log-in"></span> 로그인
+						</a></li>
+						<li th:if="${session.user_info} != null"><a href="/signout">
+								<span class="glyphicon glyphicon-log-out"></span> 로그아웃 /
+								[[${session.user_info.nickName} + '님 반갑습니다.']]
+						</a></li>
 
 						<!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -65,6 +96,12 @@
 
 			<div class="container-fluid">
 				<h1 class="mt-4">Simple Sidebar</h1>
+				<tr th:each="Todo : ${list}" th:attr="id=${Todo.id}">
+					<div id="todo">
+						<td th:text="'title: '+${Todo.title}"></td><br>
+						<td th:text="'count: '+${Todo.count}"></td>
+					</div>
+				</tr>
 				<p>The starting state of the menu will appear collapsed on
 					smaller screens, and will appear non-collapsed on larger screens.
 					When toggled using the button below, the menu will change.</p>
@@ -83,17 +120,25 @@
 	</div>
 	<!-- /#wrapper -->
 
+	<!--하단바   -->
+	<div class="container">
+		<div class="btn-group" id=footer>
+
+			<button type="button" class="btn btn-primary">나</button>
+			<button type="button" class="btn btn-primary">친구</button>
+			<button type="button" class="btn btn-primary">모두</button>
+			<button type="button" class="btn btn-primary">설정</button>
+		</div>
+	</div>
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Menu Toggle Script -->
 	<script>
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			$("#wrapper").toggleClass("toggled");
-		});
+		
 	</script>
+
 
 </body>
 

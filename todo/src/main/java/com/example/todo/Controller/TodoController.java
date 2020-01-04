@@ -31,7 +31,6 @@ public class TodoController {
 	}
 
 	@PostMapping("/todo")
-	
 	public String signupPost(@RequestParam("title") String title, @RequestParam("color") String color,
 			@RequestParam("count") String count) {
 		int int_count=Integer.parseInt(count);

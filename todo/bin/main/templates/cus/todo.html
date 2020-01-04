@@ -9,10 +9,6 @@
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
-					<li th:if = "${session.user_info} == null"><a href = "/signin">
-							<span class = "glyphicon glyphicon-log-in"></span> 로그인 </a></li>
-						<li th:if = "${session.user_info} != null"><a href = "/signout">
-							<span class = "glyphicon glyphicon-log-out"></span> 로그아웃 / [[${session.user_info.nickName} + '님 반갑습니다.']] </a></li>
 					<form method="post" action="/todo">
 						<div class="form-group">
 							<label for="title">title:</label> <input type="text"

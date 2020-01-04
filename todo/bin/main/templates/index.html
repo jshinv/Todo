@@ -65,18 +65,13 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 						<li class="nav-item active"><a class="nav-link"
-							href="javascript:;">Todo 1<span class="sr-only">(current)</span></a></li>
-						<li class="nav-item"><a class="nav-link" href="javascript:;">Todo
-								2</a></li>
-						<li class="nav-item"><a class="nav-link" href="javascript:;">Todo
-								3</a></li>
-						<li th:if="${session.user_info} == null"><a href="/signin">
-								<span class="glyphicon glyphicon-log-in"></span> 로그인
-						</a></li>
-						<li th:if="${session.user_info} != null">
-							<a>[[${session.user_info.nickName} + '님 반갑습니다!']]</a>
-							<a href="/signout">
-								<span class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
+							href="javascript:;">Main<span class="sr-only"></span></a></li>
+						<li class="nav-item"><a class="nav-link" href="/todo">+</a></li>
+
+						<li th:if="${session.user_info} == null"><a href="/signin">로그인</a></li>
+
+						<li th:if="${session.user_info} != null"><a>[[${session.user_info.nickName} + '님 반갑습니다!']]</a> 
+						<a href="/signout"> 로그아웃</a></li>
 
 						<!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -98,7 +93,8 @@
 				<h1 class="mt-4">Simple Sidebar</h1>
 				<tr th:each="Todo : ${list}" th:attr="id=${Todo.id}">
 					<div id="todo">
-						<td th:text="'title: '+${Todo.title}"></td><br>
+						<td th:text="'title: '+${Todo.title}"></td>
+						<br>
 						<td th:text="'count: '+${Todo.count}"></td>
 					</div>
 				</tr>
@@ -130,13 +126,17 @@
 			<button type="button" class="btn btn-primary">설정</button>
 		</div>
 	</div>
+
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Menu Toggle Script -->
 	<script>
-		
+		$("#todo").click(function() {
+			location = "/todo";
+			return false;
+		});
 	</script>
 
 

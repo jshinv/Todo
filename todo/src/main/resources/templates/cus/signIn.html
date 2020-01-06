@@ -45,21 +45,17 @@
 			
 					var flag=false;
 					for(var idx in user_list){   //
-						if(Nickname==user_list[idx].nickName){
+						if(Nickname==user_list[idx].nickName){ // getterx html에서는
 							if(Password==user_list[idx].passWord){
 								flag=true;
 								break;
 							}
 						}	
 					}
-					if(flag==true){
-				
-						$("form").submit();
-						return false;
-					}
-				
-					else{
+// 	button 은 무조건 submit이 된다. but return false 로 막을 수 있따.			
+					if(!flag){
 						$("#alert-danger").show();
+						return false;
 					}
 				
 				});

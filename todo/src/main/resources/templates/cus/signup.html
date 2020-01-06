@@ -21,6 +21,7 @@
 							<label for="passWord2">Password check</label>
 							<input type="password" class="form-control" id="passWord2" name="passWord2">
 						</div>
+						
 						<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 
 						<button type="submit" class="btn btn-danger btn-block" id="signup">sign up</button>
@@ -35,14 +36,17 @@
 		$(function() {
 			$("#alert-danger").hide();
 			$("input").keyup(function(){ 
-				var pwd1=$("#passWord1").val(); 
+				var pwd1=$("#passWord").val(); 
 				var pwd2=$("#passWord2").val(); 
 				if (pwd1 != "" && pwd2 != "") {
 					if (pwd1 != pwd2) {
 						$("#alert-danger").show();
-						$("#submit").attr("disabled", "disabled");
+						$("#signup").attr("disabled", "disabled");
 					}
-					else 
+					if (pwd1 == pwd2) {
+						$("#alert-danger").hide();
+						$("#signup").removeAttr("disabled");
+					}
 				}
 			})
 		});

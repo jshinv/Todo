@@ -18,25 +18,64 @@
 							<label for="passWord">Password</label> <input type="password"
 								class="form-control" id="passWord" name="passWord">
 						</div>
-						<button class="btn btn-primary btn-block" id="signin">Sign in</button>
-						<button class="btn btn-danger btn-block" id="signup">Sign up</button>
+						<div class="alert alert-danger" id="alert-danger">different information</div>
+						<button class="btn btn-primary btn-block" id="signin">Sign
+							in</button>
+						<button class="btn btn-danger btn-block" id="signup">Sign
+							up</button>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
-	<script>
+private long id;
+	private String nickName;
+	private String passWord;
+	private String passWord2;
+}
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
 		$("#signin").click(function() {
-			$("form").submit();
-			return false;
+				$("#alert-danger").hide();
+				var flag=false;
+				var Nickname=$("#nickName").val();
+				var Password=$("#passWord").val();
+				var user_list = /*[[${userlist}]]*/;
+			
+				var flag=false;
+				for(var idx in user_list){   //
+					if(Nickname==user_list[idx].getNickName()){
+						if(Password==user_list[idx].getPassWord()){
+							flag=true;
+							break;
+						}
+
+					}
+				}
+				if(flag==true){
+					$("form").submit();
+					return false;
+					
+				}
+				
+				if(flag==false){
+					$("#alert-danger").show();
+					$("#signup").attr("disabled", "disabled");
+				}
+				
+			
+			
 		});
 		
 		$("#signup").click(function() {
 			location = "/signup";
 			return false;
 		});
-	</script>
+		/*]]>*/
+		</script>
 </body>
 </html>
+
+
+

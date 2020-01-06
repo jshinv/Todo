@@ -29,6 +29,6 @@ public class SignupController {
 		userRepository.save(user);
 		return "cus/signIn";
 	}
-
+	
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 }

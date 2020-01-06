@@ -26,6 +26,7 @@
 	width: 20px;
 	border: 1px solid black;
 	border-radius: 5px;
+	back-ground : white;
 }
 
 #footer {
@@ -68,16 +69,16 @@
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-						<li th:if="${session.user_info} !=null"><a class="nav-link">[[${session.user_info.nickName} + '님 반갑습니다!']]</a>
-						<li class="nav-item active"><a class="nav-link" href="/">홈 <span class="sr-only"></span></a></li>
+						<li th:if="${session.user_info} !=null"><a class="nav-link">[[${session.user_info.nickName} + '�떂 諛섍컩�뒿�땲�떎!']]</a>
+						<li class="nav-item active"><a class="nav-link" href="/">�솃 <span class="sr-only"></span></a></li>
 						
-						<li th:if="${session.user_info} == null"><a class="nav-link" href="/signin">로그인 </a></li>
-						<li th:if="${session.user_info} == null"><a class="nav-link" href="/signup">회원가입 </a></li>
+						<li th:if="${session.user_info} == null"><a class="nav-link" href="/signin">濡쒓렇�씤 </a></li>
+						<li th:if="${session.user_info} == null"><a class="nav-link" href="/signup">�쉶�썝媛��엯 </a></li>
 						
-						<li th:if="${session.user_info} !=null"><a class="nav-link" href="/todo">추가 </a></li>
-						<li th:if="${session.user_info} !=null"><a class="nav-link" href="/setting">설정 </a></li>
+						<li th:if="${session.user_info} !=null"><a class="nav-link" href="/todo">異붽� </a></li>
+						<li th:if="${session.user_info} !=null"><a class="nav-link" href="/setting">�꽕�젙 </a></li>
 
-						<li th:if="${session.user_info} != null"><a class="nav-link" href="/signout">로그아웃 </a></li>
+						<li th:if="${session.user_info} != null"><a class="nav-link" href="/signout">濡쒓렇�븘�썐 </a></li>
 
 
 
@@ -109,10 +110,10 @@
  	<div class="container">
 		<div class="btn-group" id=footer>
 
-			<button type="button" class="btn btn-secondary">나</button>
-			<button type="button" class="btn btn-secondary">친구</button>
-			<button type="button" class="btn btn-secondary">모두</button>
-			<button type="button" class="btn btn-secondary">설정</button>
+			<button type="button" class="btn btn-secondary">�굹</button>
+			<button type="button" class="btn btn-secondary">移쒓뎄</button>
+			<button type="button" class="btn btn-secondary">紐⑤몢</button>
+			<button type="button" class="btn btn-secondary">�꽕�젙</button>
 		</div>
 	</div> 
 	
@@ -121,12 +122,24 @@
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<script>
-		$("div.comp_btn").dblclick(function(){
+	<script>	
+	var flag=true;
+	$("div.comp_btn").click(function(){
+		flag = !flag;
+		console.log(flag);
+		if(flag){
+			$(this).css("background-color", "white");
+		}
+		else{
 			var color = $(this).parent().parent().parent().attr('color')
-			$(this).css("background-color", color);
-		});
+			$(this).css("background-color", color);	
+			
+		}
+	});
+	
+	
 	</script>
+
 
 
 </body>

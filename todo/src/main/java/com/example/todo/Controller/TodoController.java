@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,7 +39,7 @@ public class TodoController {
 		User dbUser = (User) session.getAttribute("user_info");
 		todo.setUser_id(dbUser.getId());
 		todo.setHostId(dbUser.getNickName());
-		todo.setStartDate("123123");  //캘린더로 날짜받아오
+		todo.setStartDate("123123");  //罹섎┛�뜑濡� �궇吏쒕컺�븘�삤
 		todo.setTitle(title);
 		todo.setColor(color);
 		todo.setCount(int_count);
@@ -48,3 +49,5 @@ public class TodoController {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 }
+
+

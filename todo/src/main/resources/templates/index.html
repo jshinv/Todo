@@ -18,7 +18,7 @@
 	text-align: center;
 	border-radius: 10px;
 }
-/* 하단바 스타일*/
+/* �븯�떒諛� �뒪���씪*/
 #footer {
 	position: absolute;
 	bottom: 0;
@@ -74,7 +74,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 						<li class="nav-item active"><a class="nav-link" href="/">홈 <span class="sr-only"></span></a></li>
-						<li class="nav-item"><a class="nav-link" href="/todo">추가 </a></li>
+						<li class="nav-item"><a class="nav-link" href="/todo">추가</a></li>
 
 						<li th:if="${session.user_info} == null"><a class="nav-link" href="/signin">로그인 </a></li>
 
@@ -99,7 +99,7 @@
 
 			<div class="container-fluid">
 				<h1 class="mt-4">My Todo</h1>
-				<tr th:each="Todo : ${list}" th:attr="id=${Todo.id}">
+				<tr th:each="Todo : ${list_real}" th:attr="id=${Todo.id}">
 					<div id="todo">
 						<td th:text="'title: '+${Todo.title}"></td>
 						<br>
@@ -114,7 +114,7 @@
 	</div>
 	<!-- /#wrapper -->
 
-	 <!--하단바   -->
+	 <!--�븯�떒諛�   -->
  	<div class="container">
 		<div class="btn-group" id=footer>
 

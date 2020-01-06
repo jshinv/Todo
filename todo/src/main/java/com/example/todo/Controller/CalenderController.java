@@ -10,11 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class GenController {
+public class CalenderController {
 
-	@GetMapping("/gen")
+	@GetMapping("/calender")
 	public String html() {
-		return "index";
+		return "m_calender";
 		
 	}
 	Logger logger = LoggerFactory.getLogger(this.getClass());

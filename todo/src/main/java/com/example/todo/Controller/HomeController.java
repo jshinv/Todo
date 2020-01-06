@@ -17,7 +17,6 @@ import com.example.todo.Repository.TodoRepository;
 @Controller
 public class HomeController {
 	
-//	�씠寃� �엳�뼱�빞 todorepository�쓽 硫붿냼�뱶 �궗�슜媛�
 	@Autowired
 	TodoRepository todoRepository;
 	

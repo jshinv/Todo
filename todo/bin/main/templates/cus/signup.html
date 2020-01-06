@@ -17,13 +17,36 @@
 							<label for="passWord">Password</label>
 							<input type="password" class="form-control" id="passWord" name="passWord">
 						</div>
+						<div class="form-group">
+							<label for="passWord2">Password check</label>
+							<input type="password" class="form-control" id="passWord2" name="passWord2">
+						</div>
+						<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+
 						<button type="submit" class="btn btn-danger btn-block" id="signup">sign up</button>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script src= "http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script>
+		
+		$(function() {
+			$("#alert-danger").hide();
+			$("input").keyup(function(){ 
+				var pwd1=$("#passWord1").val(); 
+				var pwd2=$("#passWord2").val(); 
+				if (pwd1 != "" && pwd2 != "") {
+					if (pwd1 != pwd2) {
+						$("#alert-danger").show();
+						$("#submit").attr("disabled", "disabled");
+					}
+					else 
+				}
+			})
+		});
+			
 		$("#signup").click(function() {
 			$("form").submit();
 			return false;

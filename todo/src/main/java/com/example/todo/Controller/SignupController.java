@@ -13,23 +13,22 @@ import com.example.todo.Repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 public class SignupController {
 
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@GetMapping("/signup")
 	public String signup() {
-	return "cus/signup";
+		return "cus/signup";
 	}
-	
+
 	@PostMapping("/signup")
 	public String signupPost(@ModelAttribute User user) {
-	userRepository.save(user);
-	return "cus/signIn";
+		userRepository.save(user);
+		return "cus/signIn";
 	}
-	
+
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 }

@@ -24,8 +24,8 @@ public class SignupController {
 	@GetMapping("/signup")
 	public String signup(Model model) {
 		List<User> list = userRepository.findAll();
-	
 		List<String> listNickName = new ArrayList<String>();
+
 		for(User tempUser :list) {
 			listNickName.add(tempUser.getNickName());
 		}

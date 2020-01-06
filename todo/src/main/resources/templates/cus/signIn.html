@@ -18,7 +18,8 @@
 							<label for="passWord">Password</label> <input type="password"
 								class="form-control" id="passWord" name="passWord">
 						</div>
-						<div class="alert alert-danger" id="alert-danger">different information</div>
+						<div class="alert alert-danger" id="alert-danger">different
+							information</div>
 						<button class="btn btn-primary btn-block" id="signin">Sign
 							in</button>
 						<button class="btn btn-danger btn-block" id="signup">Sign
@@ -28,43 +29,38 @@
 			</div>
 		</div>
 	</div>
-private long id;
-	private String nickName;
-	private String passWord;
-	private String passWord2;
-}
-<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" th:inline="javascript">
 		/*<![CDATA[*/
-		$("#signin").click(function() {
+		
+			$(function() {
 				$("#alert-danger").hide();
-				var flag=false;
-				var Nickname=$("#nickName").val();
-				var Password=$("#passWord").val();
-				var user_list = /*[[${userlist}]]*/;
+				$("#signin").click(function() {
+					var Nickname=$("#nickName").val();
+					var Password=$("#passWord").val();
+					var user_list = /*[[${userlist}]]*/;
 			
-				var flag=false;
-				for(var idx in user_list){   //
-					if(Nickname==user_list[idx].getNickName()){
-						if(Password==user_list[idx].getPassWord()){
-							flag=true;
-							break;
-						}
-
+					var flag=false;
+					for(var idx in user_list){   //
+						if(Nickname==user_list[idx].nickName){
+							if(Password==user_list[idx].passWord){
+								flag=true;
+								break;
+							}
+						}	
 					}
-				}
-				if(flag==true){
-					$("form").submit();
-					return false;
-					
-				}
+					if(flag==true){
 				
-				if(flag==false){
-					$("#alert-danger").show();
-					$("#signup").attr("disabled", "disabled");
-				}
+						$("form").submit();
+						return false;
+					}
 				
-			
+					else{
+						$("#alert-danger").show();
+					}
+				
+				});
 			
 		});
 		

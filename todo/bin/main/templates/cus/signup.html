@@ -54,8 +54,10 @@
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" th:inline="javascript">
 		/*<![CDATA[*/
+			
 		$(function() {
 			$("#alert-danger").hide();
+			$("#alert-IDdanger").hide();
 			$("input").keyup(function() {
 				var pwd1 = $("#passWord").val();
 				var pwd2 = $("#passWord2").val();
@@ -92,10 +94,7 @@
 			
 		});
 
-		$("#signup").click(function() {
-			$("form").submit();
-			return false;
-		});
+	
 		/*]]>*/
 	</script>
 

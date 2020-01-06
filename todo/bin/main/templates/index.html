@@ -47,8 +47,8 @@
 
 
 
+<body ondragstart="return false" onselectstart="return false">
 
-<body>
 
 	<div class="d-flex" id="wrapper">
 
@@ -133,7 +133,6 @@
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<script>
-		var selected_color = $('input[name="color_select"]:checked').val();
 		$("div.comp_btn").dblclick(function(){
 			var color = $(this).parent().parent().attr('color')
 			$(this).css("background-color", color);

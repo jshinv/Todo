@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
@@ -25,7 +26,7 @@
 	width: 20px;
 	border: 1px solid black;
 	border-radius: 5px;
-	back-ground : white;
+	back-ground: white;
 }
 
 #footer {
@@ -41,6 +42,10 @@
 
 .mt-4 {
 	text-align: center;
+}
+
+i {
+	color: #ff6f6f;
 }
 </style>
 
@@ -107,6 +112,10 @@
 								</th:block>
 							</div>
 						</div>
+						<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i>
+						</a>
+
+
 					</div>
 				</form>
 			</div>
@@ -133,22 +142,22 @@
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<script>	
-	var flag=true;
-	$("div.comp_btn").click(function(){
-		flag = !flag;
-		console.log(flag);
-		if(flag){
-			$(this).css("background-color", "white");
-		}
-		else{
-			var color = $(this).parent().parent().parent().attr('color')
-			$(this).css("background-color", color);
+	<script>
+		var flag = true;
+		$("div.comp_btn").click(function() {
+
+			flag = !flag;
+			console.log(flag);
+			if (flag) {
+				$(this).css("background-color", "white");
+			} else {
+				var color = $(this).parent().parent().parent().attr('color')
+				$(this).css("background-color", color);
 			}
 			return false;
 		});
-	$('div.todo_total').click(function() {
-				$("form").submit();
+		$('div.todo_total').click(function() {
+			$("form").submit();
 			return false;
 		});
 	</script>

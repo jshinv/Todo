@@ -11,13 +11,17 @@
 				<div class="col-md-6 col-md-offset-3">
 					<form method="post" action="/todo">
 						<div class="form-group">
-							<label for="title">title:</label> <input type="text"
-								class="form-control" id="title" name="title">
+							<label for="title">title:</label> <input type="text" class="form-control" id="title" name="title">
 						</div>
-						<div class="form-group">
-							<label for="color">color:</label> <input type="text"
-								class="form-control" id="color" name="color">
+						
+						<div class="color-group">
+							<label for="color">color:</label>
+							<input type="radio" name="color" value="#FFA1A1" checked="checked"><label for="lightpink">분홍 </label>
+							<input type="radio" name="color" value="#A1CDFF"><label for="lightblue">하늘 </label>
+							<input type="radio" name="color" value="#B9FFA1"><label for="lightgreen">연두 </label>
 						</div>
+						
+						
 						<div class="form-group">
 							<label for="count">count:</label> <input type="text"
 								class="form-control" id="count" name="count">

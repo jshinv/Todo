@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
-<head th:replace="common/head">
-</head>
+<head th:replace="common/head"></head>
 
 <style style="text/css">
 #todo {
@@ -11,14 +10,24 @@
 	width: 40%;
 	height: 100px;
 	margin: 10px;
-	background: light grey;
+	background-color: light grey;
 	border: 2px solid black;
 	padding: 5px;
 	box-sizing: border-box;
 	text-align: center;
 	border-radius: 10px;
 }
-/* �븯�떒諛� �뒪���씪*/
+
+
+.comp_btn {
+	display: inline-block;
+	position: static;
+	height: 20px;
+	width: 20px;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
 #footer {
 	position: absolute;
 	bottom: 0;
@@ -42,20 +51,6 @@
 <body>
 
 	<div class="d-flex" id="wrapper">
-
-		<!-- Sidebar -->
-		<!-- <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Start Bootstrap </div>
-      <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-      </div>
-    </div> -->
-		<!-- /#sidebar-wrapper -->
 
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
@@ -102,22 +97,26 @@
 
 			<div class="container-fluid">
 				<h1 class="mt-4">My Todo</h1>
-				<tr th:each="Todo : ${list_real}" th:attr="id=${Todo.id}">
-					<div id="todo">
-						<td th:text="'title: '+${Todo.title}"></td>
+				<div class="todo_total">
+					<div id="todo" th:each="Todo : ${list_real}" th:attr="id=${Todo.id},color=${Todo.color}">
+						<p th:text="${Todo.title}"></p>
 						<br>
-						<td th:text="'count: '+${Todo.count}"></td>
+						<div class="comp_btn_total">
+							<th:block th:each="num: ${#numbers.sequence(1, Todo.count)}">
+	        					<div class=comp_btn></div>
+	    					</th:block>
+    					</div>
 					</div>
-				</tr>
-
+				</div>
 			</div>
+			
+			
 		</div>
 		<!-- /#page-content-wrapper -->
 
 	</div>
 	<!-- /#wrapper -->
 
-	 <!--�븯�떒諛�   -->
  	<div class="container">
 		<div class="btn-group" id=footer>
 
@@ -133,8 +132,13 @@
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-
-
+	<script>
+		var selected_color = $('input[name="color_select"]:checked').val();
+		$("div.comp_btn").dblclick(function(){
+			var color = $(this).parent().parent().attr('color')
+			$(this).css("background-color", color);
+		});
+	</script>
 
 
 </body>

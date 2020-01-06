@@ -39,7 +39,7 @@ public class TodoController {
 		User dbUser = (User) session.getAttribute("user_info");
 		todo.setUser_id(dbUser.getId());
 		todo.setHostId(dbUser.getNickName());
-		todo.setStartDate("123123");  //罹섎┛�뜑濡� �궇吏쒕컺�븘�삤
+		todo.setStartDate("123123");
 		todo.setTitle(title);
 		todo.setColor(color);
 		todo.setCount(int_count);

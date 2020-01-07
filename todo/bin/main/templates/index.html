@@ -32,7 +32,8 @@
 							</div>
 						</div>
 					</div>
-<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->				</form>
+					<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->
+				</form>
 			</div>
 
 			<div class="todo_footer" id=footer>
@@ -64,12 +65,13 @@
 				var realCount = '112';
 				var objParams = {
 					"todo_id" : todo_id,
-					"realCount" : realCount // 개수 추가, 개수 감소
+					"realCount" : realCount
+				// 개수 추가, 개수 감소
 				}
 
 				$.ajax({
 					url : "/todo_result",
-					type: "post",
+					type : "post",
 					data : objParams,
 					success : function(res) {
 						alert('전송 ')
@@ -77,9 +79,20 @@
 					error : function(request, status, error) {
 						alert('error')
 					}
+					
 				})
+				
 			}
-		})
+		
+		});
+		// checkbox에 해당하는 칸을 제외하고 이벤트 발생
+		$("div.todo_total").click(function(event) {
+			if (event.target.type == 'checkbox')
+				return;
+			else 
+				$("form").submit();
+			return false;
+		});
 	</script>
 
 

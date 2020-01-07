@@ -22,8 +22,7 @@ public class CalenderController {
 		
 	}
 	@PostMapping("/calender")
-	public String calenderPost() {
-		
+	public String calenderPost() {	
 		return "calender";
 	
 	}

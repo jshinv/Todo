@@ -39,13 +39,23 @@
 						<li th:if="${session.user_info} != null"><a class="nav-link"
 							href="/signout">로그아웃 </a></li>
 					</ul>
+		<div id="" class="todo_main">
+			<div class="row">
+				<div class="col-md-12">
+					<nav th:replace="common/nav"></nav>
+					<div th:if="${session.user_info} !=null" class="welcome_area">
+						[[${session.user_info.nickName} + '님 반갑습니다!']]
+					</div>
+					<h1 class="title">
+						<span>My Todo</span>
+					</h1>
 				</div>
 			</nav>
 			<div th:if="${session.user_info} !=null" class="welcome_area">
 				[[${session.user_info.nickName} + '님 반갑습니다!']]</div>
-
+			</div>
+			</div>
 			<div class="container-fluid">
-				<h1 class="mt-4">My Todo</h1>
 				<form method="post" action="/calender">
 					<div id="todo" th:each="Todo : ${list_real}"
 						th:attr="id=${Todo.id},color=${Todo.color}">
@@ -70,12 +80,6 @@
 					<li><a href="javascript:;">모두</a></li>
 					<li><a href="javascript:;">설정</a></li>
 				</ul>
-				<!-- <div class="btn-group" id=footer>
-					<button type="button" class="btn btn-secondary">나</button>
-					<button type="button" class="btn btn-secondary">친구</button>
-					<button type="button" class="btn btn-secondary">모두</button>
-					<button type="button" class="btn btn-secondary">설정</button>
-				</div> -->
 			</div>
 
 		</div>

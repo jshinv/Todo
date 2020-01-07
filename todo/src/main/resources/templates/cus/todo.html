@@ -7,6 +7,17 @@
 	<div class="jumbotron todo_main_area">
 		<div class="container text-center todo_main">
 			<div class="row">
+				<div class="col-md-12 p-0 m-0">
+					<nav th:replace="common/nav"></nav>
+					<div th:if="${session.user_info} !=null" class="welcome_area">
+						[[${session.user_info.nickName} + '님 반갑습니다!']]
+					</div>
+					<h1 class="title">
+						<span>Todo + </span>
+					</h1>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-12">
 					<form method="post" action="/todo">
 						<div class="form-group">

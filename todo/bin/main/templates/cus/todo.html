@@ -3,6 +3,7 @@
 
 <head th:replace="common/head">
 </head>
+<script src="js/todo.js"></script>
 <body>
 	<div class="jumbotron todo_main_area">
 		<div class="container text-center todo_main">
@@ -21,25 +22,43 @@
 				<div class="col-md-12">
 					<form method="post" action="/todo">
 						<div class="form-group">
-							<label for="title">title:</label> <input type="text" class="form-control" id="title" name="title">
+							<label for="title">title:</label> <input type="text"
+								class="form-control" id="title" name="title">
 						</div>
-						
+
 						<div class="color-group">
-							<label for="color">color:</label>
-							<input type="radio" name="color" id="lightpink" value="#FFB8B8" checked="checked"><label for="lightpink"><span style="color:#FFB8B8;">분홍 </span></label>
-							<input type="radio" name="color" id="lightblue" value="#A1CDFF"><label for="lightblue"><span style="color:#A1CDFF;">하늘 </span> </label>
-							<input type="radio" name="color" id="lightgreen" value="#B9FFA1"><label for="lightgreen"><span style="color:#B9FFA1;">연두 </span> </label>
-							<input type="radio" name="color" id="lightorange" value="#FFAB6D"><label for="lightorange"><span style="color:#FFAB6D;">주황 </span> </label>
-							<input type="radio" name="color" id="lightyellow" value="#F7FF7E"><label for="lightyellow"><span style="color:#F7FF7E;">노랑 </span></label>
-							<input type="radio" name="color" id="lightpurple" value="#B590FF"><label for="lightpurple"><span style="color:#B590FF;">보라 </span></label>
-							
+							<label for="color">color:</label> <input type="radio"
+								name="color" id="lightpink" value="#FFB8B8" checked="checked"><label
+								for="lightpink"><span style="color: #FFB8B8;">분홍
+							</span></label> <input type="radio" name="color" id="lightblue" value="#A1CDFF"><label
+								for="lightblue"><span style="color: #A1CDFF;">하늘
+							</span> </label> <input type="radio" name="color" id="lightgreen"
+								value="#B9FFA1"><label for="lightgreen"><span
+								style="color: #B9FFA1;">연두 </span> </label> <input type="radio"
+								name="color" id="lightorange" value="#FFAB6D"><label
+								for="lightorange"><span style="color: #FFAB6D;">주황
+							</span> </label> <input type="radio" name="color" id="lightyellow"
+								value="#F7FF7E"><label for="lightyellow"><span
+								style="color: #F7FF7E;">노랑 </span></label> <input type="radio"
+								name="color" id="lightpurple" value="#B590FF"><label
+								for="lightpurple"><span style="color: #B590FF;">보라
+							</span></label>
+
 						</div>
-						
-						
+
+
 						<div class="form-group">
 							<label for="count">count:</label> <input type="text"
 								class="form-control" id="count" name="count">
 						</div>
+						<div class="form-group">
+							<label for="startDate">시작날짜:</label> <input type="date" 
+								class="form-control" id="startDate" name="startDate" > <label
+								for="endDate">종료날짜:</label> <input type="date"
+								class="form-control" id="endDate" name="endDate">
+						</div>
+
+
 
 						<button class="btn btn-primary btn-block" id="todo">Submit</button>
 

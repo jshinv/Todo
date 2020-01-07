@@ -32,6 +32,7 @@
 									<ul>
 										<li><span th:text="${Todo.title}"></span></li>
 										<li>Start : <span th:text="${Todo.startDate}"></span></li>
+										<li>End : <span th:text="${Todo.endDate}"></span></li>
 									</ul>
 									<div class="btn_delete">
 										<a href="javascript:;" class="delete" th:attr="t-id=${Todo.id}">Delete</a>

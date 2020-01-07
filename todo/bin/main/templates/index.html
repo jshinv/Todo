@@ -78,12 +78,13 @@
 				var realCount = -1;
 				var objParams = {
 					"todo_id" : todo_id,
-					"realCount" : realCount // 개수 추가, 개수 감소
+					"realCount" : realCount
+				// 개수 추가, 개수 감소
 				}
 
 				$.ajax({
 					url : "/todo_result",
-					type: "post",
+					type : "post",
 					data : objParams,
 					success : function(res) {
 						alert('submit ')
@@ -91,10 +92,20 @@
 					error : function(request, status, error) {
 						alert('error')
 					}
+					
 				})
-
+				
 			}
-		})
+		
+		});
+		// checkbox에 해당하는 칸을 제외하고 이벤트 발생
+		$("div.todo_total").click(function(event) {
+			if (event.target.type == 'checkbox')
+				return;
+			else 
+				$("form").submit();
+			return false;
+		});
 		$(function() {
 			var invite = /*[[${inviteinform}]]*/
 			console.log(invite.bool1);

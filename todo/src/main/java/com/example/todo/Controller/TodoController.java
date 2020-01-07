@@ -2,6 +2,7 @@ package com.example.todo.Controller;
 
 import javax.servlet.http.HttpSession;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +34,14 @@ public class TodoController {
 
 	@PostMapping("/todo")
 	public String signupPost(@RequestParam("title") String title, @RequestParam("color") String color,
-			@RequestParam("count") String count) {
+			@RequestParam("count") String count, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate){
 		int int_count=Integer.parseInt(count);
 		Todo todo = new Todo();
 		User dbUser = (User) session.getAttribute("user_info");
 		todo.setUser_id(dbUser.getId());
 		todo.setHostId(dbUser.getNickName());
-		todo.setStartDate("123123");
+		todo.setStartDate(startDate);
+		todo.setEndDate(endDate);
 		todo.setTitle(title);
 		todo.setColor(color);
 		todo.setCount(int_count);

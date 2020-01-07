@@ -8,6 +8,9 @@ li, ul{
 	margin:0;
 	padding:0;
 }
+.p-t-20{
+	padding-top:20px !important;
+}
 /*main*/
 .todo_main_area{
 	background-color:#fafafa !important;
@@ -22,7 +25,15 @@ li, ul{
     border-radius: 5px;
     position:relative;
 }
-
+.todo_main h1.title{
+	font-size:25px;
+}
+.todo_main h1.title span{
+	border-bottom: 2px solid #333;
+    display: inline-block;
+    height: 35px;
+    margin-top: 20px;
+}
 .welcome_area{
 	width: 100%;
     background-color: #000000;

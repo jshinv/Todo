@@ -9,18 +9,13 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Todo {
+public class Invite {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private long user_id;	
-	private String hostId;
-	private String startDate;
-	private String endDate;	
-	private String title;
-	private String color;
-	private int count;
-	private String range;
-	private int partyID;
-	
+	private String nickName1;
+	private String nickName2;
+	private boolean bool1 = false;
+	private boolean bool2 = false;
 }

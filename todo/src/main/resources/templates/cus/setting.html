@@ -10,7 +10,7 @@
 				<div class="col-md-12 p-0 m-0">
 					<nav th:replace="common/nav"></nav>
 					<div th:if="${session.user_info} !=null" class="welcome_area">
-						[[${session.user_info.nickName} + '님 반갑습니다!']]
+						[[${session.user_info.nickName} + 'Welcome!']]
 					</div>
 					<h1 class="title">
 						<span>Setting</span>
@@ -20,9 +20,9 @@
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#tab1">Todo관리</a></li>
-						<li><a data-toggle="tab" href="#tab2">친구관리</a></li>
-						<li><a data-toggle="tab" href="#tab3">앱관리</a></li>
+						<li class="active"><a data-toggle="tab" href="#tab1">Todo Settings</a></li>
+						<li><a data-toggle="tab" href="#tab2">Friend Settings</a></li>
+						<li><a data-toggle="tab" href="#tab3">App Settings</a></li>
 					</ul>
 					<div class="tab-content">
 						<div id="tab1" class="tab-pane fade in active">
@@ -35,13 +35,13 @@
 										<li>End : <span th:text="${Todo.endDate}"></span></li>
 									</ul>
 									<div class="btn_delete">
-										<a href="javascript:;" id="delete" th:attr="t-id=${Todo.id}">Delete</a>
+										<a href="javascript:;" class="delete" th:attr="t-id=${Todo.id}">Delete</a>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div id="tab2" class="tab-pane fade">
-							<h3>친구관리</h3>
+							<h3>Friend Setting</h3>
 							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco
 								laboris nisi ut aliquip ex ea commodo consequat.</p>
 						</div>
@@ -49,14 +49,11 @@
 							<form>
 								<div class="form-group" style="margin-top:30px;">
 									<button type="button" class="btn btn-block btn-primary"
-										onclick="logout();">로그아웃 하기</button>
+										onclick="logout();">Sign out</button>
 								</div>
 							</form>
 						</div>
 					</div>
-
-
-					
 				</div>
 			</div>
 		</div>
@@ -64,16 +61,22 @@
 
 
 	<script type="text/javascript" th:inline="javascript">
-		$("#delete").click(function() {
-			var t_id = $(this).attr("t-id");
-			location = "/setting/delete/" + t_id;
-			return false;
+		$(".delete").click(function() {
+			var con = confirm("Delete?");
+			if (con == true) {
+				var t_id = $(this).attr("t-id");
+				location = "/setting/delete/" + t_id;
+				console.log(t_id);
+				return false;
+			} else {
+				return false;
+			}
 		});
 
 	</script>
 	<script type="text/javascript" th:inline="javascript">
 		function logout() {
-			var con = confirm("로그아웃 하시겠습니까?");
+			var con = confirm("Sign out?");
 			if (con == true) {
 				location = "/signout";
 				//logout을 위해 세션을 제거하는 페이지 호출

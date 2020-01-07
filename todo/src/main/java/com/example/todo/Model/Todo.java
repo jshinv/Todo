@@ -16,6 +16,7 @@ public class Todo {
 	private long user_id;	
 	private String hostId;
 	private String startDate;
+	private String endDate;	
 	private String title;
 	private String color;
 	private int count;

@@ -9,29 +9,31 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1 class="title"><span>Setting</span></h1>
-					<form method="post" action="/todo">
-
-						
-						
+					<form>
 						<div class="form-group">
-							<label for="count">count:</label> <input type="text"
-								class="form-control" id="count" name="count">
+						<div>
 						</div>
-
-						<button class="btn btn-primary btn-block" id="todo">Submit</button>
-
+ 							<button type="button" class="btn btn-block btn-primary" onclick="logout();">로그아웃 하기</button>
+						</div>
+						
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 
-
+	
+	
 	<script>
-		$("#todo").click(function() {
-			$("form").submit();
-			return false;
-		});
+		function logout() {
+			var con = confirm("로그아웃 하시겠습니까?");
+			if (con == true) {
+				location = "/signout";
+				//logout을 위해 세션을 제거하는 페이지 호출
+			} else {
+				return false;
+			}
+		}
 	</script>
 </body>
 </html>

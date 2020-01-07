@@ -4,6 +4,7 @@
 .todo_main_area{
 	background-color:#fafafa !important;
 	padding-top:50px;
+	margin-bottom:0;
 }
 .todo_main_area .todo_main{
 	background-color:#fff;
@@ -13,6 +14,7 @@
     border: 1px solid #333;
     border-radius: 5px;
     position:relative;
+    padding:20px;
 }
 
 .welcome_area{

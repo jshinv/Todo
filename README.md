@@ -1,5 +1,5 @@
 20200107 || todo_total~calender 이동 보수작업 완료
-						start/endDate db등록 및 호출 완료
+						start/endDate db등록 및 호출 완료.
 
 # TodoController
 

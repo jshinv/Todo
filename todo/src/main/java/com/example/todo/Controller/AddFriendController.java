@@ -51,13 +51,15 @@ public class AddFriendController {
 	}
 
 	@PostMapping("/invite")
-	public String invite(@RequestParam("usr") String usr) {
+	public String invite(@RequestParam("usr") String usr,Model model) {
 		User dbUser = (User) session.getAttribute("user_info");
 		Invite invite = new Invite();
 		invite.setNickName1(dbUser.getNickName());
 		invite.setNickName2(usr);
 		invite.setBool1(true);
 		inviteRepository.save(invite);
+		model.addAttribute("userlist", userRepository.findAll());
+		model.addAttribute("friendlist", friendRepository.findAll());
 		return "cus/setting";
 
 	}

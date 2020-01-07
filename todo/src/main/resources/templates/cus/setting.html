@@ -3,6 +3,12 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
 <head th:replace="common/head">
 </head>
+
+<style>
+.friend {
+	font-size: 1.0em;
+}
+</style>
 <body>
 	<div class="jumbotron todo_main_area">
 		<div class="container text-center todo_main">
@@ -48,7 +54,7 @@
 							<form method="post" action="/">
 
 								<div class="form-group">
-									<label for="nickName">Nickname</label> <input type="text"
+									<label for="nickName" style="font-size : 15pt">Nickname</label> <input type="text"
 										class="form-control" id="nickName" name="nickName">
 								</div>
 
@@ -57,8 +63,21 @@
 								<button type="button" class="btn btn-danger btn-block" id="Add">Add
 									Friend</button>
 							</form>
-							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco
-								laboris nisi ut aliquip ex ea commodo consequat.</p>
+							<form>
+					
+									<br><label style="font-size : 15pt">FriendList</label> <br>
+						
+								<div id="tod" th:each="Friend : ${friendlist}"
+									th:attr="id=${Friend.id}" style="display: inline-block" >
+
+									<div th:if="${session.user_info.nickName} == ${Friend.usr1}"
+										class="friend">[[${Friend.usr2} ]]</div>
+									<div th:if="${session.user_info.nickName} == ${Friend.usr2}"
+										class="friend">[[${Friend.usr1} ]]</div>
+
+								</div>
+								<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->
+							</form>
 						</div>
 						<div id="tab3" class="tab-pane fade">
 							<form>

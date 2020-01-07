@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.todo.Model.Todo;
 import com.example.todo.Model.User;
+import com.example.todo.Repository.FriendRepository;
 import com.example.todo.Repository.TodoRepository;
 import com.example.todo.Repository.TodoResultRepository;
 import com.example.todo.Repository.UserRepository;
@@ -33,6 +34,9 @@ public class SetController {
 	
 	@Autowired
 	HttpSession session;
+	
+	@Autowired
+	FriendRepository friendRepository;
 
 	
 	@GetMapping("/setting")
@@ -43,6 +47,7 @@ public class SetController {
 			model.addAttribute("list_real",list);
 			model.addAttribute("count",list.size());
 			model.addAttribute("userlist", userRepository.findAll());
+			model.addAttribute("friendlist", friendRepository.findAll());
 		}
 		return "cus/setting";
 		

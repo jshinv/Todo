@@ -14,8 +14,9 @@
 	<div class="jumbotron todo_main_area">
 		<div class="container text-center todo_main">
 			<div class="row">
-				<div class="col-md-12">
-					<form method="post" action="/signup">
+				<div class="col-md-12 p-0">
+					<nav th:replace="common/nav"></nav>
+					<form method="post" action="/signup" class="p-20">
 
 						<div class="form-group">
 							<label for="nickName">Nickname</label> <input type="text"
@@ -43,6 +44,7 @@
 					</form>
 				</div>
 			</div>
+			<div th:replace="common/footer"></div>
 		</div>
 	</div>
 

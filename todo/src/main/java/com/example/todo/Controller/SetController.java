@@ -12,9 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class SetController {
 
-	@GetMapping("/Set")
+	@GetMapping("/setting")
 	public String html() {
-		return "index";
+		return "cus/setting";
 		
 	}
 	Logger logger = LoggerFactory.getLogger(this.getClass());

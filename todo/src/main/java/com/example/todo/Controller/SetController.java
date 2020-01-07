@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.todo.Model.Todo;
 import com.example.todo.Model.TodoResult;
@@ -48,6 +49,11 @@ public class SetController {
 		
 	}
 
+	@GetMapping("/setting/delete/{id}")
+	public String settingDelete(@PathVariable("id") long id) {
+		todoRepository.deleteById(id);
+		return "redirect:/setting";
+	}
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 }

@@ -55,8 +55,9 @@
 							<p th:text="${Todo.title}"></p>
 							<div class="comp_btn_total">
 								<th:block th:each="num: ${#numbers.sequence(1, Todo.count)}">
-									<div class=comp_btn></div>
-								</th:block>
+<!-- 									<div class=comp_btn></div> -->
+									<input type="checkbox" name="btn" value="btn">
+							</th:block>
 							</div>
 						</div>
 						<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i>
@@ -88,7 +89,7 @@
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<script>
-		var flag = true;
+		/* var flag = true;
 		$("div.comp_btn").click(function() {
 
 			flag = !flag;
@@ -105,7 +106,7 @@
 		$('div.todo_total').click(function() {
 			$("form").submit();
 			return false;
-		});
+		}); */
 	</script>
 
 

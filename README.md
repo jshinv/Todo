@@ -12,12 +12,11 @@
 
 # SettingHTML & SetController
 - Todo관리탭 추가
-	Todo Total(할일 전체 수량) 추가
-	Todo Delete 버튼 추가 : 버튼클릭지 로컬 H2 콘솔에서 데이터 삭제
-
-- 친구관리탭 추가
+  - Todo Total(할일 전체 수량) 추가
+  - Todo Delete 버튼 추가 : 버튼클릭시 로컬 H2 콘솔에서 데이터 삭제
+  - 친구관리탭 추가
 - 앱 관리탭 추가
-	로그아웃 버튼 추가
+	- 로그아웃 버튼 추가
 
 # 해야할 것
 - count db에 저장

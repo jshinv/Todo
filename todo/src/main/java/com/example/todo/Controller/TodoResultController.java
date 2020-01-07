@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -43,23 +43,25 @@ public class TodoResultController {
 		return "cus/todo_result";
 	}
 
+	@ResponseBody
 	@PostMapping("/todo_result")
-	public Object Todo_resultPost(@RequestParam("realCount") String realCount, 
-			@RequestParam("todo_id") String todo_id) {
+	public Map<String, Object> Todo_resultPost(@RequestParam("realCount") String realCount, @RequestParam("todo_id") String todo_id) {
 		int int_count=Integer.parseInt(realCount);
 		TodoResult todoResult = new TodoResult();
 		User dbUser = (User) session.getAttribute("user_info");
 		long key = dbUser.getId();
-		long real =todoRepository.findById(key);
+		
+		Optional<Todo> opt =todoRepository.findById(key);
+		Todo todo = opt.get();
+		long real = todo.getId();
+		
 		todoResult.setTodo_id(real);
 		todoResult.setToday("123123");
 		todoResult.setRealCount(int_count);
 		todoResultRepository.save(todoResult);
 		
 		Map<String, Object> res = new HashMap<String, Object>();
-		res.put("code", "OK");
-        res.put("message", "등록에 성공 하였습니다.");
-		return "res";
+		return res;
 	}
 
 

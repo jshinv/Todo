@@ -36,7 +36,8 @@ public class TodoController {
 	public String Todo() {
 		return "cus/todo";
 	}
-
+	
+	int init_todo_id = 1;
 	@PostMapping("/todo")
 	public String signupPost(@RequestParam("title") String title, @RequestParam("color") String color,
 			@RequestParam("count") int count, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate){
@@ -54,9 +55,8 @@ public class TodoController {
 		TodoResult todoResult = new TodoResult();
 		todoResult.setRealCount(0);
 		todoResult.setToday("123123");
-		for (int i = 1; i < 100; i += 1) {
-			todoResult.setTodo_id(i);
-		}
+		todoResult.setTodo_id(init_todo_id);
+		init_todo_id += 1;
 		todoResultrepository.save(todoResult);
 		return "redirect:/";
 	}

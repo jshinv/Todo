@@ -15,5 +15,5 @@ public class TodoResult {
 	private long id;
 	private long todo_id;
 	private String today;
-	private int count;
+	private int realCount;
 }

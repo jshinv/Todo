@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.todo.Model.Todo;
+import com.example.todo.Model.TodoResult;
 import com.example.todo.Model.User;
 import com.example.todo.Repository.TodoRepository;
+import com.example.todo.Repository.TodoResultRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +26,9 @@ public class TodoController {
 	TodoRepository todoRepository;
 
 	@Autowired
+	TodoResultRepository todoResultrepository;
+	
+	@Autowired
 	HttpSession session;
 
 	@GetMapping("/todo")
@@ -33,8 +38,7 @@ public class TodoController {
 
 	@PostMapping("/todo")
 	public String signupPost(@RequestParam("title") String title, @RequestParam("color") String color,
-			@RequestParam("count") String count) {
-		int int_count=Integer.parseInt(count);
+			@RequestParam("count") int count) {
 		Todo todo = new Todo();
 		User dbUser = (User) session.getAttribute("user_info");
 		todo.setUser_id(dbUser.getId());
@@ -42,8 +46,14 @@ public class TodoController {
 		todo.setStartDate("123123");
 		todo.setTitle(title);
 		todo.setColor(color);
-		todo.setCount(int_count);
+		todo.setCount(count);
 		todoRepository.save(todo);
+		
+		TodoResult todoResult = new TodoResult();
+		todoResult.setRealCount(0);
+		todoResult.setToday("123123");
+		todoResult.setTodo_id(0);
+		todoResultrepository.save(todoResult);
 		return "redirect:/";
 	}
 

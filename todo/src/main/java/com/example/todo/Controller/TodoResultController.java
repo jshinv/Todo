@@ -53,12 +53,9 @@ public class TodoResultController {
 		todoResult.setTodo_id(todo_id);
 		todoResult.setToday("123123");
 
-		int total_value = 0;
-		
-		if (realCount == 1) {
-			total_value += 1;
-			todoResult.setRealCount(total_value);
-		} 
+		int total_value = todoResult.getRealCount();
+		int hh = total_value + realCount;
+		todoResult.setRealCount(hh);
 		
 		todoResultRepository.save(todoResult);
 		

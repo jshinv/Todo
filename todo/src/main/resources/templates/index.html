@@ -55,7 +55,7 @@
 							<p th:text="${Todo.title}"></p>
 							<div class="comp_btn_total">
 								<th:block th:each="num: ${#numbers.sequence(1, Todo.count)}">
-									<div class=comp_btn></div>
+									<input type="checkbox" name="btn" value="btn">
 								</th:block>
 							</div>
 						</div>
@@ -94,23 +94,13 @@
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<script>
-		var flag = true;
-		$("div.comp_btn").click(function() {
-
-			flag = !flag;
-			console.log(flag);
-			if (flag) {
-				$(this).css("background-color", "white");
-			} else {
-				var color = $(this).parent().parent().parent().attr('color')
-				$(this).css("background-color", color);
-			}
-			return false;
-		});
+		var numberOfChecked = $('input:checkbox:checked').length;
+		
+/* 		
 		$('div.todo_total').click(function() {
 			$("form").submit();
 			return false;
-		});
+		}); */
 	</script>
 
 

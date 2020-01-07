@@ -8,46 +8,19 @@
 
 	<div class="d-flex todo_main_area" id="wrapper">
 		<!-- Page Content -->
-		<div id="page-content-wrapper" class="todo_main">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-				<!--  <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button> -->
-
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarSupportedContent"
-					aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-						<li class="nav-item active">
-							<a class="nav-link" href="/">홈
-								<span class="sr-only"></span>
-							</a>
-						</li>
-
-						<li th:if="${session.user_info} == null"><a class="nav-link"
-							href="/signin">로그인 </a></li>
-						<li th:if="${session.user_info} == null"><a class="nav-link"
-							href="/signup">회원가입 </a></li>
-
-						<li th:if="${session.user_info} !=null"><a class="nav-link"
-							href="/todo">추가 </a></li>
-						<li th:if="${session.user_info} !=null"><a class="nav-link"
-							href="/setting">설정 </a></li>
-
-						<li th:if="${session.user_info} != null"><a class="nav-link"
-							href="/signout">로그아웃 </a></li>
-					</ul>
+		<div id="" class="todo_main">
+			<div class="row">
+				<div class="col-md-12">
+					<nav th:replace="common/nav"></nav>
+					<div th:if="${session.user_info} !=null" class="welcome_area">
+						[[${session.user_info.nickName} + '님 반갑습니다!']]
+					</div>
+					<h1 class="title">
+						<span>My Todo</span>
+					</h1>
 				</div>
-			</nav>
-			<div th:if="${session.user_info} !=null" class="welcome_area">
-				[[${session.user_info.nickName} + '님 반갑습니다!']]
 			</div>
-
 			<div class="container-fluid">
-				<h1 class="mt-4">My Todo</h1>
 				<form method="post" action="/calender">
 					<div id="todo" th:each="Todo : ${list_real}"
 						th:attr="id=${Todo.id},color=${Todo.color}">
@@ -72,12 +45,6 @@
 					<li><a href="javascript:;">모두</a></li>
 					<li><a href="javascript:;">설정</a></li>
 				</ul>
-				<!-- <div class="btn-group" id=footer>
-					<button type="button" class="btn btn-secondary">나</button>
-					<button type="button" class="btn btn-secondary">친구</button>
-					<button type="button" class="btn btn-secondary">모두</button>
-					<button type="button" class="btn btn-secondary">설정</button>
-				</div> -->
 			</div>
 
 		</div>

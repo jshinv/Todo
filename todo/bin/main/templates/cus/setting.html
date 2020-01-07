@@ -5,12 +5,20 @@
 </head>
 <body>
 	<div class="jumbotron todo_main_area">
-		<div class="container text-center todo_main p-t-20">
+		<div class="container text-center todo_main">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12 p-0 m-0">
+					<nav th:replace="common/nav"></nav>
+					<div th:if="${session.user_info} !=null" class="welcome_area">
+						[[${session.user_info.nickName} + '님 반갑습니다!']]
+					</div>
 					<h1 class="title">
 						<span>Setting</span>
 					</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" href="#tab1">Todo관리</a></li>
 						<li><a data-toggle="tab" href="#tab2">친구관리</a></li>
@@ -18,9 +26,11 @@
 					<div class="tab-content">
 						<div id="tab1" class="tab-pane fade in active">
 							<h3>Todo관리</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-								sed do eiusmod tempor incididunt ut labore et dolore magna
-								aliqua.</p>
+							<div id="todo" th:each="Todo : ${list_real}" th:attr="id=${Todo.id}">
+								<div style="display: inline-block" class="todo_total">
+									<p th:text="${Todo.title}"></p>
+								</div>
+							</div>
 						</div>
 						<div id="tab2" class="tab-pane fade">
 							<h3>친구관리</h3>

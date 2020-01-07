@@ -42,6 +42,7 @@ public class SetController {
 		if(dbUser!=null) {
 			List<Todo> list = todoRepository.findAll();
 			model.addAttribute("list_real",list);
+			model.addAttribute("count",list.size());
 		}
 		return "cus/setting";
 		

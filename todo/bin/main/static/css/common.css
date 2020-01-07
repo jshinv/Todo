@@ -17,10 +17,14 @@ li, ul{
 .p-t-20{
 	padding-top:20px !important;
 }
+.btn-primary{
+	height:50px;
+}
 /*nav*/
 .todo_nav{
     width: 100%;
     height: 50px;
+    border-bottom:1px solid #333;
 }
 .todo_nav li{
 	float: left;
@@ -67,6 +71,30 @@ li, ul{
     padding: 10px;
 }
 
+/* todo_set_list */
+p.title_total{
+	font-size: 14px;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 15px;
+}
+.todo_set_list{
+	border: 1px solid #333;
+    margin: 5px 0;
+    text-align: left;
+    padding: 10px;
+    position:relative;
+}
+.btn_delete{
+	width: 100px;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    text-align: center;
+    padding-top: 3px;
+    border: 1px solid #333;
+}
 .todo_total {
 	display: inline-block;
 	position: static;

@@ -22,13 +22,20 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" href="#tab1">Todo관리</a></li>
 						<li><a data-toggle="tab" href="#tab2">친구관리</a></li>
+						<li><a data-toggle="tab" href="#tab3">앱관리</a></li>
 					</ul>
 					<div class="tab-content">
 						<div id="tab1" class="tab-pane fade in active">
-							<h3>Todo관리</h3>
-							<div id="todo" th:each="Todo : ${list_real}" th:attr="id=${Todo.id}">
-								<div style="display: inline-block" class="todo_total">
-									<p th:text="${Todo.title}"></p>
+							<p class="title_total">Todo Total : <span th:text="${count}"></span></p>
+							<div id="todo" th:each="Todo : ${list_real}">
+								<div class="todo_set_list">
+									<ul>
+										<li><span th:text="${Todo.title}"></span></li>
+										<li>Start : <span th:text="${Todo.startDate}"></span></li>
+									</ul>
+									<div class="btn_delete">
+										<a href="javascript:;">Delete</a>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -37,24 +44,29 @@
 							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco
 								laboris nisi ut aliquip ex ea commodo consequat.</p>
 						</div>
+						<div id="tab3" class="tab-pane fade">
+							<form>
+								<div class="form-group" style="margin-top:30px;">
+									<button type="button" class="btn btn-block btn-primary"
+										onclick="logout();">로그아웃 하기</button>
+								</div>
+							</form>
+						</div>
 					</div>
 
 
-					<form>
-						<div class="form-group">
-							<button type="button" class="btn btn-block btn-primary"
-								onclick="logout();">로그아웃 하기</button>
-						</div>
-
-					</form>
+					
 				</div>
 			</div>
 		</div>
 	</div>
 
 
+	<script type="text/javascript" th:inline="javascript">
+		
 
-	<script>
+	</script>
+	<script type="text/javascript" th:inline="javascript">
 		function logout() {
 			var con = confirm("로그아웃 하시겠습니까?");
 			if (con == true) {

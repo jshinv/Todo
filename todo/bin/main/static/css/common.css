@@ -1,5 +1,28 @@
 @charset "UTF-8";
 
+/*main*/
+.todo_main_area{
+	background-color:#fafafa !important;
+	padding-top:50px;
+}
+.todo_main_area .todo_main{
+	background-color:#fff;
+	max-width: 360px;
+	min-height:600px;
+    margin: auto;
+    border: 1px solid #333;
+    border-radius: 5px;
+    position:relative;
+}
+
+.welcome_area{
+	width: 100%;
+    background-color: #000000;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
 .todo_total {
 	display: inline-block;
 	position: static;
@@ -24,11 +47,9 @@
 	back-ground: white;
 }
 
-#footer {
+.todo_footer {
 	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 60px;
+    bottom: 0;
 }
 
 .nav-link {

@@ -6,14 +6,10 @@
 
 <body ondragstart="return false" onselectstart="return false">
 
-
-	<div class="d-flex" id="wrapper">
-
+	<div class="d-flex todo_main_area" id="wrapper">
 		<!-- Page Content -->
-		<div id="page-content-wrapper">
-
-			<nav
-				class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+		<div id="page-content-wrapper" class="todo_main">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 				<!--  <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button> -->
 
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -25,11 +21,11 @@
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-						<li th:if="${session.user_info} !=null"><a class="nav-link">[[${session.user_info.nickName}
-								+ '님 반갑습니다!']]</a>
-						<li class="nav-item active"><a class="nav-link" href="/">홈
+						<li class="nav-item active">
+							<a class="nav-link" href="/">홈
 								<span class="sr-only"></span>
-						</a></li>
+							</a>
+						</li>
 
 						<li th:if="${session.user_info} == null"><a class="nav-link"
 							href="/signin">로그인 </a></li>
@@ -43,12 +39,12 @@
 
 						<li th:if="${session.user_info} != null"><a class="nav-link"
 							href="/signout">로그아웃 </a></li>
-
-
-
 					</ul>
 				</div>
 			</nav>
+			<div th:if="${session.user_info} !=null" class="welcome_area">
+				[[${session.user_info.nickName} + '님 반갑습니다!']]
+			</div>
 
 			<div class="container-fluid">
 				<h1 class="mt-4">My Todo</h1>
@@ -65,12 +61,18 @@
 						</div>
 						<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i>
 						</a>
-
-
 					</div>
 				</form>
 			</div>
-
+			
+			<div class="todo_footer">
+				<div class="btn-group" id=footer>
+					<button type="button" class="btn btn-secondary">나</button>
+					<button type="button" class="btn btn-secondary">친구</button>
+					<button type="button" class="btn btn-secondary">모두</button>
+					<button type="button" class="btn btn-secondary">설정</button>
+				</div>
+			</div>
 
 		</div>
 		<!-- /#page-content-wrapper -->
@@ -78,15 +80,7 @@
 	</div>
 	<!-- /#wrapper -->
 
-	<div class="container">
-		<div class="btn-group" id=footer>
-
-			<button type="button" class="btn btn-secondary">나</button>
-			<button type="button" class="btn btn-secondary">친구</button>
-			<button type="button" class="btn btn-secondary">모두</button>
-			<button type="button" class="btn btn-secondary">설정</button>
-		</div>
-	</div>
+	
 
 
 	<!-- 	Bootstrap core JavaScript-->

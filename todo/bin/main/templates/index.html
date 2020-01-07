@@ -61,7 +61,7 @@
 		$("[name=btn]").change(function() {
 			if ($(this).is(":checked")) {
 				var todo_id = $(this).parent().parent().parent().attr('id');
-				var realCount = '112';
+				var realCount = 1;
 				var objParams = {
 					"todo_id" : todo_id,
 					"realCount" : realCount // 개수 추가, 개수 감소
@@ -78,6 +78,26 @@
 						alert('error')
 					}
 				})
+			} else {
+				var todo_id = $(this).parent().parent().parent().attr('id');
+				var realCount = -1;
+				var objParams = {
+					"todo_id" : todo_id,
+					"realCount" : realCount // 개수 추가, 개수 감소
+				}
+
+				$.ajax({
+					url : "/todo_result",
+					type: "post",
+					data : objParams,
+					success : function(res) {
+						alert('전송 ')
+					},
+					error : function(request, status, error) {
+						alert('error')
+					}
+				})
+
 			}
 		})
 	</script>

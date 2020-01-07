@@ -42,22 +42,24 @@ public class TodoResultController {
 	public String Todo_result() {
 		return "cus/todo_result";
 	}
-
+	
+	
 	@ResponseBody
 	@PostMapping("/todo_result")
-	public Map<String, Object> Todo_resultPost(@RequestParam("realCount") String realCount, @RequestParam("todo_id") String todo_id) {
-		int int_count=Integer.parseInt(realCount);
+	public Map<String, Object> Todo_resultPost(@RequestParam("realCount") int realCount, @RequestParam("todo_id") long todo_id) {
 		TodoResult todoResult = new TodoResult();
-		User dbUser = (User) session.getAttribute("user_info");
-		long key = dbUser.getId();
+
 		
-		Optional<Todo> opt =todoRepository.findById(key);
-		Todo todo = opt.get();
-		long real = todo.getId();
-		
-		todoResult.setTodo_id(real);
+		todoResult.setTodo_id(todo_id);
 		todoResult.setToday("123123");
-		todoResult.setRealCount(int_count);
+
+		int total_value = 0;
+		
+		if (realCount == 1) {
+			total_value += 1;
+			todoResult.setRealCount(total_value);
+		} 
+		
 		todoResultRepository.save(todoResult);
 		
 		Map<String, Object> res = new HashMap<String, Object>();

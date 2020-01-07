@@ -3,6 +3,12 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
 <head th:replace="common/head">
 </head>
+
+<style>
+.friend {
+	font-size: 1.0em;
+}
+</style>
 <body>
 	<div class="jumbotron todo_main_area">
 		<div class="container text-center todo_main">
@@ -10,8 +16,7 @@
 				<div class="col-md-12 p-0 m-0">
 					<nav th:replace="common/nav"></nav>
 					<div th:if="${session.user_info} !=null" class="welcome_area">
-						[[${session.user_info.nickName} + 'Welcome!']]
-					</div>
+						[[${session.user_info.nickName} + 'Welcome!']]</div>
 					<h1 class="title">
 						<span>Setting</span>
 					</h1>
@@ -20,13 +25,16 @@
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#tab1">Todo Settings</a></li>
+						<li class="active"><a data-toggle="tab" href="#tab1">Todo
+								Settings</a></li>
 						<li><a data-toggle="tab" href="#tab2">Friend Settings</a></li>
 						<li><a data-toggle="tab" href="#tab3">App Settings</a></li>
 					</ul>
 					<div class="tab-content">
 						<div id="tab1" class="tab-pane fade in active">
-							<p class="title_total">Todo Total : <span th:text="${count}"></span></p>
+							<p class="title_total">
+								Todo Total : <span th:text="${count}"></span>
+							</p>
 							<div id="todo" th:each="Todo : ${list_real}">
 								<div class="todo_set_list">
 									<ul>
@@ -35,19 +43,45 @@
 										<li>End : <span th:text="${Todo.endDate}"></span></li>
 									</ul>
 									<div class="btn_delete">
-										<a href="javascript:;" class="delete" th:attr="t-id=${Todo.id}">Delete</a>
+										<a href="javascript:;" class="delete"
+											th:attr="t-id=${Todo.id}">Delete</a>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div id="tab2" class="tab-pane fade">
 							<h3>Friend Setting</h3>
-							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco
-								laboris nisi ut aliquip ex ea commodo consequat.</p>
+							<form method="post" action="/">
+
+								<div class="form-group">
+									<label for="nickName" style="font-size : 15pt">Nickname</label> <input type="text"
+										class="form-control" id="nickName" name="nickName">
+								</div>
+
+								<div class="alert alert-danger" id="alert-danger">Not
+									found ID</div>
+								<button type="button" class="btn btn-danger btn-block" id="Add">Add
+									Friend</button>
+							</form>
+							<form>
+					
+									<br><label style="font-size : 15pt">FriendList</label> <br>
+						
+								<div id="tod" th:each="Friend : ${friendlist}"
+									th:attr="id=${Friend.id}" style="display: inline-block" >
+
+									<div th:if="${session.user_info.nickName} == ${Friend.usr1}"
+										class="friend">[[${Friend.usr2} ]]</div>
+									<div th:if="${session.user_info.nickName} == ${Friend.usr2}"
+										class="friend">[[${Friend.usr1} ]]</div>
+
+								</div>
+								<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->
+							</form>
 						</div>
 						<div id="tab3" class="tab-pane fade">
 							<form>
-								<div class="form-group" style="margin-top:30px;">
+								<div class="form-group" style="margin-top: 30px;">
 									<button type="button" class="btn btn-block btn-primary"
 										onclick="logout();">Sign out</button>
 								</div>
@@ -56,8 +90,55 @@
 					</div>
 				</div>
 			</div>
+			<div th:replace="common/footer"></div>
 		</div>
 	</div>
+	<form method="post" action="/invite">
+		<input type="hidden" name="usr" id="usr">
+	</form>
+
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+	<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+		
+		
+				$("#alert-danger").hide();
+				$("#Add").click(function() {
+					var Nickname=$("#nickName").val();
+					var user_list = /*[[${userlist}]]*/;
+			
+					var flag=false;
+					for(var idx in user_list){   //
+			
+						if(Nickname==user_list[idx].nickName){ // getterx html占쏙옙占쏙옙占쏙옙
+								flag=true;
+								break;
+						}
+							
+					}
+// 	button 占쏙옙 占쏙옙占쏙옙占쏙옙 submit占쏙옙 占싫댐옙. but return false 占쏙옙 占쏙옙占쏙옙 占쏙옙 占쌍듸옙.			
+					if(!flag){
+						$("#alert-danger").show();
+						return false;
+					}
+					else{
+			
+						// 占싸뱄옙째 占쏙옙占쏙옙 input占쏙옙 占쏙옙占쏙옙占쏙옙 占신겨댐옙占�
+						$("#usr").val(Nickname);
+						console.log($("#usr").val())
+						// 占싸뱄옙째 占쏙옙 submit 占쏙옙占쏙옙
+						$(document.forms[2]).submit();
+						return false;
+						
+					}
+				
+				});
+			
+
+		
+		/*]]>*/
+		</script>
 
 
 	<script type="text/javascript" th:inline="javascript">
@@ -72,14 +153,13 @@
 				return false;
 			}
 		});
-
 	</script>
 	<script type="text/javascript" th:inline="javascript">
 		function logout() {
 			var con = confirm("Sign out?");
 			if (con == true) {
 				location = "/signout";
-				//logout을 위해 세션을 제거하는 페이지 호출
+				//logout�쓣 �쐞�빐 �꽭�뀡�쓣 �젣嫄고븯�뒗 �럹�씠吏� �샇異�
 			} else {
 				return false;
 			}

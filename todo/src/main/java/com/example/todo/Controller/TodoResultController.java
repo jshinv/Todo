@@ -46,19 +46,16 @@ public class TodoResultController {
 	
 	@ResponseBody
 	@PostMapping("/todo_result")
-	public Map<String, Object> Todo_resultPost(@RequestParam("realCount") int realCount, @RequestParam("todo_id") long todo_id) {
-		TodoResult todoResult = new TodoResult();
+	public Map<String, Object> Todo_resultPost(@RequestParam("realCount") int realCount, @RequestParam("todo_id") long todo_id,
+			TodoResult todoResult) {
+//		TodoResult todoResult = new TodoResult();
 
 		
 		todoResult.setTodo_id(todo_id);
 		todoResult.setToday("123123");
 
-		int total_value = 0;
-		
-		if (realCount == 1) {
-			total_value += 1;
-			todoResult.setRealCount(total_value);
-		} 
+		int total_value = todoResult.getRealCount();
+		todoResult.setRealCount(total_value + realCount);
 		
 		todoResultRepository.save(todoResult);
 		

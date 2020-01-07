@@ -1,13 +1,13 @@
 <nav class="todo_nav">
 	<ul>
-		<li class="nav-item active"><a class="nav-link" href="/">홈 <span class="sr-only"></span></a></li>
+		<li class="nav-item active"><a class="nav-link" href="/">Home <span class="sr-only"></span></a></li>
 	
-		<li th:if="${session.user_info} == null"><a class="nav-link" href="/signin">로그인 </a></li>
-		<li th:if="${session.user_info} == null"><a class="nav-link" href="/signup">회원가입 </a></li>
+		<li th:if="${session.user_info} == null"><a class="nav-link" href="/signin">Sign in </a></li>
+		<li th:if="${session.user_info} == null"><a class="nav-link" href="/signup">Sign up </a></li>
 	
-		<li th:if="${session.user_info} !=null"><a class="nav-link" href="/todo">추가 </a></li>
-		<li th:if="${session.user_info} !=null"><a class="nav-link" href="/setting">설정 </a></li>
+		<li th:if="${session.user_info} !=null"><a class="nav-link" href="/todo">Add </a></li>
+		<li th:if="${session.user_info} !=null"><a class="nav-link" href="/setting">Settings </a></li>
 	
-		<li th:if="${session.user_info} != null"><a class="nav-link" href="/signout">로그아웃 </a></li>
+		<li th:if="${session.user_info} != null"><a class="nav-link" href="/signout">Sign out </a></li>
 	</ul>
 </nav>

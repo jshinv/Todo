@@ -22,8 +22,8 @@
 								class="form-control" id="nickName" name="nickName">
 						</div>
 
-						<div class="alert alert-danger" id="alert-danger">¾ø´Â ¾ÆÀÌµðÀÔ´Ï´Ù.</div>
-						<button type="button" class="btn btn-danger btn-block" id="Add">Ä£±¸Ãß°¡</button>
+						<div class="alert alert-danger" id="alert-danger">Not found ID</div>
+						<button type="button" class="btn btn-danger btn-block" id="Add">Add Friend</button>
 					</form>
 				</div>
 			</div>
@@ -49,23 +49,23 @@
 					var flag=false;
 					for(var idx in user_list){   //
 			
-						if(Nickname==user_list[idx].nickName){ // getterx html¿¡¼­´Â
+						if(Nickname==user_list[idx].nickName){ // getterx htmlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 								flag=true;
 								break;
 						}
 							
 					}
-// 	button Àº ¹«Á¶°Ç submitÀÌ µÈ´Ù. but return false ·Î ¸·À» ¼ö ÀÖµû.			
+// 	button ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ submitï¿½ï¿½ ï¿½È´ï¿½. but return false ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½.			
 					if(!flag){
 						$("#alert-danger").show();
 						return false;
 					}
 					else{
 			
-						// µÎ¹øÂ° ÆûÀÇ input¿¡ µ¥ÀÌÅÍ ¿Å°Ü´à±â
+						// ï¿½Î¹ï¿½Â° ï¿½ï¿½ï¿½ï¿½ inputï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å°Ü´ï¿½ï¿½
 						$("#usr").val(Nickname);
 						console.log($("#usr").val())
-						// µÎ¹øÂ° Æû submit ½ÇÇà
+						// ï¿½Î¹ï¿½Â° ï¿½ï¿½ submit ï¿½ï¿½ï¿½ï¿½
 						$(document.forms[1]).submit();
 						return false;
 						

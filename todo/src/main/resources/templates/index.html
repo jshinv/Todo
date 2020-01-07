@@ -13,7 +13,7 @@
 				<div class="col-md-12">
 					<nav th:replace="common/nav"></nav>
 					<div th:if="${session.user_info} !=null" class="welcome_area">
-						[[${session.user_info.nickName} + '�떂 諛섍컩�뒿�땲�떎!']]</div>
+						[[${session.user_info.nickName} + 'Welcome !']]</div>
 					<h1 class="title">
 						<span>My Todo</span>
 					</h1>
@@ -38,10 +38,10 @@
 
 			<div class="todo_footer" id=footer>
 				<ul>
-					<li><a href="javascript:;">�굹</a></li>
-					<li><a href="javascript:;">移쒓뎄</a></li>
-					<li><a href="javascript:;">紐⑤몢</a></li>
-					<li><a href="javascript:;">�꽕�젙</a></li>
+					<li><a href="javascript:;">Home</a></li>
+					<li><a href="javascript:;">Friends</a></li>
+					<li><a href="javascript:;">Party</a></li>
+					<li><a href="javascript:;">Settings</a></li>
 				</ul>
 			</div>
 
@@ -73,7 +73,7 @@
 					type : "post",
 					data : objParams,
 					success : function(res) {
-						alert('성공')
+						alert('submit')
 					},
 					error : function(request, status, error) {
 						alert('error')
@@ -92,7 +92,7 @@
 					type: "post",
 					data : objParams,
 					success : function(res) {
-						alert('전송 ')
+						alert('submit ')
 					},
 					error : function(request, status, error) {
 						alert('error')
@@ -106,7 +106,7 @@
 			console.log(invite.bool1);
 			console.log(invite);
 			if (invite.bool1) {
-				var confirmflag = confirm(invite.nickName1 + "와 친구할래?");
+				var confirmflag = confirm(invite.nickName1 + "friend with me?");
 				var objParams = {
 					"invite" : invite.id,
 					"confirmflag" : confirmflag
@@ -118,7 +118,7 @@
 					data : objParams,
 					type : "post",
 					success : function(res) {
-						alert('전송')
+						alert('submit')
 					},
 					error : function(request, status, error) {
 						console.log(error)

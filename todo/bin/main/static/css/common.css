@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+body{
+	background-color:#e8e8e8 !important;
+}
+.jumbotron{
+	background-color:#e8e8e8 !important;
+}
+
 a{
 	color:#333;
 }
@@ -13,6 +20,9 @@ li, ul{
 }
 .m-0{
 	margin:0;
+}
+.p-20{
+	padding:20px;
 }
 .p-t-20{
 	padding-top:20px !important;
@@ -39,7 +49,6 @@ li, ul{
 }
 /*main*/
 .todo_main_area{
-	background-color:#e8e8e8 !important;
 	margin-bottom:0;
 }
 .todo_main_area .todo_main{
@@ -65,10 +74,11 @@ li, ul{
 }
 .welcome_area{
 	width: 100%;
-    background-color: #000000;
+    background-color: #ffc107;
     color: #fff;
     text-align: center;
     padding: 10px;
+    border-bottom:1px solid #333;
 }
 
 /* todo_set_list */
@@ -122,6 +132,7 @@ p.title_total{
 .todo_footer {
 	position: absolute;
     bottom: 0;
+    left:0;
     width:100%;
 }
 .todo_footer li{

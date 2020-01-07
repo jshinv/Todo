@@ -6,14 +6,14 @@
 
 <body ondragstart="return false" onselectstart="return false">
 
-	<div class="d-flex todo_main_area" id="wrapper">
+	<div class="jumbotron todo_main_area" id="wrapper">
 		<!-- Page Content -->
 		<div id="" class="todo_main">
 			<div class="row">
 				<div class="col-md-12">
 					<nav th:replace="common/nav"></nav>
 					<div th:if="${session.user_info} !=null" class="welcome_area">
-						[[${session.user_info.nickName} + 'Welcome !']]</div>
+						'Welcome !'+ [[${session.user_info.nickName} + '  ^-^']]</div>
 					<h1 class="title">
 						<span>My Todo</span>
 					</h1>
@@ -35,15 +35,9 @@
 					<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->
 				</form>
 			</div>
-
-			<div class="todo_footer" id=footer>
-				<ul>
-					<li><a href="javascript:;">Home</a></li>
-					<li><a href="javascript:;">Friends</a></li>
-					<li><a href="javascript:;">Party</a></li>
-					<li><a href="javascript:;">Settings</a></li>
-				</ul>
-			</div>
+			
+			<div th:replace="common/footer"></div>
+			
 
 		</div>
 		<!-- /#page-content-wrapper -->

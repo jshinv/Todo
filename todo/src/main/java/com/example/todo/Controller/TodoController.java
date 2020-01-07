@@ -54,7 +54,9 @@ public class TodoController {
 		TodoResult todoResult = new TodoResult();
 		todoResult.setRealCount(0);
 		todoResult.setToday("123123");
-		todoResult.setTodo_id(0);
+		for (int i = 1; i < 100; i += 1) {
+			todoResult.setTodo_id(i);
+		}
 		todoResultrepository.save(todoResult);
 		return "redirect:/";
 	}

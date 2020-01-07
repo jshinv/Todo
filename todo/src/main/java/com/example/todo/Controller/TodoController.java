@@ -39,8 +39,7 @@ public class TodoController {
 
 	@PostMapping("/todo")
 	public String signupPost(@RequestParam("title") String title, @RequestParam("color") String color,
-			@RequestParam("count") String count, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate){
-		int int_count=Integer.parseInt(count);
+			@RequestParam("count") int count, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate){
 		Todo todo = new Todo();
 		User dbUser = (User) session.getAttribute("user_info");
 		todo.setUser_id(dbUser.getId());

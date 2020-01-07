@@ -118,11 +118,13 @@
 				{
 					title: 'All Day Event',
 					start: new Date(y, m, 1)
+				
 				},
 				{
 					id: 999,
 					title: 'Repeating Event',
 					start: new Date(y, m, d-3, 16, 0),
+					end: new Date(y, m, d, 16, 0),
 					allDay: false,
 					className: 'info'
 				},
@@ -150,7 +152,7 @@
 					title: 'Birthday Party',
 					start: new Date(y, m, d+1, 19, 0),
 					end: new Date(y, m, d+1, 22, 30),
-					allDay: false,
+					allDay: false
 				},
 				{
 					title: 'Click for Google',

@@ -3,8 +3,8 @@
 		<!-- <li class="nav-item active"><a class="nav-link" href="/">Home <span class="sr-only"></span></a></li> -->
 	
 		<li th:if="${session.user_info} == null"><a class="nav-link" href="/signin">Sign in </a></li>
-		<li th:if="${session.user_info} == null"><a class="nav-link" href="/signup">Sign up </a></li>
-	
+<!-- 		<li th:if="${session.user_info} == null"><a class="nav-link" href="/signup">Sign up </a></li>
+ -->	
 		<li th:if="${session.user_info} !=null"><a class="nav-link" href="/todo">Add </a></li>
 		<!-- <li th:if="${session.user_info} !=null"><a class="nav-link" href="/setting">Settings </a></li> -->
 	

@@ -37,7 +37,7 @@ li, ul{
     border-bottom:1px solid #333;
 }
 .todo_nav li{
-	float: left;
+	float: right;
     width: 25%;
     text-align: center;
 }

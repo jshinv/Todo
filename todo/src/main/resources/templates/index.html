@@ -13,7 +13,7 @@
 				<div class="col-md-12">
 					<nav th:replace="common/nav"></nav>
 					<div th:if="${session.user_info} !=null" class="welcome_area">
-						[[${session.user_info.nickName} + '님 반갑습니다!']]</div>
+						[[${session.user_info.nickName} + '�떂 諛섍컩�뒿�땲�떎!']]</div>
 					<h1 class="title">
 						<span>My Todo</span>
 					</h1>
@@ -32,15 +32,16 @@
 							</div>
 						</div>
 					</div>
-<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->				</form>
+					<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->
+				</form>
 			</div>
 
 			<div class="todo_footer" id=footer>
 				<ul>
-					<li><a href="javascript:;">나</a></li>
-					<li><a href="javascript:;">친구</a></li>
-					<li><a href="javascript:;">모두</a></li>
-					<li><a href="javascript:;">설정</a></li>
+					<li><a href="javascript:;">�굹</a></li>
+					<li><a href="javascript:;">移쒓뎄</a></li>
+					<li><a href="javascript:;">紐⑤몢</a></li>
+					<li><a href="javascript:;">�꽕�젙</a></li>
 				</ul>
 			</div>
 
@@ -51,28 +52,28 @@
 	<!-- /#wrapper -->
 
 
-
-
 	<!-- 	Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<script>
+	<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
 		$("[name=btn]").change(function() {
 			if ($(this).is(":checked")) {
 				var todo_id = $(this).parent().parent().parent().attr('id');
 				var realCount = 1;
 				var objParams = {
 					"todo_id" : todo_id,
-					"realCount" : realCount // 개수 추가, 개수 감소
+					"realCount" : realCount
+				// 媛쒖닔 異붽�, 媛쒖닔 媛먯냼
 				}
 
 				$.ajax({
 					url : "/todo_result",
-					type: "post",
+					type : "post",
 					data : objParams,
 					success : function(res) {
-						alert('전송 ')
+						alert('성공')
 					},
 					error : function(request, status, error) {
 						alert('error')
@@ -100,7 +101,38 @@
 
 			}
 		})
+		$(function() {
+			var invite = /*[[${inviteinform}]]*/
+			console.log(invite.bool1);
+			console.log(invite);
+			if (invite.bool1) {
+				var confirmflag = confirm(invite.nickName1 + "와 친구할래?");
+				var objParams = {
+					"invite" : invite.id,
+					"confirmflag" : confirmflag
+				};
+
+				$.ajax({
+
+					url : "/home",
+					data : objParams,
+					type : "post",
+					success : function(res) {
+						alert('전송')
+					},
+					error : function(request, status, error) {
+						console.log(error)
+					}
+
+				})
+				return false;
+			}
+		});
+		/*]]>*/
 	</script>
+
+
+
 
 
 </body>

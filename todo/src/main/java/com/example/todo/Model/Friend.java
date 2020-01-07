@@ -9,17 +9,10 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Todo {
+public class Friend {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private long user_id;	
-	private String hostId;
-	private String startDate;
-	private String title;
-	private String color;
-	private int count;
-	private String range;
-	private int partyID;
-	
+	private String usr1;
+	private String usr2;
 }

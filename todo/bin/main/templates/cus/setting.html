@@ -34,7 +34,7 @@
 										<li>Start : <span th:text="${Todo.startDate}"></span></li>
 									</ul>
 									<div class="btn_delete">
-										<a href="javascript:;" id="delete" th:attr="t-id=${Todo.id}">Delete</a>
+										<a href="javascript:;" class="delete" th:attr="t-id=${Todo.id}">Delete</a>
 									</div>
 								</div>
 							</div>
@@ -53,9 +53,6 @@
 							</form>
 						</div>
 					</div>
-
-
-					
 				</div>
 			</div>
 		</div>
@@ -63,10 +60,16 @@
 
 
 	<script type="text/javascript" th:inline="javascript">
-		$("#delete").click(function() {
-			var t_id = $(this).attr("t-id");
-			location = "/setting/delete/" + t_id;
-			return false;
+		$(".delete").click(function() {
+			var con = confirm("삭제 하시겠습니까?");
+			if (con == true) {
+				var t_id = $(this).attr("t-id");
+				location = "/setting/delete/" + t_id;
+				console.log(t_id);
+				return false;
+			} else {
+				return false;
+			}
 		});
 
 	</script>

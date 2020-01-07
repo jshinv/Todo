@@ -1,9 +1,16 @@
 @charset "UTF-8";
 
+a{
+	color:#333;
+}
+li, ul{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
 /*main*/
 .todo_main_area{
 	background-color:#fafafa !important;
-	padding-top:50px;
 	margin-bottom:0;
 }
 .todo_main_area .todo_main{
@@ -14,7 +21,6 @@
     border: 1px solid #333;
     border-radius: 5px;
     position:relative;
-    padding:20px;
 }
 
 .welcome_area{
@@ -52,8 +58,19 @@
 .todo_footer {
 	position: absolute;
     bottom: 0;
+    width:100%;
 }
-
+.todo_footer li{
+	float:left;
+	width:25%;
+}
+.todo_footer li a{
+	display: block;
+    text-align: center;
+    padding: 15px;
+    background-color: #333;
+    color: #fff;
+}
 .nav-link {
 	text-decoration: none;
 	display: inline-block;

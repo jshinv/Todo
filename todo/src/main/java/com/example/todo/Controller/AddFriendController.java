@@ -58,7 +58,7 @@ public class AddFriendController {
 		invite.setNickName2(usr);
 		invite.setBool1(true);
 		inviteRepository.save(invite);
-		return "cus/addFriend";
+		return "cus/setting";
 
 	}
 }

@@ -13,7 +13,7 @@
 				<div class="col-md-12">
 					<nav th:replace="common/nav"></nav>
 					<div th:if="${session.user_info} !=null" class="welcome_area">
-						'Welcome !'+ [[${session.user_info.nickName} + '  ^-^']]</div>
+						'Welcome !'+ [[${session.user_info.nickName} + ' ^-^']]</div>
 					<h1 class="title">
 						<span>My Todo</span>
 					</h1>
@@ -35,9 +35,9 @@
 					<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->
 				</form>
 			</div>
-			
+
 			<div th:replace="common/footer"></div>
-			
+
 
 		</div>
 		<!-- /#page-content-wrapper -->
@@ -59,7 +59,7 @@
 				var objParams = {
 					"todo_id" : todo_id,
 					"realCount" : realCount
-				// 媛쒖닔 異붽�, 媛쒖닔 媛먯냼
+				// 揶쏆뮇�땾 �빊遺쏙옙, 揶쏆뮇�땾 揶쏅Ŋ�꺖
 				}
 
 				$.ajax({
@@ -79,7 +79,7 @@
 				var objParams = {
 					"todo_id" : todo_id,
 					"realCount" : realCount
-				// 개수 추가, 개수 감소
+				// 媛쒖닔 異붽�, 媛쒖닔 媛먯냼
 				}
 
 				$.ajax({
@@ -98,7 +98,8 @@
 			}
 		
 		});
-		// checkbox에 해당하는 칸을 제외하고 이벤트 발생
+
+		/* this is daehyeonpark NoNoNoNoNoNoNO */
 		$("div.todo_total").click(function(event) {
 			if (event.target.type == 'checkbox')
 				return;
@@ -106,6 +107,7 @@
 				$("form").submit();
 			return false;
 		});
+
 		$(function() {
 			var invite = /*[[${inviteinform}]]*/
 			console.log(invite.bool1);
@@ -134,6 +136,7 @@
 			}
 		});
 		/*]]>*/
+
 	</script>
 
 

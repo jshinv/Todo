@@ -1,6 +1,5 @@
 package com.example.todo.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.todo.Model.Todo;
-import com.example.todo.Model.TodoResult;
 import com.example.todo.Model.User;
 import com.example.todo.Repository.TodoRepository;
 import com.example.todo.Repository.TodoResultRepository;
@@ -44,6 +42,7 @@ public class SetController {
 			List<Todo> list = todoRepository.findAll();
 			model.addAttribute("list_real",list);
 			model.addAttribute("count",list.size());
+			model.addAttribute("userlist", userRepository.findAll());
 		}
 		return "cus/setting";
 		

@@ -20,4 +20,12 @@
 	로그아웃 버튼 추가
 
 # 해야할 것
+<<<<<<< HEAD
 - count db에 저장
+=======
+
+- todo 삭제
+- count db에 저장
+
+- 하하하
+>>>>>>> 805114f6f61bdeee2beca2ad7e7cb4687ad80f31

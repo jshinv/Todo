@@ -13,8 +13,7 @@
 				<div class="col-md-12">
 					<nav th:replace="common/nav"></nav>
 					<div th:if="${session.user_info} !=null" class="welcome_area">
-						[[${session.user_info.nickName} + '님 반갑습니다!']]
-					</div>
+						[[${session.user_info.nickName} + '님 반갑습니다!']]</div>
 					<h1 class="title">
 						<span>My Todo</span>
 					</h1>
@@ -32,12 +31,10 @@
 								</th:block>
 							</div>
 						</div>
-						<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i>
-						</a>
 					</div>
-				</form>
+<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->				</form>
 			</div>
-			
+
 			<div class="todo_footer" id=footer>
 				<ul>
 					<li><a href="javascript:;">나</a></li>
@@ -53,7 +50,7 @@
 	</div>
 	<!-- /#wrapper -->
 
-	
+
 
 
 	<!-- 	Bootstrap core JavaScript-->
@@ -61,13 +58,27 @@
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<script>
-		var numberOfChecked = $('input:checkbox:checked').length;
-		
-/* 		
-		$('div.todo_total').click(function() {
-			$("form").submit();
-			return false;
-		}); */
+		$("[name=btn]").change(function() {
+			if ($(this).is(":checked")) {
+				var todo_id = $(this).parent().parent().parent().attr('id');
+				var realCount = "0";
+				var objParams = {
+					"todo_id" : todo_id,
+					"realCount" : realCount // 개수 추가, 개수 감소
+				}
+
+				$.ajax({
+					url : "/todo_result",
+					data : objParams,
+					success : function(res) {
+						alert('전송')
+					},
+					error : function(request, status, error) {
+						alert('error')
+					}
+				})
+			}
+		})
 	</script>
 
 

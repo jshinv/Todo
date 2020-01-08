@@ -10,7 +10,6 @@
 <link rel="stylesheet" type="text/css" href="/css/calender.css">
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="/js/calender.js"></script>
-
 <html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
 <script th:inline="javascript">
 /* <![CDATA[ */  
@@ -22,22 +21,33 @@
 					data: { 'id': /*[[${todo.id}]]*/ },
 					success: function(res) {
 						
-					var endDate = res.endDate
-					var startDate = res.startDate
-			
-				var date = new Date();
-				var d = date.getDate();
-				var m = date.getMonth();
-				var y = date.getFullYear();
-				var startDate_split=startDate.split('-');
-				var startY = startDate_split[0]
-				var startM = startDate_split[1]
-				var startD = startDate_split[2]
-				var endDate_split=endDate.split('-');
-				var endY = endDate_split[0]
-				var endM = endDate_split[1]
-				var endD = endDate_split[2]
 
+					var date = new Date();
+					var d = date.getDate();
+					var m = date.getMonth();
+					var y = date.getFullYear();
+					
+					var startDate = res.startDate
+					var endDate = res.endDate
+					var goalCount = res.goalCount
+					var title= res.title
+					var id = res.id
+					var color_rgb = res.color
+					var color_16 = color_rgb.split('#')
+					var color = color_16[1]
+					
+				
+
+					
+					var startDate_split=startDate.split('-');
+					var startY = startDate_split[0]
+					var startM = startDate_split[1] - 1 // 1월~12월을 0월~	11월로 넣어줘야 인식함
+					var startD = startDate_split[2]
+
+					var endDate_split=endDate.split('-');
+					var endY = endDate_split[0]
+					var endM = endDate_split[1] - 1 // 1월~12월을 0월~	11월로 넣어줘야 인식함
+					var endD = endDate_split[2]
 				/*  className colors
 				
 				className: default(transparent), important(red), chill(pink), success(green), info(blue)
@@ -138,21 +148,24 @@
 								}
 
 							},
-
-							events : [ /* {
-									id : 999,
-									title : 'Repeating Event',
-									start : new Date(strArray1[0], strArray1[1], strArray1[2], 16, 0),
-									end : new Date(strArray2[0], strArray2[1], strArray2[2], 16, 0),
-									allDay : false,
-									className : 'info'
-								},*/ 
-								{title : res.title,
-									start : new Date(y, m, startD),
-									end : new Date(y, m, endD),
+							
+							events : [  
+						 		
+								{	id : id,
+									title : title,
+									start : new Date(y, m, d),
+									end : new Date(endY, endM, endD),
 									url : '/',
-									className : 'success'
-								} 
+									allDay : true,
+									className : color
+								}, 
+								{	id : id,
+									title : goalCount + '',
+									start : new Date(y, m, d),
+									end : new Date(y, m, d),
+									url : '/',
+									className : color
+								}    
 							], 
 						});
 
@@ -169,8 +182,7 @@ body {
 	text-align: center;
 	font-size: 14px;
 	font-family: 'Roboto', sans-serif;
-	background:
-		url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-Abstract-Blurred-Background-Of-92820527.jpg);
+	background: white; //
 }
 
 #wrap {

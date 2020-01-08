@@ -26,9 +26,10 @@ public class AddFriendController {
 	FriendRepository friendRepository;
 	@Autowired
 	UserRepository userRepository;
+	
 	@Autowired
 	InviteRepository inviteRepository;
-
+	
 	@Autowired
 	HttpSession session;
 
@@ -57,10 +58,12 @@ public class AddFriendController {
 		invite.setNickName1(dbUser.getNickName());
 		invite.setNickName2(usr);
 		invite.setBool1(true);
+		invite.setTodoinvite(false);
 		inviteRepository.save(invite);
 		model.addAttribute("userlist", userRepository.findAll());
 		model.addAttribute("friendlist", friendRepository.findAll());
 		return "cus/setting";
 
 	}
+
 }

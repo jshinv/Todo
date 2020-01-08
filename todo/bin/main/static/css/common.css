@@ -34,9 +34,15 @@ li, ul {
 	padding-top: 20px !important;
 }
 
-.btn-primary {
-	height: 50px;
+.btn-primary, .btn-success {
+	height: 40px;
 }
+
+#alert-IDdanger, #alert-danger {
+		height: 40px;
+		padding: 8px;
+}
+
 
 .todo_nav {
 	width: 100%;

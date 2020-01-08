@@ -18,7 +18,7 @@
 				<div class="row" style="display: block;">
 					<div class="col-md-12">
 						<div th:if="${session.user_info} !=null" class="welcome_area">
-							Welcome ! '[[${session.user_info.nickName}]]'   ^-^</div>
+							Welcome ! '[[${session.user_info.nickName}]]' ^-^</div>
 						<h1 class="title">
 							<span>My Todo</span>
 						</h1>
@@ -27,19 +27,24 @@
 				<div class="container-fluid">
 
 					<form method="get" action="/calender">
-						<div id="todo" th:each="Todo : ${list_real}" th:attr="id=${Todo.id},color=${Todo.color}">
-							<div style="display: inline-block" class="todo_total" th:attr="id=${Todo.id}">
-								<p th:text="${Todo.title}"></p>							
 
+						<div id="todo" th:each="Todo : ${list_real}"
+							th:attr="id=${Todo.id},color=${Todo.color}">
+							<div style="display: inline-block" class="todo_total"
+								th:attr="id=${Todo.id}">
+								<p th:text="${Todo.title}"></p>
 								<div class="comp_btn_total">
-									<th:block th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
-										<input type="checkbox" name="btn" value="btn" checked th:if="${num} <= ${map_real[Todo.id]}">
-										<input type="checkbox" name="btn" value="btn" th:unless="${num} <= ${map_real[Todo.id]}">
+									<th:block
+										th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
+										<input type="checkbox" name="btn" value="btn" checked
+											th:if="${num} <= ${map_real[Todo.id]}">
+										<input type="checkbox" name="btn" value="btn"
+											th:unless="${num} <= ${map_real[Todo.id]}">
 									</th:block>
-								</div>
-							</div>
-						</div>
-					</form> 
+												</div>
+											</div>
+										</div>
+					</form>
 				</div>
 			</div>
 
@@ -88,7 +93,7 @@
 				})
 			} else {
 				var todo_id = $(this).parent().parent().parent().attr('id');
-				var realCount = -1;
+				var count = -1;
 				var objParams = {
 					"todo_id" : todo_id,
 					"count" : count
@@ -99,7 +104,6 @@
 					type : "post",
 					data : objParams,
 					success : function(res) {
-						alert('submit ')
 					},
 					error : function(request, status, error) {
 						alert('error')
@@ -126,12 +130,12 @@
 			var invite = /*[[${inviteinform}]]*/
 			console.log(invite.bool1);
 			console.log(invite);
-			
+
 			if (invite.bool1) {
 				console.log("0");
 				if (!invite.todoinvite) {
 					console.log("1");
-				
+
 					var confirmflag = confirm(invite.nickName1
 							+ "friend with me?");
 					var objParams = {
@@ -152,10 +156,8 @@
 						}
 
 					})
-				}
-				else{
-					var confirmflag = confirm(invite.nickName1
-							+ "todo go?");
+				} else {
+					var confirmflag = confirm(invite.nickName1 + "todo go?");
 					var objParams = {
 						"invite" : invite.id,
 						"confirmflag" : confirmflag
@@ -173,28 +175,30 @@
 							console.log(error)
 						}
 
-					})		
+					})
 				}
-			
+
 				return false;
-		
-		}
-			
+
+			}
+
 		});
 		/*]]>*/
 	</script>
 	<script>
-		$("input[type=checkbox]").change(function() {
-			if ($("input[type=checkbox]").is(":checked")) {
-				var todo_color = $(this).parent().parent().parent().attr('color');
-					/* console.log(todo_color) */
-				var todo_color_class = todo_color.substr(1, 6);
-					console.log(todo_color_class)
-				$("input[type=checkbox]").addClass(todo_color_class);
-			} else{
-				return false;
-			}
-		});
+		$("input[type=checkbox]").change(
+				function() {
+					if ($("input[type=checkbox]").is(":checked")) {
+						var todo_color = $(this).parent().parent().parent()
+								.attr('color');
+						/* console.log(todo_color) */
+						var todo_color_class = todo_color.substr(1, 6);
+						console.log(todo_color_class)
+						$("input[type=checkbox]").addClass(todo_color_class);
+					} else {
+						return false;
+					}
+				});
 		/* $("input[type=checkbox]").change(function() {
 			if ($(this).is(":checked")) {
 				var sel = $(this);

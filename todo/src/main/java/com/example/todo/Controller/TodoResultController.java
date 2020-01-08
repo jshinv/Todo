@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,9 +48,9 @@ public class TodoResultController {
 	@ResponseBody
 	@PostMapping("/todo_result")
 	public Map<String, Object> Todo_resultPost(@RequestParam("count") int count, @RequestParam("todo_id") long todo_id) {
-
+		
 		TodoResult todoResult = todoResultRepository.findByTodoId(todo_id);
-				
+
 		int realCount = todoResult.getRealCount() + count;
 		todoResult.setRealCount(realCount);
 		

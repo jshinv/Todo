@@ -29,13 +29,13 @@ td.fc-today {
 
 .fc-event-inner {
 	font-family: 'Roboto', sans-serif;
-	background: #03a9f3 !important;
+	background:  ; /* 자꾸 적용되서 없셈 (className(색상) 에따라 띠 색 변환하도록 만듬 (fc-event.* 참조)  */
 	color: #FFF !important;
 	font-size: 12px !important;
 	font-weight: 500 !important;
 	padding: 5px 0px !important;
-}
 
+}
 .fc {
 	direction: ltr;
 	text-align: left;
@@ -207,7 +207,7 @@ span.fc-button {
 }
 
 /*
-	Our default prev/next buttons use HTML entities like ‹ › « »
+	Our default prev/next buttons use HTML entities like �� �� 짬 쨩
 	and we'll try to make them look good cross-browser.
 */
 .fc-text-arrow {
@@ -218,7 +218,7 @@ span.fc-button {
 }
 
 .fc-button-prev .fc-text-arrow, .fc-button-next .fc-text-arrow {
-	/* for ‹ › */
+	/* for �� �� */
 	font-weight: bold;
 }
 
@@ -300,6 +300,26 @@ span.fc-button {
 	font-size: 12px;
 	cursor: default;
 }
+
+.fc-event.FFB8B8 {
+	background-color: #FFB8B8 !important;
+}
+.fc-event.A1CDFF {
+	background-color: #A1CDFF !important;
+}
+.fc-event.B9FFA1 {
+	background-color: #B9FFA1 !important;
+}
+.fc-event.FFAB6D {
+	background-color: #FFAB6D !important;
+}
+.fc-event.F7FF7E {
+	background-color: #F7FF7E !important;
+}
+.fc-event.B590FF {
+	background-color: #B590FF !important;
+}
+
 
 .fc-event.chill {
 	background-color: #f3dcf8;

@@ -1,6 +1,13 @@
 20200107 || todo_total~calender 이동 보수작업 완료
 						start/endDate db등록 및 호출 완료.
 
+# 해야하는거
+
+- 친구추가하면 todo set으로 넘어가는 문제
+- todo set 봤을 때 다른 아이디의 todo까지 보여지는 문제
+
+
+
 # TodoController
 
 - RequestParam 해야됨
@@ -24,12 +31,3 @@
   - start/endDate 항목 추가
 - 앱 관리탭 추가
   - 로그아웃 버튼 추가 
-
-# 해야할 것
-
-- count db에 저장
-  =======
-
-- todo 삭제
-
-- count db에 저장

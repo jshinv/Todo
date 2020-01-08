@@ -14,7 +14,7 @@
 		<div class="todo_main">
 			<nav th:replace="common/nav"></nav>
 			<div th:if="${session.user_info} !=null">
-				<div class="row">
+				<div class="row" style="display:block;">
 					<div class="col-md-12">
 						<div th:if="${session.user_info} !=null" class="welcome_area">
 							'Welcome !'+ [[${session.user_info.nickName} + ' ^-^']]</div>
@@ -42,7 +42,9 @@
 			</div>
 			
 			<div th:if="${session.user_info} == null">
-				로그인하시요
+				<div style="text-align:center; font-size:40px; font-weight:bold; margin-top:80px;">
+					^---^ <br> 로그인 하세요.
+				</div>
 			</div>
 			<div class="row footer_box">
 				<div th:replace="common/footer"></div>

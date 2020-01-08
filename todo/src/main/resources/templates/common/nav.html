@@ -7,11 +7,21 @@
 		</ul>
 		<ul th:if="${session.user_info} !=null">
 			<li>
-				<a class="nav-link" href="/todo">Add </a>
+				<a class="" href="/todo">Add </a>
 			</li>
 			<li>
-				<a class="nav-link" href="/signout">Sign out </a>
+				<a href="javascript:;" onclick="logout();">Sign out </a>
 			</li>
 		</ul>
 	</nav>
 </div>
+<script type="text/javascript" th:inline="javascript">
+	function logout() {
+		var con = confirm("Sign out?");
+		if (con == true) {
+			location = "/signout";
+		} else {
+			return false;
+		}
+	}
+</script>

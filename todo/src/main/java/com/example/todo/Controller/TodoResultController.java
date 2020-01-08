@@ -50,9 +50,8 @@ public class TodoResultController {
 
 		TodoResult todoResult = todoResultRepository.findByTodoId(todo_id);
 				
-		int i = todoResult.getRealCount() + count;
-		todoResult.setRealCount(i);
-		
+		int realCount = todoResult.getRealCount() + count;
+		todoResult.setRealCount(realCount);
 		
 		todoResultRepository.save(todoResult);
 

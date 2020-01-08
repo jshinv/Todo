@@ -52,15 +52,17 @@ li, ul{
 	margin-bottom:0;
 }
 .todo_main_area .todo_main{
-	background-color:#fff;
-	min-width:320px;
-	width:100%;
-	max-width: 360px;
-	min-height:600px;
+	background-color: #fff;
+    min-width: 320px;
+    width: 100%;
+    max-width: 360px;
+    min-height: 600px;
+    max-height: 600px;
+    overflow: scroll;
     margin: auto;
     border: 1px solid #333;
     border-radius: 5px;
-    position:relative;
+    position: relative;
 }
 .todo_main h1.title{
 	font-size:25px;
@@ -128,12 +130,17 @@ p.title_total{
 	border-radius: 5px;
 	back-ground: white;
 }
-
+.footer_box{
+	position: relative;
+    height: 50px;
+    margin-top: 10px;
+}
 .todo_footer {
 	position: absolute;
     bottom: 0;
-    left:0;
-    width:100%;
+    left: 0;
+    width: 100%;
+    margin-top: 10px;
 }
 .todo_footer li{
 	float:left;

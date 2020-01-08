@@ -26,40 +26,45 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class TodoController {
+<<<<<<< HEAD
 	@Autowired
 	UserRepository userRepository;
+=======
+        @Autowired
+        UserRepository userRepository;
+>>>>>>> 7bc27616b8044fbdd21d6c77a1b87111f5b0c4f5
 
-	@Autowired
-	TodoResultRepository todoResultepository;
+        @Autowired
+        TodoResultRepository todoResultrepository;
 
-	@Autowired
-	TodoRepository todoRepository;
+        @Autowired
+        TodoRepository todoRepository;
 
-	@Autowired
-	HttpSession session;
+        @Autowired
+        HttpSession session;
 
-	@Autowired
-	FriendRepository friendRepository;
+        @Autowired
+        FriendRepository friendRepository;
+        
 
-	@GetMapping("/todo")
-	public String Todo(Model model) {
-		User dbUser = (User) session.getAttribute("user_info");
-		if (dbUser != null) {
-			List<Todo> list = todoRepository.findAll();
-			model.addAttribute("list_real", list);
-			model.addAttribute("count", list.size());
-			model.addAttribute("userlist", userRepository.findAll());
-			model.addAttribute("friendlist", friendRepository.findAll());
-		}
-		return "cus/todo";
-	}
+        @GetMapping("/todo")
+        public String Todo(Model model) {
+                User dbUser = (User) session.getAttribute("user_info");
+                if (dbUser != null) {
+                        List<Todo> list = todoRepository.findAll();
+                        model.addAttribute("list_real", list);
+                        model.addAttribute("count", list.size());
+                        model.addAttribute("userlist", userRepository.findAll());
+                        model.addAttribute("friendlist", friendRepository.findAll());
+                }
+                return "cus/todo";
+        }
 
-	int init_todo_id = 1;
+
 
 	@PostMapping("/todo")
 	public String signupPost(@RequestParam("title") String title, @RequestParam("color") String color,
-			@RequestParam("count") int count, @RequestParam("startDate") String startDate,
-			@RequestParam("endDate") String endDate) {
+			@RequestParam("count") int count, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate){
 		Todo todo = new Todo();
 		User dbUser = (User) session.getAttribute("user_info");
 		todo.setUser_id(dbUser.getId());
@@ -68,17 +73,18 @@ public class TodoController {
 		todo.setEndDate(endDate);
 		todo.setTitle(title);
 		todo.setColor(color);
-		todo.setCount(count);
+		todo.setGoalCount(count);
 		todoRepository.save(todo);
-
+		
 		TodoResult todoResult = new TodoResult();
-		todoResult.setRealCount(0);
 		todoResult.setToday("123123");
-		todoResult.setTodo_id(init_todo_id);
-		init_todo_id += 1;
-		todoResultepository.save(todoResult);
+		todoResult.setTodoId(todo.getId());
+		todoResult.setRealCount(0);
+		todoResultrepository.save(todoResult);
 		return "redirect:/";
 	}
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 }
+
+

@@ -19,7 +19,8 @@ public class Todo {
 	private String endDate;	
 	private String title;
 	private String color;
-	private int count;
+	private int goalCount;
+	private int initCount;
 	private String range;
 	private int party_ID;
 	

@@ -6,4 +6,5 @@ import com.example.todo.Model.TodoResult;
 import com.example.todo.Model.User;
 
 public interface  TodoResultRepository extends JpaRepository<TodoResult, Long>{
+	public TodoResult findByTodoId(long todoId);
 }

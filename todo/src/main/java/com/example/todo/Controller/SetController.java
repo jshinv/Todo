@@ -1,5 +1,6 @@
 package com.example.todo.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -44,8 +45,14 @@ public class SetController {
 		User dbUser = (User) session.getAttribute("user_info");
 		if(dbUser!=null) {
 			List<Todo> list = todoRepository.findAll();
-			model.addAttribute("list_real",list);
-			model.addAttribute("count",list.size());
+			List<Todo> list_real= new ArrayList<Todo>();
+			for (Todo todo : list) {
+				if (dbUser.getId() == todo.getUser_id())
+					list_real.add(todo);
+			}
+			
+			model.addAttribute("list_real",list_real);
+			model.addAttribute("count",list_real.size());
 			model.addAttribute("userlist", userRepository.findAll());
 			model.addAttribute("friendlist", friendRepository.findAll());
 		}

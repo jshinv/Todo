@@ -10,14 +10,14 @@ import com.example.todo.Interceptor.SignInCheckInterceptor;
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
 	
-//	@Autowired
-//	private SignInCheckInterceptor signInCheckInterceptor;
-//
-//	@Override
-//	public void addInterceptors(InterceptorRegistry registry) {
-//		registry.addInterceptor(signInCheckInterceptor)
-//		.addPathPatterns("/**")
-//		.excludePathPatterns("/", "/home", "/signin", "/signup");
-//		WebMvcConfigurer.super.addInterceptors(registry);
-//	}
+	@Autowired
+	private SignInCheckInterceptor signInCheckInterceptor;
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(signInCheckInterceptor)
+		.addPathPatterns("/**")
+		.excludePathPatterns("/", "/home", "/signin", "/signup", "/css/**");
+		WebMvcConfigurer.super.addInterceptors(registry);
+	}
 }

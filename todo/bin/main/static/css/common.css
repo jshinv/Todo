@@ -36,7 +36,9 @@ li, ul{
     width: 100%;
     height: 50px;
     border-bottom:1px solid #333;
+    padding-right:10px;
 }
+
 .todo_nav ul {
 	display:flex;
 	float:right;
@@ -48,7 +50,7 @@ li, ul{
 .todo_nav li a{
 	display: inline-block;
     font-size: 15px;
-    line-height: 40px;
+    line-height: 48px;
     font-weight: bold;
 }
 /*main*/
@@ -149,7 +151,7 @@ p.title_total{
 }
 .todo_footer li{
 	float:left;
-	width:25%;
+	width:33.3%;
 }
 .todo_footer li a{
 	display: block;

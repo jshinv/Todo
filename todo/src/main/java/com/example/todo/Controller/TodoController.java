@@ -85,5 +85,32 @@ public class TodoController {
 		return "redirect:/";
 	}
 
+	@PostMapping("/todo2")
+	public String signupPost2(@RequestParam("title") String title, @RequestParam("color") String color,
+			@RequestParam("count") int count, @RequestParam("startDate") String startDate,
+			@RequestParam("endDate") String endDate) {
+		Todo todo = new Todo();
+		User dbUser = (User) session.getAttribute("user_info");
+		todo.setUser_id(dbUser.getId());
+		todo.setHostId(dbUser.getNickName());
+		todo.setStartDate(startDate);
+		todo.setEndDate(endDate);
+		todo.setTitle(title);
+		todo.setColor(color);
+		todo.setGoalCount(count);
+		todoRepository.save(todo);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c1 = Calendar.getInstance();
+		String today = sdf.format(c1.getTime());
+
+		TodoResult todoResult = new TodoResult();
+		todoResult.setToday(today);
+		todoResult.setTodoId(todo.getId());
+		todoResult.setRealCount(0);
+		todoResultrepository.save(todoResult);
+		return "redirect:/";
+	}
+
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 }

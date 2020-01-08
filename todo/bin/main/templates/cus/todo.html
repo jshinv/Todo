@@ -12,14 +12,14 @@
 					<nav th:replace="common/nav"></nav>
 					<div th:if="${session.user_info} !=null" class="welcome_area">
 						[[${session.user_info.nickName} + 'Welcome!']]</div>
-				<!--	<h1 class="title">
+					<!--	<h1 class="title">
 						  <span>Todo + </span>
 					</h1>-->
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<form method="post" action="/todo">
+					<form method="post" id="formif" action="/todo">
 						<div class="form-group">
 							<label for="title">title:</label> <input type="text"
 								class="form-control" id="title" name="title">
@@ -45,10 +45,11 @@
 								Friend</div>
 							<button type="button" class="btn btn-danger btn-block" id="Add">Add
 								Friend</button>
-
+							<div id=addlist>FriendList</div>
+							<div id="tod"></div>
 						</div>
-						<div id="tod"></div>
-						<div id=addlist>FriendList</div>
+
+
 
 						<div class="color-group">
 							<label for="color">color:</label> <input type="radio"
@@ -70,26 +71,24 @@
 
 						</div>
 
-						
+
 						<div class="form-group">
 							<label for="count">count:</label> <input type="text"
 								class="form-control" id="count" name="count">
 						</div>
-				
+
 						<div class="form-group">
 							<label for="startDate">StartDate:</label> <input type="date"
 								class="form-control" id="startDate" name="startDate"> <label
 								for="endDate">EndDate:</label> <input type="date"
 								class="form-control" id="endDate" name="endDate">
-						</div> 
-					
-
-						<div class="input-PartyList">
-						
 						</div>
 
+
+						<div class="input-PartyList"></div>
+
 						<button class="btn btn-primary btn-block" id="todo">Submit</button>
-						
+
 
 					</form>
 				</div>
@@ -97,7 +96,7 @@
 			<div class="row footer_box">
 				<div th:replace="common/footer"></div>
 			</div>
-			
+
 		</div>
 	</div>
 
@@ -107,11 +106,18 @@
 
 			if (document.all.range[0].checked) {
 				console.log("1");
+				$("#tod").empty();
+				$(".input-PartyList").empty();
+				$("#formif").attr("action", "/todo");
 				$("#friendtab").hide();
 			}
 
 			else {
+				console.log("2");
+				
+				$("#formif").attr("action", "/todo2");
 				$("#friendtab").show();
+				
 			}
 		});
 	</script>
@@ -123,13 +129,13 @@
 
 	<script type="text/javascript" th:inline="javascript">
 		/*<![CDATA[*/
-			
+	
 		var PartyList = new Array();
 		var index=0;
 		$("#alert-danger").hide();
 		$("#alert-danger2").hide();
 		$("#Add").click(function() {
-					console.log("1");
+					
 					var Nickname=$("#nickName").val();
 					var user_list = /*[[${userlist}]]*/;
 					var friend_list = /*[[${friendlist}]]*/;
@@ -163,8 +169,10 @@
 				});
 		
 		/*]]>*/
+		
 
 	</script>
+
 
 </body>
 </html>

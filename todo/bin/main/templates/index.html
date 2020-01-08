@@ -23,55 +23,29 @@
 						</h1>
 					</div>
 				</div>
-<<<<<<< HEAD
 				<div class="container-fluid">
 					<form method="post" action="/calender">
-						<div id="todo" th:each="Todo : ${list_real}"
-							th:attr="id=${Todo.id},color=${Todo.color}">
+						<div id="todo" th:each="Todo : ${list_real}" th:attr="id=${Todo.id},color=${Todo.color}">
 							<div style="display: inline-block" class="todo_total">
-								<p th:text="${Todo.title}"></p>
-								
-								
+								<p th:text="${Todo.title}"></p>							
 								<div class="comp_btn_total">
 									<th:block th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
-									
-									
-										<input type="checkbox" name="btn" value="btn">
+										<input type="checkbox" name="btn" value="btn" checked th:if="${num} <= ${map_real[Todo.id]}">
+										<input type="checkbox" name="btn" value="btn" th:unless="${num} <= ${map_real[Todo.id]}">
+										
 									</th:block>
 								</div>
 							</div>
 						</div>
-						<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->
 					</form>
 				</div>
 			</div>
+			
 			<div th:if="${session.user_info} == null">
 				로그인하시요
 			</div>
 			<div class="row footer_box">
 				<div th:replace="common/footer"></div>
-=======
-			</div>
-			<div class="container-fluid">
-				<form method="post" action="/calender">
-				
-				
-				
-					<div id="todo" th:each="Todo : ${list_real}" th:attr="id=${Todo.id},color=${Todo.color}">
-						<div style="display: inline-block" class="todo_total">
-							<p th:text="${Todo.title}"></p>							
-							<div class="comp_btn_total">
-								<th:block th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
-									<input type="checkbox" name="btn" value="btn" checked th:if="${num} <= ${map_real[Todo.id]}">
-									<input type="checkbox" name="btn" value="btn" th:unless="${num} <= ${map_real[Todo.id]}">
-									
-								</th:block>
-							</div>
-						</div>
-					</div>
-					
-				</form>
->>>>>>> b41375829bb042a931d7e5673841e077709fe739
 			</div>
 		</div>
 

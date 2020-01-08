@@ -81,5 +81,3 @@ public class TodoController {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 }
-
-

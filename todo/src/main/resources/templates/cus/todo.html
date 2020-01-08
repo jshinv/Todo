@@ -12,9 +12,9 @@
 					<nav th:replace="common/nav"></nav>
 					<div th:if="${session.user_info} !=null" class="welcome_area">
 						[[${session.user_info.nickName} + 'Welcome!']]</div>
-					<h1 class="title">
-						<span>Todo + </span>
-					</h1>
+				<!--	<h1 class="title">
+						  <span>Todo + </span>
+					</h1>-->
 				</div>
 			</div>
 			<div class="row">
@@ -31,22 +31,8 @@
 								name="range" id="our" value="our"> <label for="our"><span>Our</span></label>
 						</div>
 
-						<!-- Start -->
-						<ul class="nav nav-tabs">
-							<li class="active">
-							<a data-toggle="tab" href="#tab1">1</a></li>
-							<li><a data-toggle="tab" href="#tab2">2</a></li>
-						</ul>
-						<div class="tab-content">
-							<div id="tab1" class="tab-pane fade in active">
-								내용111111
-							</div>
-							<div id="tab2" class="tab-pane fade in">
-								내용22222222
-							</div>
-						</div>
-						<!-- End -->
-						<div id="friendtab" class="tab-pane fade" style="display: none">
+
+						<div id="friendtab" style="display: none">
 							<h3>Friend Setting</h3>
 							<div class="form-group">
 								<label for="nickName" style="font-size: 15pt">Nickname</label> <input
@@ -61,6 +47,8 @@
 								Friend</button>
 
 						</div>
+						<div id="tod"></div>
+						<div id=addlist>FriendList</div>
 
 						<div class="color-group">
 							<label for="color">color:</label> <input type="radio"
@@ -82,21 +70,27 @@
 
 						</div>
 
-
+						<!-- 
 						<div class="form-group">
 							<label for="count">count:</label> <input type="text"
 								class="form-control" id="count" name="count">
 						</div>
+				
 						<div class="form-group">
 							<label for="startDate">StartDate:</label> <input type="date"
 								class="form-control" id="startDate" name="startDate"> <label
 								for="endDate">EndDate:</label> <input type="date"
 								class="form-control" id="endDate" name="endDate">
+						</div> 
+						
+						-->
+
+						<div class="input-PartyList">
+						
 						</div>
 
-
-
 						<button class="btn btn-primary btn-block" id="todo">Submit</button>
+						
 
 					</form>
 				</div>
@@ -104,7 +98,7 @@
 			<div th:replace="common/footer"></div>
 		</div>
 	</div>
-<!-- 
+
 
 	<script>
 		$(".range-group").click(function() {
@@ -118,6 +112,57 @@
 				$("#friendtab").show();
 			}
 		});
-	</script> -->
+	</script>
+
+
+	<!-- 	Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+			
+		var PartyList = new Array();
+		var index=0;
+		$("#alert-danger").hide();
+		$("#alert-danger2").hide();
+		$("#Add").click(function() {
+					console.log("1");
+					var Nickname=$("#nickName").val();
+					var user_list = /*[[${userlist}]]*/;
+					var friend_list = /*[[${friendlist}]]*/;
+			
+					var flag1=false;
+					var flag2=false;
+					
+					for(var idx in friend_list){   //
+						if(Nickname==friend_list[idx].usr1 || Nickname==friend_list[idx].usr2){
+							flag1=true;
+						}
+					}
+					if(flag1){
+					
+						
+						for(var idx in user_list){   //
+							if(Nickname==user_list[idx].nickName){ // getterx html�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
+
+								flag2=true;
+								$("#tod").append("<div value='" + Nickname + "'>" + Nickname + "</div>");
+								$(".input-PartyList").append("<input type=hidden name=addname value= " + Nickname + " id=" + Nickname +"></input>")
+								
+							}		
+						}
+					}
+					if(!flag1){
+						$("#alert-danger").show();
+					}
+					
+					console.log(PartyList);
+				});
+		
+		/*]]>*/
+
+	</script>
+
 </body>
 </html>

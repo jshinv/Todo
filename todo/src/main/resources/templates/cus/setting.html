@@ -16,7 +16,7 @@
 				<div class="col-md-12 p-0 m-0">
 					<nav th:replace="common/nav"></nav>
 					<div th:if="${session.user_info} !=null" class="welcome_area">
-						[[${session.user_info.nickName} + 'Welcome!']]</div>
+						'Welcome !'+ [[${session.user_info.nickName} + ' ^-^']]</div>
 					<h1 class="title">
 						<span>Setting</span>
 					</h1>
@@ -26,9 +26,9 @@
 				<div class="col-md-12">
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" href="#tab1">Todo
-								Settings</a></li>
-						<li><a data-toggle="tab" href="#tab2">Friend Settings</a></li>
-						<li><a data-toggle="tab" href="#tab3">App Settings</a></li>
+								Sets</a></li>
+						<li><a data-toggle="tab" href="#tab2">Friend Set</a></li>
+						<li><a data-toggle="tab" href="#tab3">App Set</a></li>
 					</ul>
 					<div class="tab-content">
 						<div id="tab1" class="tab-pane fade in active">
@@ -54,21 +54,24 @@
 							<form method="post" action="/">
 
 								<div class="form-group">
-									<label for="nickName" style="font-size : 15pt">Nickname</label> <input type="text"
-										class="form-control" id="nickName" name="nickName">
+									<label for="nickName" style="font-size: 15pt">Nickname</label>
+									<input type="text" class="form-control" id="nickName"
+										name="nickName">
 								</div>
 
 								<div class="alert alert-danger" id="alert-danger">Not
 									found ID</div>
+								<div class="alert alert-danger" id="alert-danger2">Already
+									Friend</div>
 								<button type="button" class="btn btn-danger btn-block" id="Add">Add
 									Friend</button>
 							</form>
-							<form>
-					
-									<br><label style="font-size : 15pt">FriendList</label> <br>
 						
+
+								<br> <label style="font-size: 15pt">FriendList</label> <br>
+
 								<div id="tod" th:each="Friend : ${friendlist}"
-									th:attr="id=${Friend.id}" style="display: inline-block" >
+									th:attr="id=${Friend.id}" style="display: inline-block">
 
 									<div th:if="${session.user_info.nickName} == ${Friend.usr1}"
 										class="friend">[[${Friend.usr2} ]]</div>
@@ -77,7 +80,7 @@
 
 								</div>
 								<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->
-							</form>
+						
 						</div>
 						<div id="tab3" class="tab-pane fade">
 							<form>
@@ -90,7 +93,9 @@
 					</div>
 				</div>
 			</div>
-			<div th:replace="common/footer"></div>
+			<div class="row footer_box">
+				<div th:replace="common/footer"></div>
+			</div>
 		</div>
 	</div>
 	<form method="post" action="/invite">
@@ -104,32 +109,34 @@
 		
 		
 				$("#alert-danger").hide();
+				$("#alert-danger2").hide();
 				$("#Add").click(function() {
+					
 					var Nickname=$("#nickName").val();
 					var user_list = /*[[${userlist}]]*/;
+					var friend_list = /*[[${friendlist}]]*/;
 			
-					var flag=false;
-					for(var idx in user_list){   //
-			
-						if(Nickname==user_list[idx].nickName){ // getterx html占쏙옙占쏙옙占쏙옙
-								flag=true;
-								break;
+					var flag1=false;
+					var flag2=false;
+					
+					for(var idx in friend_list){   //
+						if(Nickname==friend_list[idx].usr1 || Nickname==friend_list[idx].usr2){
+							flag1=true;
+							$("#alert-danger2").show();
 						}
-							
 					}
-// 	button 占쏙옙 占쏙옙占쏙옙占쏙옙 submit占쏙옙 占싫댐옙. but return false 占쏙옙 占쏙옙占쏙옙 占쏙옙 占쌍듸옙.			
-					if(!flag){
+					if(!flag1){
+						for(var idx in user_list){   //
+							if(Nickname==user_list[idx].nickName){ // getterx html占쏙옙占쏙옙占쏙옙
+								flag2=true;
+								$("#usr").val(Nickname);
+								$(document.forms[2]).submit();
+								return false;
+						}		
+					}
+					}
+					if(!flag1 && !flag2){
 						$("#alert-danger").show();
-						return false;
-					}
-					else{
-			
-						// 占싸뱄옙째 占쏙옙占쏙옙 input占쏙옙 占쏙옙占쏙옙占쏙옙 占신겨댐옙占�
-						$("#usr").val(Nickname);
-						console.log($("#usr").val())
-						// 占싸뱄옙째 占쏙옙 submit 占쏙옙占쏙옙
-						$(document.forms[2]).submit();
-						return false;
 						
 					}
 				

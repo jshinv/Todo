@@ -1,7 +1,9 @@
 package com.example.todo.Controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,12 +22,15 @@ import com.example.todo.Model.User;
 import com.example.todo.Repository.FriendRepository;
 import com.example.todo.Repository.InviteRepository;
 import com.example.todo.Repository.TodoRepository;
+import com.example.todo.Repository.TodoResultRepository;
 
 @Controller
 public class HomeController {
 
 	@Autowired
 	TodoRepository todoRepository;
+	@Autowired
+	TodoResultRepository todoResultRepository;
 	@Autowired
 	InviteRepository inviteRepository;
 	@Autowired
@@ -54,6 +59,10 @@ public class HomeController {
 					list_real.add(todo);
 			}
 			model.addAttribute("list_real", list_real);
+			
+			Map<Long,Integer> todoresult=new HashMap<Long,Integer>();
+			todoresult = 
+			
 		}
 		return "index";
 	}

@@ -15,14 +15,16 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class SignInCheckInterceptor extends HandlerInterceptorAdapter {
+	
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		log.debug("preHandle");
 		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("user");
+		User user = (User) session.getAttribute("user_info");
 		if (user == null) {
-			response.sendRedirect("/login");
+			response.sendRedirect("/signin");
 		}
 		return super.preHandle(request, response, handler);
 	}
@@ -34,3 +36,4 @@ public class SignInCheckInterceptor extends HandlerInterceptorAdapter {
 		super.postHandle(request, response, handler, modelAndView);
 	}
 }
+

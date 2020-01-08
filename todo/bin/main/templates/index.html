@@ -25,9 +25,9 @@
 					</div>
 				</div>
 				<div class="container-fluid">
-					<form method="post" action="/calender">
+					<form method="get" action="/calender">
 						<div id="todo" th:each="Todo : ${list_real}" th:attr="id=${Todo.id},color=${Todo.color}">
-							<div style="display: inline-block" class="todo_total">
+							<div style="display: inline-block" class="todo_total" th:attr="id=${Todo.id}">
 								<p th:text="${Todo.title}"></p>							
 								<div class="comp_btn_total">
 									<th:block th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">

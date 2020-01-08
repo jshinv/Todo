@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
@@ -10,29 +11,31 @@
 
 	<div class="jumbotron todo_main_area" id="wrapper">
 		<!-- Page Content -->
+		
 		<div class="todo_main">
 			<nav th:replace="common/nav"></nav>
 			<div th:if="${session.user_info} !=null">
-				<div class="row">
+				<div class="row" style="display:block;">
 					<div class="col-md-12">
 						<div th:if="${session.user_info} !=null" class="welcome_area">
-							'Welcome !'+ [[${session.user_info.nickName} + ' ^-^']]</div>
+							Welcome ! '[[${session.user_info.nickName}]]'   ^-^</div>
 						<h1 class="title">
 							<span>My Todo</span>
 						</h1>
 					</div>
 				</div>
-			</div>
-			<div class="container-fluid">
-			<!-- 	<form method="get" action="/calender"> -->
-					<div id="todo" th:each="Todo : ${list_real}"
-						th:attr="id=${Todo.id},color=${Todo.color}">
-						<div style="display: inline-block" class="todo_total" th:attr="id=${Todo.id}">
-							<p th:text="${Todo.title}"></p>
-							<div class="comp_btn_total">
+				<div class="container-fluid">
+					<form method="post" action="/calender">
+						<div id="todo" th:each="Todo : ${list_real}" th:attr="id=${Todo.id},color=${Todo.color}">
+							<div style="display: inline-block" class="todo_total">
+								<p th:text="${Todo.title}"></p>							
+								<div class="comp_btn_total">
+									<th:block th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
 										<input type="checkbox" name="btn" value="btn" checked th:if="${num} <= ${map_real[Todo.id]}">
 										<input type="checkbox" name="btn" value="btn" th:unless="${num} <= ${map_real[Todo.id]}">
-								</th:block>
+										
+									</th:block>
+								</div>
 							</div>
 						</div>
 					</form>
@@ -40,22 +43,23 @@
 			</div>
 			
 			<div th:if="${session.user_info} == null">
-				로그인하시요
+				<div style="text-align:center; font-size:40px; font-weight:bold; margin-top:80px;">
+					^---^ <br> 로그인 하세요.
+				</div>
 			</div>
 			<div class="row footer_box">
 				<div th:replace="common/footer"></div>
 			</div>
-
-			<div th:replace="common/footer"></div>
-
-
 		</div>
+
 		<!-- /#page-content-wrapper -->
 
 	</div>
 	<!-- /#wrapper -->
 
+
 	<!-- 	Bootstrap core JavaScript-->
+
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -111,7 +115,7 @@
 				return;
 			} else {
 				var id = $(this).attr("id");
-				location = "/calender/" + id;	
+				location = "/calender/" + id;
 				return false;
 			}
 		});

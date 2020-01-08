@@ -30,14 +30,14 @@
 								<p th:text="${Todo.title}"></p>							
 								<div class="comp_btn_total">
 									<th:block th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
-										<input type="checkbox" name="btn" value="btn" checked th:if="${num} <= ${map_real[Todo.id]}">
-										<input type="checkbox" name="btn" value="btn" th:unless="${num} <= ${map_real[Todo.id]}">
-										
+										<input id ="ch1" type="checkbox" name="btn" value="btn" checked th:if="${num} <= ${map_real[Todo.id]}">
+										<input id ="ch1" type="checkbox" name="btn" value="btn" th:unless="${num} <= ${map_real[Todo.id]}">
+										<!-- <label for ="cb1"></label> -->
 									</th:block>
 								</div>
 							</div>
 						</div>
-					</form>
+					</form> 
 				</div>
 			</div>
 			
@@ -144,6 +144,30 @@
 		});
 		/*]]>*/
 
+	</script>
+	<script>
+		$("input[type=checkbox]").change(function() {
+			if ($("input[type=checkbox]").is(":checked")) {
+				var todo_color = $(this).parent().parent().parent().attr('color');
+					/* console.log(todo_color) */
+				var todo_color_class = todo_color.substr(1, 6);
+					console.log(todo_color_class)
+				$("input[type=checkbox]").addClass(todo_color_class);
+			} else{
+				return false;
+			}
+		});
+		/* $("input[type=checkbox]").change(function() {
+			if ($(this).is(":checked")) {
+				var sel = $(this);
+					console.log(sel)
+				var todo_color = $(this).parent().parent().parent().attr('color');
+					console.log(todo_color)
+				$(sel).css('backgroundColor', todo_color);
+			} else{
+				return false;
+			}
+		}); */
 	</script>
 
 

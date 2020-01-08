@@ -93,7 +93,7 @@
 				})
 			} else {
 				var todo_id = $(this).parent().parent().parent().attr('id');
-				var realCount = -1;
+				var count = -1;
 				var objParams = {
 					"todo_id" : todo_id,
 					"count" : count
@@ -104,7 +104,6 @@
 					type : "post",
 					data : objParams,
 					success : function(res) {
-						alert('submit ')
 					},
 					error : function(request, status, error) {
 						alert('error')

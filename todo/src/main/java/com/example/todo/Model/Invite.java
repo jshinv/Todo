@@ -18,4 +18,5 @@ public class Invite {
 	private String nickName2;
 	private boolean bool1 = false;
 	private boolean bool2 = false;
+	private boolean todoinvite;
 }

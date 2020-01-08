@@ -2,37 +2,41 @@
 <html>
 <head>
 <script type="text/javascript">
-document.write(strArray1[0]);
 </script>
 
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
 	rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/calender.css">
+<link rel="stylesheet" type="text/css" href="/css/calender.css">
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="js/calender.js"></script>
-<script language="javascript">
-    function account_put() {
-        var LATEST_ACCOUNT_NUM = <? echo $array[LATEST_ACCOUNT_NUM] ?>;
-        document.edit_form.AUTO_ACCOUNT_NUM.value = LATEST_ACCOUNT_NUM+1;
-}
-</script>
+<script type="text/javascript" src="/js/calender.js"></script>
 
 <html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
-<script>
-	$sql1="SELECT START_DATE FROM TODO DESC 1";
-	$sql2="SELECT END_DATE FROM TODO DESC 1";
+<script th:inline="javascript">
+/* <![CDATA[ */  
 	$(document).ready(
-
-			
 			function() {
+				
+				$.ajax({
+					url: '/getCalenderData',
+					data: { 'id': /*[[${todo.id}]]*/ },
+					success: function(res) {
+						
+					var endDate = res.endDate
+					var startDate = res.startDate
+			
 				var date = new Date();
 				var d = date.getDate();
 				var m = date.getMonth();
 				var y = date.getFullYear();
-				var strArray1=$sql1.split('-');
-				var strArray2=$sql2.split('-');
-
+				var startDate_split=startDate.split('-');
+				var startY = startDate_split[0]
+				var startM = startDate_split[1]
+				var startD = startDate_split[2]
+				var endDate_split=endDate.split('-');
+				var endY = endDate_split[0]
+				var endM = endDate_split[1]
+				var endD = endDate_split[2]
 
 				/*  className colors
 				
@@ -136,23 +140,28 @@ document.write(strArray1[0]);
 							},
 
 							events : [ /* {
-								id : 999,
-								title : 'Repeating Event',
-								start : new Date(strArray1[0], strArray1[1], strArray1[2], 16, 0),
-								end : new Date(strArray2[0], strArray2[1], strArray2[2], 16, 0),
-								allDay : false,
-								className : 'info'
-							},*/ 
-							{title : 'Click for Google',
-								start : new Date(strArray1[0], m, 28),
-								end : new Date(y, m, 29),
-								url : '/',
-								className : 'success'
-							} ], 
+									id : 999,
+									title : 'Repeating Event',
+									start : new Date(strArray1[0], strArray1[1], strArray1[2], 16, 0),
+									end : new Date(strArray2[0], strArray2[1], strArray2[2], 16, 0),
+									allDay : false,
+									className : 'info'
+								},*/ 
+								{title : res.title,
+									start : new Date(y, m, startD),
+									end : new Date(y, m, endD),
+									url : '/',
+									className : 'success'
+								} 
+							], 
 						});
 
-			});
+					}
+				})
+			});	
+	/* ]]> */
 </script>
+
 <style>
 body {
 	margin-bottom: 40px;
@@ -216,6 +225,7 @@ body {
 </style>
 </head>
 <body>
+
 	<div id='wrap'>
 
 		<div id='calendar'></div>

@@ -5,7 +5,7 @@
 <head th:replace="common/head"></head>
 
 <body ondragstart="return false" onselectstart="return false">
-
+	[[${list_real}]]
 	<div class="jumbotron todo_main_area" id="wrapper">
 		<!-- Page Content -->
 		<div id="" class="todo_main">
@@ -15,15 +15,15 @@
 					<div th:if="${session.user_info} !=null" class="welcome_area">
 						'Welcome !'+ [[${session.user_info.nickName} + ' ^-^']]</div>
 					<h1 class="title">
-						<span>My Todo</span>
+						<span>My Todo [[${list}]]</span>
 					</h1>
 				</div>
 			</div>
 			<div class="container-fluid">
-				<form method="post" action="/calender">
+			<!-- 	<form method="get" action="/calender"> -->
 					<div id="todo" th:each="Todo : ${list_real}"
 						th:attr="id=${Todo.id},color=${Todo.color}">
-						<div style="display: inline-block" class="todo_total">
+						<div style="display: inline-block" class="todo_total" th:attr="id=${Todo.id}">
 							<p th:text="${Todo.title}"></p>
 							<div class="comp_btn_total">
 								<th:block th:each="num: ${#numbers.sequence(1, Todo.count)}">
@@ -44,7 +44,6 @@
 
 	</div>
 	<!-- /#wrapper -->
-
 
 	<!-- 	Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>
@@ -92,22 +91,23 @@
 					error : function(request, status, error) {
 						alert('error')
 					}
-					
+
 				})
-				
+
 			}
-		
+
 		});
 
 		/* this is daehyeonpark NoNoNoNoNoNoNO */
 		$("div.todo_total").click(function(event) {
-			if (event.target.type == 'checkbox')
+			if (event.target.type == 'checkbox') {
 				return;
-			else 
-				$("form").submit();
-			return false;
+			} else {
+				var id = $(this).attr("id");
+				location = "/calender/" + id;	
+				return false;
+			}
 		});
-
 		$(function() {
 			var invite = /*[[${inviteinform}]]*/
 			console.log(invite.bool1);
@@ -136,8 +136,6 @@
 			}
 		});
 		/*]]>*/
-
-
 	</script>
 
 

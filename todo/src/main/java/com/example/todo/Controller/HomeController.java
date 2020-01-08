@@ -35,6 +35,7 @@ public class HomeController {
 
 	@GetMapping({ "/", "/home" })
 	public String index(Model model) {
+		System.out.println("home");
 		User dbUser = (User) session.getAttribute("user_info");
 		if (dbUser != null) {
 			List<Invite> inviteUserList = inviteRepository.findAll();
@@ -47,6 +48,7 @@ public class HomeController {
 
 				}
 			}
+
 			List<Todo> list = todoRepository.findAll();
 			List<Todo> list_real = new ArrayList<Todo>();
 			for (Todo todo : list) {

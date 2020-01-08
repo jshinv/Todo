@@ -1,5 +1,6 @@
 package com.example.todo.Model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,14 +10,19 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Invite {
+public class Calender {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String nickName1;
-	private String nickName2;
-	private boolean bool1 = false;
-	private boolean bool2 = false;
-	private boolean todoinvite;
+	private long user_id;	
+	private String hostId;	
+	private String startDate;
+	private String endDate;	
+	private String title;
+	private String color;
+	private int count;
+	private String range;
+
+	
 }

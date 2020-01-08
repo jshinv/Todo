@@ -15,7 +15,5 @@ public class TodoResult {
 	private long id;
 	private long todoId;
 	private String today;
-	private int realCount;
-	private String range;
-	private int party_ID;
+	private int realCount =0;
 }

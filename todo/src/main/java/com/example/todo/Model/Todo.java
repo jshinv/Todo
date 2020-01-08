@@ -21,6 +21,6 @@ public class Todo {
 	private String color;
 	private int count;
 	private String range;
-	private int partyID;
+	private int party_ID;
 	
 }

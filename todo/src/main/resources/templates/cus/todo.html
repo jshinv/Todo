@@ -11,8 +11,7 @@
 				<div class="col-md-12 p-0 m-0">
 					<nav th:replace="common/nav"></nav>
 					<div th:if="${session.user_info} !=null" class="welcome_area">
-						[[${session.user_info.nickName} + 'Welcome!']]
-					</div>
+						[[${session.user_info.nickName} + 'Welcome!']]</div>
 					<h1 class="title">
 						<span>Todo + </span>
 					</h1>
@@ -25,23 +24,44 @@
 							<label for="title">title:</label> <input type="text"
 								class="form-control" id="title" name="title">
 						</div>
+						<div class="range-group">
+							<label for="range">Range:</label> <input type="radio"
+								name="range" id="me" value="me" checked="checked"><label
+								for="me"><span>Me </span></label><input type="radio"
+								name="range" id="our" value="our"><label for="our"><span>Our</span></label>
+						</div>
+						<div id="friendtab" class="tab-pane fade" style="display: none">
+							<h3>Friend Setting</h3>
+							<div class="form-group">
+								<label for="nickName" style="font-size: 15pt">Nickname</label> <input
+									type="text" class="form-control" id="nickName" name="nickName">
+							</div>
 
+							<div class="alert alert-danger" id="alert-danger">Not found
+								ID</div>
+							<div class="alert alert-danger" id="alert-danger2">Already
+								Friend</div>
+							<button type="button" class="btn btn-danger btn-block" id="Add">Add
+								Friend</button>
+
+						</div>
+						
 						<div class="color-group">
 							<label for="color">color:</label> <input type="radio"
 								name="color" id="lightpink" value="#FFB8B8" checked="checked"><label
-								for="lightpink"><span style="color: #FFB8B8;">분홍
+								for="lightpink"><span style="color: #FFB8B8;">pink
 							</span></label> <input type="radio" name="color" id="lightblue" value="#A1CDFF"><label
-								for="lightblue"><span style="color: #A1CDFF;">하늘
+								for="lightblue"><span style="color: #A1CDFF;">blue
 							</span> </label> <input type="radio" name="color" id="lightgreen"
 								value="#B9FFA1"><label for="lightgreen"><span
-								style="color: #B9FFA1;">연두 </span> </label> <input type="radio"
+								style="color: #B9FFA1;">green</span> </label> <input type="radio"
 								name="color" id="lightorange" value="#FFAB6D"><label
-								for="lightorange"><span style="color: #FFAB6D;">주황
+								for="lightorange"><span style="color: #FFAB6D;">orange
 							</span> </label> <input type="radio" name="color" id="lightyellow"
 								value="#F7FF7E"><label for="lightyellow"><span
-								style="color: #F7FF7E;">노랑 </span></label> <input type="radio"
+								style="color: #F7FF7E;">yellow </span></label> <input type="radio"
 								name="color" id="lightpurple" value="#B590FF"><label
-								for="lightpurple"><span style="color: #B590FF;">보라
+								for="lightpurple"><span style="color: #B590FF;">purple
 							</span></label>
 
 						</div>
@@ -52,9 +72,9 @@
 								class="form-control" id="count" name="count">
 						</div>
 						<div class="form-group">
-							<label for="startDate">시작날짜:</label> <input type="date" 
-								class="form-control" id="startDate" name="startDate" > <label
-								for="endDate">종료날짜:</label> <input type="date"
+							<label for="startDate">StartDate:</label> <input type="date"
+								class="form-control" id="startDate" name="startDate"> <label
+								for="endDate">EndDate:</label> <input type="date"
 								class="form-control" id="endDate" name="endDate">
 						</div>
 
@@ -71,9 +91,16 @@
 
 
 	<script>
-		$("#todo").click(function() {
-			$("form").submit();
-			return false;
+		$(".range-group").click(function() {
+
+			if (document.all.range[0].checked) {
+				console.log("1");
+				$("#friendtab").hide();
+			}
+
+			else {
+				$("#friendtab").show();
+			}
 		});
 	</script>
 </body>

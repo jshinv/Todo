@@ -1,46 +1,64 @@
 package com.example.todo.Controller;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.todo.Model.Todo;
 import com.example.todo.Model.TodoResult;
 import com.example.todo.Model.User;
+import com.example.todo.Repository.FriendRepository;
 import com.example.todo.Repository.TodoRepository;
 import com.example.todo.Repository.TodoResultRepository;
+import com.example.todo.Repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
 public class TodoController {
+	UserRepository userRepository;
+
+	@Autowired
+	TodoResultRepository todoResultepository;
+
 	@Autowired
 	TodoRepository todoRepository;
 
 	@Autowired
-	TodoResultRepository todoResultrepository;
-	
-	@Autowired
 	HttpSession session;
 
+	@Autowired
+	FriendRepository friendRepository;
+
 	@GetMapping("/todo")
-	public String Todo() {
+	public String Todo(Model model) {
+		User dbUser = (User) session.getAttribute("user_info");
+		if (dbUser != null) {
+			List<Todo> list = todoRepository.findAll();
+			model.addAttribute("list_real", list);
+			model.addAttribute("count", list.size());
+			model.addAttribute("userlist", userRepository.findAll());
+			model.addAttribute("friendlist", friendRepository.findAll());
+		}
 		return "cus/todo";
 	}
-	
+
 	int init_todo_id = 1;
+
 	@PostMapping("/todo")
 	public String signupPost(@RequestParam("title") String title, @RequestParam("color") String color,
-			@RequestParam("count") int count, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate){
+			@RequestParam("count") int count, @RequestParam("startDate") String startDate,
+			@RequestParam("endDate") String endDate) {
 		Todo todo = new Todo();
 		User dbUser = (User) session.getAttribute("user_info");
 		todo.setUser_id(dbUser.getId());
@@ -51,17 +69,15 @@ public class TodoController {
 		todo.setColor(color);
 		todo.setCount(count);
 		todoRepository.save(todo);
-		
+
 		TodoResult todoResult = new TodoResult();
 		todoResult.setRealCount(0);
 		todoResult.setToday("123123");
 		todoResult.setTodo_id(init_todo_id);
 		init_todo_id += 1;
-		todoResultrepository.save(todoResult);
+		todoResultepository.save(todoResult);
 		return "redirect:/";
 	}
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 }
-
-

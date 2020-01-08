@@ -13,7 +13,7 @@ public class TodoResult {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private long todo_id;
+	private long todoId;
 	private String today;
-	private int realCount =0;
+	private int realCount;
 }

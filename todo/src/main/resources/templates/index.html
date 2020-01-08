@@ -25,8 +25,12 @@
 						th:attr="id=${Todo.id},color=${Todo.color}">
 						<div style="display: inline-block" class="todo_total">
 							<p th:text="${Todo.title}"></p>
+							
+							
 							<div class="comp_btn_total">
-								<th:block th:each="num: ${#numbers.sequence(1, Todo.count)}">
+								<th:block th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
+								
+								
 									<input type="checkbox" name="btn" value="btn">
 								</th:block>
 							</div>
@@ -55,11 +59,10 @@
 		$("[name=btn]").change(function() {
 			if ($(this).is(":checked")) {
 				var todo_id = $(this).parent().parent().parent().attr('id');
-				var realCount = 1;
+				var count = 1;
 				var objParams = {
 					"todo_id" : todo_id,
-					"realCount" : realCount
-				// 揶쏆뮇�땾 �빊遺쏙옙, 揶쏆뮇�땾 揶쏅Ŋ�꺖
+					"count" : count
 				}
 
 				$.ajax({
@@ -67,7 +70,7 @@
 					type : "post",
 					data : objParams,
 					success : function(res) {
-						alert('submit')
+						alert('submit ')
 					},
 					error : function(request, status, error) {
 						alert('error')
@@ -75,11 +78,10 @@
 				})
 			} else {
 				var todo_id = $(this).parent().parent().parent().attr('id');
-				var realCount = -1;
+				var count = -1;
 				var objParams = {
 					"todo_id" : todo_id,
-					"realCount" : realCount
-				// 媛쒖닔 異붽�, 媛쒖닔 媛먯냼
+					"count" : count
 				}
 
 				$.ajax({

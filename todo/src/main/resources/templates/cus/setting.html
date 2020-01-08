@@ -35,7 +35,7 @@
 							<p class="title_total">
 								Todo Total : <span th:text="${count}"></span>
 							</p>
-							<div id="todo" th:each="Todo : ${session.user_info}">
+							<div id="todo" th:each="Todo : ${list_real}">
 								<div class="todo_set_list">
 									<ul>
 										<li><span th:text="${Todo.title}"></span></li>

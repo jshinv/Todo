@@ -26,10 +26,26 @@
 						</div>
 						<div class="range-group">
 							<label for="range">Range:</label> <input type="radio"
-								name="range" id="me" value="me" checked="checked"><label
-								for="me"><span>Me </span></label><input type="radio"
-								name="range" id="our" value="our"><label for="our"><span>Our</span></label>
+								name="range" id="me" value="me" checked="checked"> <label
+								for="me"><span>Me </span></label> <input type="radio"
+								name="range" id="our" value="our"> <label for="our"><span>Our</span></label>
 						</div>
+
+						<!-- Start -->
+						<ul class="nav nav-tabs">
+							<li class="active">
+							<a data-toggle="tab" href="#tab1">1</a></li>
+							<li><a data-toggle="tab" href="#tab2">2</a></li>
+						</ul>
+						<div class="tab-content">
+							<div id="tab1" class="tab-pane fade in active">
+								내용111111
+							</div>
+							<div id="tab2" class="tab-pane fade in">
+								내용22222222
+							</div>
+						</div>
+						<!-- End -->
 						<div id="friendtab" class="tab-pane fade" style="display: none">
 							<h3>Friend Setting</h3>
 							<div class="form-group">
@@ -45,7 +61,7 @@
 								Friend</button>
 
 						</div>
-						
+
 						<div class="color-group">
 							<label for="color">color:</label> <input type="radio"
 								name="color" id="lightpink" value="#FFB8B8" checked="checked"><label
@@ -88,7 +104,7 @@
 			<div th:replace="common/footer"></div>
 		</div>
 	</div>
-
+<!-- 
 
 	<script>
 		$(".range-group").click(function() {
@@ -102,6 +118,6 @@
 				$("#friendtab").show();
 			}
 		});
-	</script>
+	</script> -->
 </body>
 </html>

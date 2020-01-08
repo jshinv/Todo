@@ -26,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class TodoController {
+	@Autowired
 	UserRepository userRepository;
 
 	@Autowired

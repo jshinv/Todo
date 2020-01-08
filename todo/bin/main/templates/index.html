@@ -24,19 +24,18 @@
 					<div id="todo" th:each="Todo : ${list_real}"
 						th:attr="id=${Todo.id},color=${Todo.color}">
 						<div style="display: inline-block" class="todo_total">
-							<p th:text="${Todo.title}"></p>
-							
-							
+							<p th:text="${Todo.title}"></p>							
 							<div class="comp_btn_total">
-								<th:block th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
-								
-								
+								<th:block th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">								
 									<input type="checkbox" name="btn" value="btn">
 								</th:block>
 							</div>
 						</div>
 					</div>
-					<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->
+					<div th:each="entry : ${map_real}">
+						<p th:text="${entry.key}"></p>
+						<p th:text="${entry.value}"></p>
+					</div>
 				</form>
 			</div>
 

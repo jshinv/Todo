@@ -22,6 +22,6 @@ public class Todo {
 	private int goalCount;
 	private int initCount;
 	private String range;
-	private int partyID;
+	private int party_ID;
 	
 }

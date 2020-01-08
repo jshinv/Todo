@@ -1,13 +1,17 @@
-<nav class="todo_nav">
-	<ul>
-		<!-- <li class="nav-item active"><a class="nav-link" href="/">Home <span class="sr-only"></span></a></li> -->
-	
-		<li th:if="${session.user_info} == null"><a class="nav-link" href="/signin">Sign in </a></li>
-<!-- 		<li th:if="${session.user_info} == null"><a class="nav-link" href="/signup">Sign up </a></li>
- -->	
-		<li th:if="${session.user_info} !=null"><a class="nav-link" href="/todo">Add </a></li>
-		<!-- <li th:if="${session.user_info} !=null"><a class="nav-link" href="/setting">Settings </a></li> -->
-	
-		<!-- li th:if="${session.user_info} != null"><a class="nav-link" href="/signout">Sign out </a></li> -->
-	</ul>
-</nav>
+<div class="todo_nav_box">
+	<nav class="todo_nav">
+		<ul th:if="${session.user_info} == null">
+			<li>
+				<a class="nav-link" href="/signin">Sign in</a>
+			</li>
+		</ul>
+		<ul th:if="${session.user_info} !=null">
+			<li>
+				<a class="nav-link" href="/todo">Add </a>
+			</li>
+			<li>
+				<a class="nav-link" href="/signout">Sign out </a>
+			</li>
+		</ul>
+	</nav>
+</div>

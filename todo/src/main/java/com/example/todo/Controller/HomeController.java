@@ -62,31 +62,45 @@ public class HomeController {
 					list_real.add(todo);
 			}
 			model.addAttribute("list_real", list_real);
-			
-			
+
 			List<TodoResult> list2 = todoResultRepository.findAll();
-			Map<Long,Integer> map_real = new HashMap<Long,Integer>();
+			Map<Long, Integer> map_real = new HashMap<Long, Integer>();
 			for (TodoResult todoresult : list2) {
 				long todoId = todoresult.getTodoId();
 				int realCount = todoresult.getRealCount();
 				map_real.put(todoId, realCount);
 			}
 			model.addAttribute("map_real", map_real);
-			
+
 		}
 		return "index";
 	}
 
 	@ResponseBody
 	@PostMapping("/home")
-	public String indexPost(@RequestParam("confirmflag") boolean confirmflag, @RequestParam("invite") long invite) {
+	public String indexPost(@RequestParam("confirmflag") boolean confirmflag, @RequestParam("invite") long invite,
+			@RequestParam("todoinvite") boolean todoinvite) {
 		Invite invite2 = inviteRepository.findById(invite);
 		if (confirmflag) {
-
-			Friend friend = new Friend();
-			friend.setUsr1(invite2.getNickName1());
-			friend.setUsr2(invite2.getNickName2());
-			friendeRepository.save(friend);
+			if (!todoinvite) {
+				Friend friend = new Friend();
+				friend.setUsr1(invite2.getNickName1());
+				friend.setUsr2(invite2.getNickName2());
+				friendeRepository.save(friend);
+			}
+//			else {
+//				Todo todo = new Todo();
+//				User dbUser = (User) session.getAttribute("user_info");
+//				todo.setUser_id(invite2.getNickName1());
+//				todo.setHostId(invite2.getNickName1());
+//				todo.setStartDate(startDate);
+//				todo.setEndDate(endDate);
+//				todo.setTitle(title);
+//				todo.setColor(color);
+//				todo.setGoalCount(count);
+//				todo.setRange(range);
+//				todoRepository.save(todo);
+//			}
 		}
 		inviteRepository.delete(invite2);
 		return "redirect:/";

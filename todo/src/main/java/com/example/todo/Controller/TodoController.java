@@ -1,5 +1,7 @@
 package com.example.todo.Controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -71,8 +73,13 @@ public class TodoController {
 		todo.setGoalCount(count);
 		todoRepository.save(todo);
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c1 = Calendar.getInstance();
+        String today = sdf.format(c1.getTime());
+
+		
 		TodoResult todoResult = new TodoResult();
-		todoResult.setToday("123123");
+		todoResult.setToday(today);
 		todoResult.setTodoId(todo.getId());
 		todoResult.setRealCount(0);
 		todoResultrepository.save(todoResult);

@@ -203,24 +203,13 @@ i {
 /* input */
 input[type=checkbox]{
 	-webkit-appearance: none;
-	width:15px;
-	height:15px;
-	background-color:gray;
+    width: 20px;
+    height: 20px;
+    background-color: #e8e8e8;
+    border-radius: 2px;
+    border: 1px solid #bbb;
 }
 
-input[type=checkbox].FFB8B8{
-	background-color:#FFB8B8 !important;
-	
-}
-input[type=checkbox].A1CDFF{
-	background-color:#A1CDFF !important;
-}
-input[type=checkbox].FFAB6D{
-	background-color:#FFAB6D !important;
-}
-input[type=checkbox].B590FF{
-	background-color:#B590FF !important;
-}
 
 
 

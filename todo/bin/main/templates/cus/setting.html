@@ -121,6 +121,10 @@
 					
 					for(var idx in friend_list){   //
 						if(Nickname==friend_list[idx].usr1 || Nickname==friend_list[idx].usr2){
+							console.log(Nickname);
+							console.log(friend_list[idx].usr1);
+							console.log(friend_list[idx].usr2);
+
 							flag1=true;
 							$("#alert-danger2").show();
 						}
@@ -128,6 +132,8 @@
 					if(!flag1){
 						for(var idx in user_list){   //
 							if(Nickname==user_list[idx].nickName){ // getterx html占쏙옙占쏙옙占쏙옙
+								
+								
 								flag2=true;
 								$("#usr").val(Nickname);
 								$(document.forms[2]).submit();

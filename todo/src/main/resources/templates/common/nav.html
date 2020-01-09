@@ -2,7 +2,7 @@
 	<nav class="todo_nav">
 		<ul th:if="${session.user_info} == null">
 			<li>
-				<a class="nav-link" href="/signin">Sign in</a>
+				<a class="nav-link" href="/signin" style="margin-right:10px;">Sign in</a>
 			</li>
 		</ul>
 		<ul th:if="${session.user_info} !=null">
@@ -10,7 +10,7 @@
 				<a class="" href="/todo">Add </a>
 			</li>
 			<li>
-				<a href="javascript:;" onclick="logout();">Sign out </a>
+				<a href="javascript:;" onclick="logout();" style="margin-right:10px;">Sign out </a>
 			</li>
 		</ul>
 	</nav>

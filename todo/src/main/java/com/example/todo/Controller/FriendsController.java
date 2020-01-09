@@ -82,7 +82,7 @@ public class FriendsController {
 		System.out.println("home");
 		System.out.println("===========================================");
 		log.error("home ");
-		return "index";
+		return "/friend";
 	}
 
 

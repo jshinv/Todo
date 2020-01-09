@@ -25,7 +25,7 @@
 					</div>
 				</div>
 				<div class="container-fluid">
-					<form method="get" action="/calender">
+					<form method="get" action="/calender" style="margin-top:20px;">
 
 						<div id="todo" th:each="Todo : ${list_real}" th:attr="id=${Todo.id},color=${Todo.color}">
 							<div style="display: inline-block" class="todo_total" th:attr="id=${Todo.id}">
@@ -66,6 +66,13 @@
 
 	<script type="text/javascript" th:inline="javascript">
 		/*<![CDATA[*/
+			
+
+		$("form").children().each(function() {
+			var color = $(this).attr('color');
+			$(this).find("[name=btn]:checked").css('background-color', color);
+		});
+
 		$("[name=btn]").change(function() {
 			if ($(this).is(":checked")) {
 				var todo_id = $(this).parent().parent().parent().attr('id');
@@ -75,14 +82,15 @@
 					"count" : count
 				}
 
+				var element = $(this);
 					
 				$.ajax({
 					url : "/todo_result",
 					type : "post",
 					data : objParams,
 					success : function(res) {
-						var todo_color = $("[name=btn]").parent().parent().parent().attr('color');
-						$(this).css('background-color', todo_color);
+						var todo_color = $(element).parent().parent().parent().attr('color');
+						element.css('background-color', todo_color);
 					},
 					error : function(request, status, error) {
 						alert('error')
@@ -95,14 +103,16 @@
 					"todo_id" : todo_id,
 					"count" : count
 				}
-
+				
+				var element = $(this);
+				
 				$.ajax({
 					url : "/todo_result",
 					type : "post",
 					data : objParams,
 					success : function(res) {
-						var todo_color = $("[name=btn]").parent().parent().parent().attr('color');
-						$(this).css('background-color', 'red');
+						var todo_color = $(element).parent().parent().parent().attr('color');
+						element.css('background-color', '#e8e8e8');
 					},
 					error : function(request, status, error) {
 						alert('error')
@@ -194,32 +204,7 @@
 				return false;
 			}
 		}); */
-		
-		
-		/* $("input[type=checkbox]").change(
-			function() {
-				if ($("input[type=checkbox]").is(":checked")) {
-					var todo_color = $(this).parent().parent().parent()
-							.attr('color');
-						console.log(todo_color)
-					var todo_color_class = todo_color.substr(1, 6);
-					console.log(todo_color_class)
-					$("input[type=checkbox]").addClass(todo_color_class);
-				} else {
-					return false;
-				}
-			}); */
-		/* $("input[type=checkbox]").change(function() {
-			if ($(this).is(":checked")) {
-				var sel = $(this);
-					console.log(sel)
-				var todo_color = $(this).parent().parent().parent().attr('color');
-					console.log(todo_color)
-				$(sel).css('backgroundcolor', todo_color);
-			} else{
-				return false;
-			}
-		}); */
+
 	</script>
 
 

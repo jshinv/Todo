@@ -5954,7 +5954,7 @@ function OverlayManager() {
 			e.appendTo(parent);
 		}
 		usedOverlays.push(e.css(rect).show());
-		return e;
+		return false; /*클릭하면 이벤트 기입란 뜸 */
 	}
 	
 

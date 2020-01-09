@@ -4,6 +4,22 @@
 <head th:replace="common/head">
 </head>
 <script src="js/todo.js"></script>
+<script>
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd='0'+dd
+} 
+
+if(mm<10) {
+    mm='0'+mm
+} 
+
+today = mm+'-'+dd+'-'+yyyy;
+</script>
 <body>
 	<div class="jumbotron todo_main_area">
 		<div class="container text-center todo_main">
@@ -79,7 +95,7 @@
 
 						<div class="form-group">
 							<label for="startDate">StartDate:</label> <input type="date"
-								class="form-control" id="startDate" name="startDate"> <label
+								class="form-control" id="StartDate;" name="startDate"> <label
 								for="endDate">EndDate:</label> <input type="date"
 								class="form-control" id="endDate" name="endDate">
 						</div>

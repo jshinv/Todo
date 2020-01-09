@@ -60,17 +60,19 @@ public class HomeController {
 				}
 			}
 
-			List<Todo> list = todoRepository.findAll();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Calendar c1 = Calendar.getInstance();
+			String today = sdf.format(c1.getTime());
+			
+//			List<Todo> list = todoRepository.findAll();
+			List<Todo> list = todoRepository.findAllByStartDateLessThanEqualAndEndDateGreaterThanEqual(today, today);
+			// 오늘날짜가 기간안에 포함되는 것만 뽑아옴
 			List<Todo> list_real = new ArrayList<Todo>();
 			for (Todo todo : list) {
 				if (dbUser.getId() == todo.getUser_id())
 					list_real.add(todo);
 			}
 			model.addAttribute("list_real", list_real);
-
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Calendar c1 = Calendar.getInstance();
-			String today = sdf.format(c1.getTime());
 
 			List<TodoResult> list2 = todoResultRepository.findAllByToday(today);
 			Map<Long, Integer> map_real = new HashMap<Long, Integer>();

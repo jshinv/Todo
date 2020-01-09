@@ -46,7 +46,7 @@ public class HomeController {
 	TodoResultRepository todoResultrepository;
 
 	@GetMapping({ "/", "/home" })
-	public String index(Model model) {
+	public String index(Model model, TodoResult todoResult) {
 		User dbUser = (User) session.getAttribute("user_info");
 		if (dbUser != null) {
 			List<Invite> inviteUserList = inviteRepository.findAll();
@@ -60,6 +60,7 @@ public class HomeController {
 				}
 			}
 
+			
 			List<Todo> list = todoRepository.findAll();
 			List<Todo> list_real = new ArrayList<Todo>();
 			for (Todo todo : list) {
@@ -68,7 +69,11 @@ public class HomeController {
 			}
 			model.addAttribute("list_real", list_real);
 
-			List<TodoResult> list2 = todoResultRepository.findAll();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Calendar c1 = Calendar.getInstance();
+			String today = sdf.format(c1.getTime());		
+			
+			List<TodoResult> list2 = todoResultRepository.findAllByToday(today);
 			Map<Long, Integer> map_real = new HashMap<Long, Integer>();
 			for (TodoResult todoresult : list2) {
 				long todoId = todoresult.getTodoId();
@@ -76,7 +81,8 @@ public class HomeController {
 				map_real.put(todoId, realCount);
 			}
 			model.addAttribute("map_real", map_real);
-	
+
+
 		}
 		System.out.println("===========================================");
 		System.out.println("home");
@@ -133,7 +139,7 @@ public class HomeController {
 
 				}
 
-//				ÇüÀÎ´ã´ç
+//				ï¿½ï¿½ï¿½Î´ï¿½ï¿½
 				System.out.println("===========================================");
 				todoRepository.save(todo);
 				System.out.println("===========================================");

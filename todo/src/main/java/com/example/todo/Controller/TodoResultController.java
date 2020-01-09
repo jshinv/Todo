@@ -47,21 +47,19 @@ public class TodoResultController {
 		String today = sdf.format(c1.getTime());		
 		
 		TodoResult todoResult1 = todoResultRepository.findByTodoIdAndToday(todo_id, today);
-		
-		if (todoResult1 == null) {
-			TodoResult todoResult = new TodoResult();
-			todoResult.setToday(today);
-			todoResult.setTodoId(todo_id);
-			todoResult.setRealCount(count);
-			todoResultRepository.save(todoResult);
-		} else {
-		
-		int realCount = todoResult1.getRealCount() + count;
-		todoResult1.setRealCount(realCount);
-		
-		todoResultRepository.save(todoResult1);
-		};
 
+		if (todoResult1 == null) {
+			TodoResult todoResult2 = new TodoResult();
+			todoResult2.setToday(today);
+			todoResult2.setTodoId(todo_id);
+			todoResult2.setRealCount(count);
+			todoResultRepository.save(todoResult2);
+		} else {
+			int realCount = todoResult1.getRealCount() + count;
+			todoResult1.setRealCount(realCount);
+			
+			todoResultRepository.save(todoResult1);
+		};
 		
 		Map<String, Object> res = new HashMap<String, Object>();
 		return res;

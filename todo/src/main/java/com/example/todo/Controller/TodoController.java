@@ -25,7 +25,9 @@ import com.example.todo.Repository.TodoRepository;
 import com.example.todo.Repository.TodoResultRepository;
 import com.example.todo.Repository.UserRepository;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 public class TodoController {
 	@Autowired
@@ -100,7 +102,7 @@ public class TodoController {
 		model.addAttribute("usr", addname);
 		Todo todo = new Todo();
 		User dbUser = (User) session.getAttribute("user_info");
-
+		log.error("todo2");
 		todo.setUser_id(dbUser.getId());
 		todo.setHostId(dbUser.getNickName());
 		todo.setStartDate(startDate);
@@ -115,7 +117,7 @@ public class TodoController {
 		Calendar c1 = Calendar.getInstance();
 		String today = sdf.format(c1.getTime());
 
-	
+		
 		for (String idx : addname) {
 			Invite invite = new Invite();
 			invite.setNickName1(dbUser.getNickName());
@@ -128,6 +130,14 @@ public class TodoController {
 		}
 	
 		model.addAttribute("friendlist", friendRepository.findAll()); //���� ���� �̻�
+		
+		TodoResult todoResult = new TodoResult();
+		todoResult.setToday(today);
+		todoResult.setTodoId(todo.getId());
+		todoResult.setRealCount(0);
+		todoResultrepository.save(todoResult);
+		
+		
 		return "cus/setting"; //���� ���� ��
 
 

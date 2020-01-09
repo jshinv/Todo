@@ -1,6 +1,6 @@
 package com.example.todo.Controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -21,11 +21,8 @@ import com.example.todo.Model.User;
 import com.example.todo.Repository.TodoRepository;
 import com.example.todo.Repository.TodoResultRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 public class CalenderController {
 

@@ -15,6 +15,7 @@ public class Todo {
 	private long id;
 	private long user_id;	
 	private String hostId;
+	private String setDate;
 	private String startDate;
 	private String endDate;	
 	private String title;
@@ -22,6 +23,6 @@ public class Todo {
 	private int goalCount;
 	private int initCount;
 	private String range;
-	private int party_ID;
+	private long party_ID;
 	
 }

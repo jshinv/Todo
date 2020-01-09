@@ -1,5 +1,8 @@
 package com.example.todo.Controller;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,9 +21,7 @@ import com.example.todo.Model.TodoResult;
 import com.example.todo.Repository.TodoRepository;
 import com.example.todo.Repository.TodoResultRepository;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 public class TodoResultController {
 	@Autowired
@@ -42,14 +43,24 @@ public class TodoResultController {
 	@ResponseBody
 	@PostMapping("/todo_result")
 	public Map<String, Object> Todo_resultPost(@RequestParam("count") int count, @RequestParam("todo_id") long todo_id) {
-
-		TodoResult todoResult = todoResultRepository.findByTodoId(todo_id);
-				
-		int realCount = todoResult.getRealCount() + count;
-		todoResult.setRealCount(realCount);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c1 = Calendar.getInstance();
+		String today = sdf.format(c1.getTime());		
 		
-		todoResultRepository.save(todoResult);
+		TodoResult todoResult1 = todoResultRepository.findByTodoIdAndToday(todo_id, today);
 
+		if (todoResult1 == null) {
+			TodoResult todoResult2 = new TodoResult();
+			todoResult2.setToday(today);
+			todoResult2.setTodoId(todo_id);
+			todoResult2.setRealCount(count);
+			todoResultRepository.save(todoResult2);
+		} else {
+			int realCount = todoResult1.getRealCount() + count;
+			todoResult1.setRealCount(realCount);
+			
+			todoResultRepository.save(todoResult1);
+		};
 		
 		Map<String, Object> res = new HashMap<String, Object>();
 		return res;

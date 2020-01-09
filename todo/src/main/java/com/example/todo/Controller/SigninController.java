@@ -1,7 +1,6 @@
 package com.example.todo.Controller;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -32,7 +31,7 @@ public class SigninController {
 	@GetMapping("/signin")
 	public String signin(Model model) {
 		
-	
+		log.error("signin1");
 		model.addAttribute("userlist",userRepository.findAll());
 		return "cus/signin";
 	}
@@ -44,6 +43,7 @@ public class SigninController {
 			session.setAttribute("user_info", dbUser);
 			
 		}
+		log.error("signin2");
 		return "redirect:/";
 	
 	}

@@ -66,10 +66,17 @@ public class TodoController {
 	public String signupPost(@RequestParam("title") String title, @RequestParam("color") String color,
 			@RequestParam("count") int count, @RequestParam("startDate") String startDate,
 			@RequestParam("endDate") String endDate, @RequestParam("range") String range) {
+		
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c1 = Calendar.getInstance();
+		String today = sdf.format(c1.getTime());
+		
 		Todo todo = new Todo();
 		User dbUser = (User) session.getAttribute("user_info");
 		todo.setUser_id(dbUser.getId());
 		todo.setHostId(dbUser.getNickName());
+		todo.setSetDate(today);
 		todo.setStartDate(startDate);
 		todo.setEndDate(endDate);
 		todo.setTitle(title);
@@ -77,11 +84,6 @@ public class TodoController {
 		todo.setGoalCount(count);
 		todo.setRange(range);
 		todoRepository.save(todo);
-
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-        Calendar c1 = Calendar.getInstance();
-        String today = sdf.format(c1.getTime());
         
 
 		TodoResult todoResult = new TodoResult();
@@ -100,7 +102,7 @@ public class TodoController {
 		model.addAttribute("usr", addname);
 		Todo todo = new Todo();
 		User dbUser = (User) session.getAttribute("user_info");
-
+		log.error("todo2");
 		todo.setUser_id(dbUser.getId());
 		todo.setHostId(dbUser.getNickName());
 		todo.setStartDate(startDate);
@@ -115,18 +117,28 @@ public class TodoController {
 		Calendar c1 = Calendar.getInstance();
 		String today = sdf.format(c1.getTime());
 
-	
+		
 		for (String idx : addname) {
 			Invite invite = new Invite();
 			invite.setNickName1(dbUser.getNickName());
 			invite.setNickName2(idx);
 			invite.setBool1(true);
 			invite.setTodoinvite(true);
+			Todo temp=todoRepository.findByHostIdAndTitle(dbUser.getNickName(),title);
+			invite.setTodo_id(temp.getId());
 			inviteRepository.save(invite);
 		}
 	
-		model.addAttribute("friendlist", friendRepository.findAll());
-		return "cus/setting";
+		model.addAttribute("friendlist", friendRepository.findAll()); //���� ���� �̻�
+		
+		TodoResult todoResult = new TodoResult();
+		todoResult.setToday(today);
+		todoResult.setTodoId(todo.getId());
+		todoResult.setRealCount(0);
+		todoResultrepository.save(todoResult);
+		
+		
+		return "cus/setting"; //���� ���� ��
 
 
 	}

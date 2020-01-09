@@ -38,7 +38,6 @@
 								</p>
 
 								<div class="comp_btn_total">
-
 									<th:block
 										th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
 										<input type="checkbox" name="btn" value="btn" checked
@@ -55,6 +54,7 @@
 					</form>
 				</div>
 			</div>
+
 			<div th:if="${session.user_info} == null">
 				<div
 					style="text-align: center; font-size: 40px; font-weight: bold; margin-top: 80px;">
@@ -79,10 +79,12 @@
 
 	<script type="text/javascript" th:inline="javascript">
 		/*<![CDATA[*/
+
 		$("form").children().each(function() {
 			var color = $(this).attr('color');
 			$(this).find("[name=btn]:checked").css('background-color', color);
 		});
+
 		$("[name=btn]").change(
 				function() {
 					if ($(this).is(":checked")) {
@@ -92,8 +94,11 @@
 						var objParams = {
 							"todo_id" : todo_id,
 							"count" : count
+
 						}
+
 						var element = $(this);
+
 						$.ajax({
 							url : "/todo_result",
 							type : "post",
@@ -115,7 +120,9 @@
 							"todo_id" : todo_id,
 							"count" : count
 						}
+
 						var element = $(this);
+
 						$.ajax({
 							url : "/todo_result",
 							type : "post",
@@ -128,27 +135,34 @@
 							error : function(request, status, error) {
 								alert('error')
 							}
+
 						})
+
 					}
+
 				});
-		/*home~calender로 가는 클릭 */
+
+		/* this is daehyeonpark NoNoNoNoNoNoNO */
 		$("div.todo_total").click(function(event) {
 			if (event.target.type == 'checkbox') {
 				return;
 			} else {
 				var id = $(this).attr("id");
-				location = "/calender/" + id ;
+				location = "/calender/" + id;
 				return false;
 			}
+
 		});
 		$(function() {
 			var invite = /*[[${inviteinform}]]*/
 			console.log(invite.bool1);
 			console.log(invite);
+
 			if (invite.bool1) {
 				console.log("0");
 				if (!invite.todoinvite) {
 					console.log("1");
+
 					var confirmflag = confirm(invite.nickName1
 							+ "friend with me?");
 					var objParams = {
@@ -156,7 +170,9 @@
 						"confirmflag" : confirmflag,
 						"todoinvite" : invite.todoinvite
 					};
+
 					$.ajax({
+
 						url : "/home",
 						data : objParams,
 						type : "post",
@@ -166,6 +182,7 @@
 						error : function(request, status, error) {
 							console.log(error)
 						}
+
 					})
 				} else {
 					var confirmflag = confirm(invite.nickName1 + "todo go?");
@@ -176,6 +193,7 @@
 					};
 					console.log("2");
 					$.ajax({
+
 						url : "/home",
 						data : objParams,
 						type : "post",
@@ -185,10 +203,14 @@
 						error : function(request, status, error) {
 							console.log(error)
 						}
+
 					})
 				}
+
 				return false;
+
 			}
+
 		});
 		/*]]>*/
 	</script>

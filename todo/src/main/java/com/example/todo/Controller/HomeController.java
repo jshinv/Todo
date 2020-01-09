@@ -122,11 +122,11 @@ public class HomeController {
 						todo.setColor(temp.getColor());
 						todo.setUser_id(dbUser.getId());
 						todo.setHostId(invite2.getNickName1());
-						todo.setParty_ID(temp.getId());
+						todo.setPartyId(temp.getId());
 						todo.setRange(temp.getRange());
 						todo.setGoalCount(temp.getGoalCount());
 						todo.setTitle(temp.getTitle());
-						temp.setParty_ID(temp.getId());
+						temp.setPartyId(temp.getId());
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 						Calendar c1 = Calendar.getInstance();
 						String today = sdf.format(c1.getTime());

@@ -25,8 +25,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#tab1">Todo
-								Sets</a></li>
+						<li class="active"><a data-toggle="tab" href="#tab1">Todo Set</a></li>
 						<li><a data-toggle="tab" href="#tab2">Friend Set</a></li>
 						<li><a data-toggle="tab" href="#tab3">App Set</a></li>
 					</ul>
@@ -66,21 +65,21 @@
 								<button type="button" class="btn btn-danger btn-block" id="Add">Add
 									Friend</button>
 							</form>
-						
 
-								<br> <label style="font-size: 15pt">FriendList</label> <br>
 
-								<div id="tod" th:each="Friend : ${friendlist}"
-									th:attr="id=${Friend.id}" style="display: inline-block">
+							<br> <label style="font-size: 15pt">FriendList</label> <br>
 
-									<div th:if="${session.user_info.nickName} == ${Friend.usr1}"
-										class="friend">[[${Friend.usr2} ]]</div>
-									<div th:if="${session.user_info.nickName} == ${Friend.usr2}"
-										class="friend">[[${Friend.usr1} ]]</div>
+							<div id="tod" th:each="Friend : ${friendlist}"
+								th:attr="id=${Friend.id}" style="display: inline-block">
 
-								</div>
-								<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->
-						
+								<div th:if="${session.user_info.nickName} == ${Friend.usr1}"
+									class="friend">[[${Friend.usr2} ]]</div>
+								<div th:if="${session.user_info.nickName} == ${Friend.usr2}"
+									class="friend">[[${Friend.usr1} ]]</div>
+
+							</div>
+							<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->
+
 						</div>
 						<div id="tab3" class="tab-pane fade">
 							<form>
@@ -121,6 +120,7 @@
 					var flag2=false;
 					
 					for(var idx in friend_list){   //
+
 						
 						if(Nickname==friend_list[idx].usr1 && loginuser==friend_list[idx].usr2){
 							flag1=true;
@@ -133,6 +133,7 @@
 					}
 					if(!flag1){
 						for(var idx in user_list){   //
+
 							if(Nickname==user_list[idx].nickName){ // getterx html�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 								flag2=true;
 								$("#usr").val(Nickname);

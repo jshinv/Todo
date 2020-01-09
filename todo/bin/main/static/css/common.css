@@ -48,7 +48,6 @@ li, ul {
 	width: 100%;
 	height: 50px;
 	border-bottom: 1px solid #333;
-	padding-right: 10px;
 }
 
 .todo_nav ul {
@@ -189,7 +188,11 @@ p.title_total {
 	width: 100%;
 	margin-top: 10px;
 }
-
+.todo_footer ul{
+	background-color: #333;
+    width: 100%;
+    float: left;
+}
 .todo_footer li {
 	float: left;
 	width: 33.3%;

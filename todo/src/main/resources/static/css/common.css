@@ -180,7 +180,6 @@ p.title_total {
 .footer_box {
 	height: 50px;
 	margin-top: 10px;
-	background-color:#333;
 }
 
 .todo_footer {
@@ -190,7 +189,11 @@ p.title_total {
 	width: 100%;
 	margin-top: 10px;
 }
-
+.todo_footer ul{
+	background-color: #333;
+    width: 100%;
+    float: left;
+}
 .todo_footer li {
 	float: left;
 	width: 33.3%;

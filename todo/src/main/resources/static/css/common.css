@@ -98,6 +98,7 @@ li, ul {
 	display: inline-block;
 	height: 35px;
 	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .welcome_area {
@@ -161,6 +162,11 @@ p.title_total {
 	border-radius: 10px; */
 }
 
+.todo_total p{
+	font-size: 16px;
+    margin-top: 10px;
+    font-weight: bold;
+}
 .comp_btn {
 	display: inline-block;
 	position: static;

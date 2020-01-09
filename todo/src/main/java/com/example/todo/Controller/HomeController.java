@@ -84,7 +84,6 @@ public class HomeController {
 				map_real2.put(today, map_real);
 			}
 			model.addAttribute("map_real2", map_real2);
-			
 		}
 		return "index";
 	}

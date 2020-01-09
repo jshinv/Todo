@@ -6,7 +6,7 @@
 - 친구추가하면 todo set으로 넘어가는 문제
 - todo set 봤을 때 다른 아이디의 todo까지 보여지는 문제
 
-
+2
 
 # TodoController
 

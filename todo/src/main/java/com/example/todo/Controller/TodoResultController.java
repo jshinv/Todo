@@ -1,6 +1,8 @@
 package com.example.todo.Controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,14 +50,25 @@ public class TodoResultController {
 	@ResponseBody
 	@PostMapping("/todo_result")
 	public Map<String, Object> Todo_resultPost(@RequestParam("count") int count, @RequestParam("todo_id") long todo_id) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c1 = Calendar.getInstance();
+		String today = sdf.format(c1.getTime());		
 		
-		TodoResult todoResult = todoResultRepository.findByTodoId(todo_id);
-
+		TodoResult todoResult1 = todoResultRepository.findByTodoIdAndToday(todo_id, today);
 		
-		int realCount = todoResult.getRealCount() + count;
-		todoResult.setRealCount(realCount);
+		if (todoResult1 == null) {
+			TodoResult todoResult = new TodoResult();
+			todoResult.setToday(today);
+			todoResult.setTodoId(todo_id);
+			todoResult.setRealCount(count);
+			todoResultRepository.save(todoResult);
+		} else {
 		
-		todoResultRepository.save(todoResult);
+		int realCount = todoResult1.getRealCount() + count;
+		todoResult1.setRealCount(realCount);
+		
+		todoResultRepository.save(todoResult1);
+		};
 
 		
 		Map<String, Object> res = new HashMap<String, Object>();

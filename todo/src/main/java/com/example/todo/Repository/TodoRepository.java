@@ -9,7 +9,7 @@ import com.example.todo.Model.TodoResult;
 import com.example.todo.Model.User;
 
 public interface  TodoRepository extends JpaRepository<Todo, Long>{
-	public TodoResult findByTodoIdAndToday(long todoId, String Today);
+//	public TodoResult findByTodoIdAndToday(long todoId, String Today);
 
 }
 

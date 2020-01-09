@@ -31,14 +31,18 @@
 						<div id="todo" th:each="Todo : ${list_real}" th:attr="id=${Todo.id},color=${Todo.color}">
 							<div style="display: inline-block" class="todo_total" th:attr="id=${Todo.id}">
 								<p th:text="${Todo.title}"></p>
+								
+								
 								<div class="comp_btn_total">
 									<th:block th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
-										<input type="checkbox" name="btn" value="btn" checked th:if="${num} <= ${map_real[Todo.id]}">
-										<input type="checkbox" name="btn" value="btn" th:unless="${num} <= ${map_real[Todo.id]}">
+										<input type="checkbox" name="btn" value="btn" checked th:if="${num} <= ${map_real2[Todo.today][Todo.id]}">
+										<input type="checkbox" name="btn" value="btn" th:unless="${num} <= ${map_real2[Todo.today][Todo.id]}">
 									</th:block>
-									</div>
 								</div>
+								
+								
 							</div>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -74,6 +78,7 @@
 				var objParams = {
 					"todo_id" : todo_id,
 					"count" : count
+					
 				}
 
 					
@@ -82,8 +87,6 @@
 					type : "post",
 					data : objParams,
 					success : function(res) {
-						var todo_color = $("[name=btn]").parent().parent().parent().attr('color');
-						$(this).css('background-color', todo_color);
 					},
 					error : function(request, status, error) {
 						alert('error')
@@ -102,8 +105,6 @@
 					type : "post",
 					data : objParams,
 					success : function(res) {
-						var todo_color = $("[name=btn]").parent().parent().parent().attr('color');
-						$(this).css('background-color', 'red');
 					},
 					error : function(request, status, error) {
 						alert('error')

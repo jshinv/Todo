@@ -201,7 +201,7 @@ i {
 }
 
 /* input */
-input[type=checkbox]{
+/* input[type=checkbox]{
 	-webkit-appearance: none;
     width: 20px;
     height: 20px;
@@ -209,7 +209,7 @@ input[type=checkbox]{
     border-radius: 2px;
     border: 1px solid #bbb;
 }
-
+ */
 
 
 

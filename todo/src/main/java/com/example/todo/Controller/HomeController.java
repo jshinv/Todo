@@ -64,6 +64,7 @@ public class HomeController {
 			model.addAttribute("list_real", list_real);
 			
 			
+			
 			List<TodoResult> list2 = todoResultRepository.findAll();
 			Map<Long,Integer> map_real = new HashMap<Long,Integer>();
 			for (TodoResult todoresult : list2) {
@@ -73,6 +74,16 @@ public class HomeController {
 			}
 			model.addAttribute("map_real", map_real);
 			
+			
+			
+			
+//			Map<String, Map<Long,Integer>> map_real2 = new HashMap<String, Map<Long,Integer>>();
+//			for (TodoResult todoresult : list2) {
+//				String today = todoresult.getToday();
+//				map_real2.put(today, map_real);
+//			}
+//			model.addAttribute("map_real2", map_real2);
+//			
 		}
 		return "index";
 	}

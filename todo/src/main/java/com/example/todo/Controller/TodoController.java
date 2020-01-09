@@ -122,11 +122,13 @@ public class TodoController {
 			invite.setNickName2(idx);
 			invite.setBool1(true);
 			invite.setTodoinvite(true);
+			Todo temp=todoRepository.findByHostIdAndTitle(dbUser.getNickName(),title);
+			invite.setTodo_id(temp.getId());
 			inviteRepository.save(invite);
 		}
 	
-		model.addAttribute("friendlist", friendRepository.findAll());
-		return "cus/setting";
+		model.addAttribute("friendlist", friendRepository.findAll()); //여기 뭔가 이상
+		return "cus/setting"; //여기 뭔가 이
 
 
 	}

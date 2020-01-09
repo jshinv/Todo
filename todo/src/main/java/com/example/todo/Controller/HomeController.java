@@ -26,6 +26,9 @@ import com.example.todo.Repository.InviteRepository;
 import com.example.todo.Repository.TodoRepository;
 import com.example.todo.Repository.TodoResultRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class HomeController {
 
@@ -39,9 +42,11 @@ public class HomeController {
 	FriendRepository friendeRepository;
 	@Autowired
 	HttpSession session;
+	@Autowired
+	TodoResultRepository todoResultrepository;
 
 	@GetMapping({ "/", "/home" })
-	public String index(Model model, @ModelAttribute TodoResult todoResult) {
+	public String index(Model model) {
 		User dbUser = (User) session.getAttribute("user_info");
 		if (dbUser != null) {
 			List<Invite> inviteUserList = inviteRepository.findAll();
@@ -76,31 +81,60 @@ public class HomeController {
 		return "index";
 	}
 
-	@ResponseBody
 	@PostMapping("/home")
 	public String indexPost(@RequestParam("confirmflag") boolean confirmflag, @RequestParam("invite") long invite,
 			@RequestParam("todoinvite") boolean todoinvite) {
 		Invite invite2 = inviteRepository.findById(invite);
+		log.error("home controller");
+		log.error("home controller confirmflag " + confirmflag);
 		if (confirmflag) {
+			log.error("confirmflag todoinvite " + todoinvite);
 			if (!todoinvite) {
 				Friend friend = new Friend();
 				friend.setUsr1(invite2.getNickName1());
 				friend.setUsr2(invite2.getNickName2());
 				friendeRepository.save(friend);
+
+			} else {
+				log.error("confirmflag else ");
+				Todo todo = new Todo();
+
+				User dbUser = (User) session.getAttribute("user_info");
+
+				List<Todo> list = todoRepository.findAll();
+				for (Todo temp : list) {
+					if (temp.getId() == invite2.getTodo_id()) {
+						
+						todo.setStartDate(temp.getStartDate());
+						todo.setEndDate(temp.getEndDate());
+						todo.setColor(temp.getColor());
+						todo.setUser_id(dbUser.getId());
+						todo.setHostId(invite2.getNickName1());
+						todo.setParty_ID(temp.getId());
+						todo.setRange(temp.getRange());
+						todo.setGoalCount(temp.getGoalCount());
+						todo.setTitle(temp.getTitle());
+						temp.setParty_ID(temp.getId());
+						break;
+					}
+
+				}
+
+//				형인담당
+				System.out.println("===========================================");
+				todoRepository.save(todo);
+				System.out.println("===========================================");
+//				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//				Calendar c1 = Calendar.getInstance();
+//				
+//				String today = sdf.format(c1.getTime());
+//				TodoResult todoResult = new TodoResult();
+//				todoResult.setToday(today);
+//				todoResult.setTodoId(todo.getId());
+//				todoResult.setRealCount(0);
+//				todoResultrepository.save(todoResult);
+
 			}
-//			else {
-//				Todo todo = new Todo();
-//				User dbUser = (User) session.getAttribute("user_info");
-//				todo.setUser_id(invite2.getNickName1());
-//				todo.setHostId(invite2.getNickName1());
-//				todo.setStartDate(startDate);
-//				todo.setEndDate(endDate);
-//				todo.setTitle(title);
-//				todo.setColor(color);
-//				todo.setGoalCount(count);
-//				todo.setRange(range);
-//				todoRepository.save(todo);
-//			}
 		}
 		inviteRepository.delete(invite2);
 		return "redirect:/";

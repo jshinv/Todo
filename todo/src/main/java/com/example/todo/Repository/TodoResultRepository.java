@@ -12,3 +12,4 @@ public interface TodoResultRepository extends JpaRepository<TodoResult, Long> {
 	public TodoResult findByTodoIdAndRealCount(long todoId, int realCount);
 
 }
+

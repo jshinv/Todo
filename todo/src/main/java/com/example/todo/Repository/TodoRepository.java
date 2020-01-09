@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.todo.Model.Todo;
-import com.example.todo.Model.TodoResult;
 
 public interface  TodoRepository extends JpaRepository<Todo, Long>{
 //	public TodoResult findByTodoIdAndToday(long todoId, String Today);

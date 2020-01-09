@@ -11,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.todo.Model.Friend;
 import com.example.todo.Model.Invite;
@@ -80,13 +78,13 @@ public class HomeController {
 			
 			
 			
-//			Map<String, Map<Long,Integer>> map_real2 = new HashMap<String, Map<Long,Integer>>();
-//			for (TodoResult todoresult : list2) {
-//				String today = todoresult.getToday();
-//				map_real2.put(today, map_real);
-//			}
-//			model.addAttribute("map_real2", map_real2);
-//			
+			Map<String, Map<Long,Integer>> map_real2 = new HashMap<String, Map<Long,Integer>>();
+			for (TodoResult todoresult : list2) {
+				String today = todoresult.getToday();
+				map_real2.put(today, map_real);
+			}
+			model.addAttribute("map_real2", map_real2);
+			
 		}
 		return "index";
 	}

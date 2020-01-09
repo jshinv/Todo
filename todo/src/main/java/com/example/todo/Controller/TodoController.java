@@ -25,9 +25,7 @@ import com.example.todo.Repository.TodoRepository;
 import com.example.todo.Repository.TodoResultRepository;
 import com.example.todo.Repository.UserRepository;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 public class TodoController {
 	@Autowired
@@ -129,8 +127,8 @@ public class TodoController {
 			inviteRepository.save(invite);
 		}
 	
-		model.addAttribute("friendlist", friendRepository.findAll()); //¿©±â ¹º°¡ ÀÌ»ó
-		return "cus/setting"; //¿©±â ¹º°¡ ÀÌ
+		model.addAttribute("friendlist", friendRepository.findAll()); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½
+		return "cus/setting"; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
 
 	}

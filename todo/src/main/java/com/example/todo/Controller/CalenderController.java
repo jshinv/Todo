@@ -1,7 +1,6 @@
 package com.example.todo.Controller;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -16,14 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.todo.Model.Todo;
-import com.example.todo.Model.User;
 import com.example.todo.Repository.TodoRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 public class CalenderController {
 

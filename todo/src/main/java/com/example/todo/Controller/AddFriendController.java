@@ -16,9 +16,7 @@ import com.example.todo.Repository.FriendRepository;
 import com.example.todo.Repository.InviteRepository;
 import com.example.todo.Repository.UserRepository;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 public class AddFriendController {
 

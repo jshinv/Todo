@@ -14,6 +14,7 @@ public class TodoResult {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private long todoId;
+	private long partyId;
 	private String today;
 	private int realCount =0;
 }

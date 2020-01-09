@@ -83,13 +83,17 @@ public class TodoController {
 		todo.setColor(color);
 		todo.setGoalCount(count);
 		todo.setRange(range);
-		todoRepository.save(todo);
-        
+		
+		Todo todo2 = todoRepository.save(todo); // 마지막저장한 객체를 가져오기 위
+		todo.setPartyId(todo2.getId());
+    
 
 		TodoResult todoResult = new TodoResult();
 		todoResult.setToday(today);
 		todoResult.setTodoId(todo.getId());
 		todoResult.setRealCount(0);
+		todoResult.setPartyId(todo.getPartyId());
+	
 		todoResultrepository.save(todoResult);
 		return "redirect:/";
 	}
@@ -99,6 +103,11 @@ public class TodoController {
 			@RequestParam("count") int count, @RequestParam("startDate") String startDate,
 			@RequestParam("endDate") String endDate, @RequestParam("range") String range,
 			@RequestParam("addname") List<String> addname, Model model) {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c1 = Calendar.getInstance();
+		String today = sdf.format(c1.getTime());
+		
 		model.addAttribute("usr", addname);
 		Todo todo = new Todo();
 		User dbUser = (User) session.getAttribute("user_info");
@@ -106,16 +115,15 @@ public class TodoController {
 		todo.setUser_id(dbUser.getId());
 		todo.setHostId(dbUser.getNickName());
 		todo.setStartDate(startDate);
+		todo.setSetDate(today);
 		todo.setEndDate(endDate);
 		todo.setTitle(title);
 		todo.setColor(color);
 		todo.setGoalCount(count);
 		todo.setRange(range);
-		todoRepository.save(todo);
+		Todo todo2 = todoRepository.save(todo);
+	    todo.setPartyId(todo2.getId());
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar c1 = Calendar.getInstance();
-		String today = sdf.format(c1.getTime());
 
 		
 		for (String idx : addname) {
@@ -135,6 +143,7 @@ public class TodoController {
 		todoResult.setToday(today);
 		todoResult.setTodoId(todo.getId());
 		todoResult.setRealCount(0);
+		todoResult.setPartyId(todo.getPartyId());
 		todoResultrepository.save(todoResult);
 		
 		

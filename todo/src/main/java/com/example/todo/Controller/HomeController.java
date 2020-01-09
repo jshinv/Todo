@@ -100,6 +100,11 @@ public class HomeController {
 	@PostMapping("/home")
 	public String indexPost(@RequestParam("confirmflag") boolean confirmflag, @RequestParam("invite") long invite,
 			@RequestParam("todoinvite") boolean todoinvite) {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c1 = Calendar.getInstance();
+		String today = sdf.format(c1.getTime());
+		
 		Invite invite2 = inviteRepository.findById(invite);
 
 		log.error("home controller");
@@ -123,6 +128,7 @@ public class HomeController {
 					if (temp.getId() == invite2.getTodo_id()) {
 
 						todo.setStartDate(temp.getStartDate());
+						todo.setSetDate(today);
 						todo.setEndDate(temp.getEndDate());
 						todo.setColor(temp.getColor());
 						todo.setUser_id(dbUser.getId());
@@ -132,33 +138,23 @@ public class HomeController {
 						todo.setGoalCount(temp.getGoalCount());
 						todo.setTitle(temp.getTitle());
 						temp.setPartyId(temp.getId());
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-						Calendar c1 = Calendar.getInstance();
-						String today = sdf.format(c1.getTime());
+						todoRepository.save(todo);
+						
 
 						TodoResult todoResult = new TodoResult();
 						todoResult.setToday(today);
 						todoResult.setTodoId(todo.getId());
 						todoResult.setRealCount(0);
+						todoResult.setPartyId(todo.getPartyId());
 						todoResultrepository.save(todoResult);
 						break;
 					}
 
 				}
 
-//				占쏙옙占싸댐옙占�
-				System.out.println("===========================================");
-				todoRepository.save(todo);
-				System.out.println("===========================================");
-//				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//				Calendar c1 = Calendar.getInstance();
-//				
-//				String today = sdf.format(c1.getTime());
-//				TodoResult todoResult = new TodoResult();
-//				todoResult.setToday(today);
-//				todoResult.setTodoId(todo.getId());
-//				todoResult.setRealCount(0);
-//				todoResultrepository.save(todoResult);
+
+				
+
 
 			}
 		}

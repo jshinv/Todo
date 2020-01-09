@@ -180,6 +180,7 @@ p.title_total {
 .footer_box {
 	height: 50px;
 	margin-top: 10px;
+	background-color:#333;
 }
 
 .todo_footer {

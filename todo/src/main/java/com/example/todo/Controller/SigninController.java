@@ -1,7 +1,6 @@
 package com.example.todo.Controller;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -17,9 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.todo.Model.User;
 import com.example.todo.Repository.UserRepository;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 public class SigninController {
 

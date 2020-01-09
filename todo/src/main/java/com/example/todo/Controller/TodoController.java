@@ -25,9 +25,7 @@ import com.example.todo.Repository.TodoRepository;
 import com.example.todo.Repository.TodoResultRepository;
 import com.example.todo.Repository.UserRepository;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 public class TodoController {
 	@Autowired
@@ -124,11 +122,13 @@ public class TodoController {
 			invite.setNickName2(idx);
 			invite.setBool1(true);
 			invite.setTodoinvite(true);
+			Todo temp=todoRepository.findByHostIdAndTitle(dbUser.getNickName(),title);
+			invite.setTodo_id(temp.getId());
 			inviteRepository.save(invite);
 		}
 	
-		model.addAttribute("friendlist", friendRepository.findAll());
-		return "cus/setting";
+		model.addAttribute("friendlist", friendRepository.findAll()); //���� ���� �̻�
+		return "cus/setting"; //���� ���� ��
 
 
 	}

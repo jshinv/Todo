@@ -19,4 +19,5 @@ public class Invite {
 	private boolean bool1 = false;
 	private boolean bool2 = false;
 	private boolean todoinvite;
+	private long todo_id;
 }

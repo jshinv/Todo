@@ -23,6 +23,6 @@ public class Todo {
 	private int goalCount;
 	private int initCount;
 	private String range;
-	private int party_ID;
+	private long party_ID;
 	
 }

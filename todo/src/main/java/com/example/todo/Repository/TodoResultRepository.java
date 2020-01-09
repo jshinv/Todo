@@ -13,3 +13,4 @@ public interface TodoResultRepository extends JpaRepository<TodoResult, Long> {
 	public TodoResult findByTodoIdAndToday(long todoId, String today);
 
 }
+

@@ -25,7 +25,6 @@
 					</div>
 				</div>
 				<div class="container-fluid">
-
 					<form method="get" action="/calender">
 
 						<div id="todo" th:each="Todo : ${list_real}" th:attr="id=${Todo.id},color=${Todo.color}">
@@ -37,6 +36,7 @@
 									<th:block th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
 										<input type="checkbox" name="btn" value="btn" checked th:if="${num} <= ${map_real2[Todo.today][Todo.id]}">
 										<input type="checkbox" name="btn" value="btn" th:unless="${num} <= ${map_real2[Todo.today][Todo.id]}">
+
 									</th:block>
 								</div>
 								
@@ -50,7 +50,7 @@
 			<div th:if="${session.user_info} == null">
 				<div
 					style="text-align: center; font-size: 40px; font-weight: bold; margin-top: 80px;">
-					^---^ <br> 로그인 하세요.
+					^---^ <br> sign in please
 				</div>
 			</div>
 			<div class="row footer_box">
@@ -141,7 +141,8 @@
 							+ "friend with me?");
 					var objParams = {
 						"invite" : invite.id,
-						"confirmflag" : confirmflag
+						"confirmflag" : confirmflag,
+						"todoinvite" :invite.todoinvite
 					};
 
 					$.ajax({
@@ -161,7 +162,8 @@
 					var confirmflag = confirm(invite.nickName1 + "todo go?");
 					var objParams = {
 						"invite" : invite.id,
-						"confirmflag" : confirmflag
+						"confirmflag" : confirmflag,
+						"todoinvite" :invite.todoinvite
 					};
 					console.log("2");
 					$.ajax({

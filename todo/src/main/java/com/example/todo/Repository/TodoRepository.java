@@ -6,10 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.todo.Model.Todo;
 import com.example.todo.Model.TodoResult;
-import com.example.todo.Model.User;
 
 public interface  TodoRepository extends JpaRepository<Todo, Long>{
 //	public TodoResult findByTodoIdAndToday(long todoId, String Today);
+
+//	public Optional<Todo> findByColor(long color);
+	public Optional<Todo> findById(long id);
+
+	public Todo findByHostIdAndTitle(String nickName, String title);
 
 }
 

@@ -87,7 +87,8 @@
 					"count" : count
 					
 				}
-
+				
+				var element = $(this);
 					
 				$.ajax({
 					url : "/todo_result",
@@ -205,32 +206,6 @@
 				var todo_color = $(this).parent().parent().parent().attr('color');
 					console.log(todo_color)
 				$(this).css('background-color', todo_color);
-			} else{
-				return false;
-			}
-		}); */
-		
-		
-		/* $("input[type=checkbox]").change(
-			function() {
-				if ($("input[type=checkbox]").is(":checked")) {
-					var todo_color = $(this).parent().parent().parent()
-							.attr('color');
-						console.log(todo_color)
-					var todo_color_class = todo_color.substr(1, 6);
-					console.log(todo_color_class)
-					$("input[type=checkbox]").addClass(todo_color_class);
-				} else {
-					return false;
-				}
-			}); */
-		/* $("input[type=checkbox]").change(function() {
-			if ($(this).is(":checked")) {
-				var sel = $(this);
-					console.log(sel)
-				var todo_color = $(this).parent().parent().parent().attr('color');
-					console.log(todo_color)
-				$(sel).css('backgroundcolor', todo_color);
 			} else{
 				return false;
 			}

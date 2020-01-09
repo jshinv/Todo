@@ -115,19 +115,25 @@
 					var Nickname=$("#nickName").val();
 					var user_list = /*[[${userlist}]]*/;
 					var friend_list = /*[[${friendlist}]]*/;
-			
+					var loginuser=/*[[${dbUser}]]*/;
+					console.log(loginuser);
 					var flag1=false;
 					var flag2=false;
 					
 					for(var idx in friend_list){   //
-						if(Nickname==friend_list[idx].usr1 || Nickname==friend_list[idx].usr2){
+						
+						if(Nickname==friend_list[idx].usr1 && loginuser==friend_list[idx].usr2){
+							flag1=true;
+							$("#alert-danger2").show();
+						}
+						else if(Nickname==friend_list[idx].usr2 && loginuser==friend_list[idx].usr1){
 							flag1=true;
 							$("#alert-danger2").show();
 						}
 					}
 					if(!flag1){
 						for(var idx in user_list){   //
-							if(Nickname==user_list[idx].nickName){ // getterx html占쏙옙占쏙옙占쏙옙
+							if(Nickname==user_list[idx].nickName){ // getterx html�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 								flag2=true;
 								$("#usr").val(Nickname);
 								$(document.forms[2]).submit();
@@ -166,7 +172,7 @@
 			var con = confirm("Sign out?");
 			if (con == true) {
 				location = "/signout";
-				//logout�쓣 �쐞�빐 �꽭�뀡�쓣 �젣嫄고븯�뒗 �럹�씠吏� �샇異�
+				//logout占쎌뱽 占쎌맄占쎈퉸 占쎄쉭占쎈�∽옙�뱽 占쎌젫椰꾧퀬釉�占쎈뮉 占쎈읂占쎌뵠筌욑옙 占쎌깈�빊占�
 			} else {
 				return false;
 			}

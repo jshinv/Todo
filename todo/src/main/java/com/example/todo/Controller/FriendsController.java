@@ -59,7 +59,7 @@ public class FriendsController {
 
 				}
 			}
-
+			
 			List<Todo> list = todoRepository.findAll();
 			List<Todo> list_real = new ArrayList<Todo>();
 			for (Todo todo : list) {

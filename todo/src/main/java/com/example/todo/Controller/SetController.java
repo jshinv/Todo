@@ -55,6 +55,8 @@ public class SetController {
 			model.addAttribute("count",list_real.size());
 			model.addAttribute("userlist", userRepository.findAll());
 			model.addAttribute("friendlist", friendRepository.findAll());
+			model.addAttribute("dbUser",dbUser.getNickName());
+			
 		}
 		return "cus/setting";
 		

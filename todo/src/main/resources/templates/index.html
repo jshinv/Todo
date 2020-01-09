@@ -93,7 +93,7 @@
 				})
 			} else {
 				var todo_id = $(this).parent().parent().parent().attr('id');
-				var realCount = -1;
+				var count = -1;
 				var objParams = {
 					"todo_id" : todo_id,
 					"count" : count
@@ -116,13 +116,13 @@
 
 		});
 
-		/* this is daehyeonpark NoNoNoNoNoNoNO */
+		/*home~calender로 가는 클릭 */
 		$("div.todo_total").click(function(event) {
 			if (event.target.type == 'checkbox') {
 				return;
 			} else {
 				var id = $(this).attr("id");
-				location = "/calender/" + id;
+				location = "/calender/" + id ;
 				return false;
 			}
 

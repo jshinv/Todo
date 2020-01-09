@@ -1,5 +1,6 @@
 package com.example.todo.Controller;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -75,13 +76,14 @@ public class HomeController {
 			
 		}
 		return "index";
+		
 	}
-
+	
 	@ResponseBody
 	@PostMapping("/home")
 	public String indexPost(@RequestParam("confirmflag") boolean confirmflag, @RequestParam("invite") long invite) {
 		Invite invite2 = inviteRepository.findById(invite);
-		if (confirmflag) {
+		if (confirmflag)  {
 
 			Friend friend = new Friend();
 			friend.setUsr1(invite2.getNickName1());

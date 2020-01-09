@@ -68,7 +68,11 @@ public class FriendsController {
 			}
 			model.addAttribute("list_real", list_real);
 
-			List<TodoResult> list2 = todoResultRepository.findAll();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Calendar c1 = Calendar.getInstance();
+			String today = sdf.format(c1.getTime());
+
+			List<TodoResult> list2 = todoResultRepository.findAllByToday(today);
 			Map<Long, Integer> map_real = new HashMap<Long, Integer>();
 			for (TodoResult todoresult : list2) {
 				long todoId = todoresult.getTodoId();

@@ -137,6 +137,7 @@ public class HomeController {
 						todo.setRange(temp.getRange());
 						todo.setGoalCount(temp.getGoalCount());
 						todo.setTitle(temp.getTitle());
+						todo.setNickName(dbUser.getNickName());
 						temp.setPartyId(temp.getId());
 						todoRepository.save(todo);
 						

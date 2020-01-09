@@ -83,6 +83,7 @@ public class TodoController {
 		todo.setColor(color);
 		todo.setGoalCount(count);
 		todo.setRange(range);
+		todo.setNickName(dbUser.getNickName());
 		
 		Todo todo2 = todoRepository.save(todo); // 마지막저장한 객체를 가져오기 위
 		todo.setPartyId(todo2.getId());
@@ -121,6 +122,7 @@ public class TodoController {
 		todo.setColor(color);
 		todo.setGoalCount(count);
 		todo.setRange(range);
+		todo.setNickName(dbUser.getNickName());
 		Todo todo2 = todoRepository.save(todo);
 	    todo.setPartyId(todo2.getId());
 

@@ -24,5 +24,6 @@ public class Todo {
 	private int initCount;
 	private String range;
 	private long partyId;
+	private String nickName;
 	
 }

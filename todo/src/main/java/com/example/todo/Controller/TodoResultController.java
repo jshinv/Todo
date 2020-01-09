@@ -48,24 +48,37 @@ public class TodoResultController {
 		
 		TodoResult todoResult1 = todoResultRepository.findByTodoIdAndToday(todo_id, today);
 		
-		if (todoResult1 == null) {
-			TodoResult todoResult = new TodoResult();
-			todoResult.setToday(today);
-			todoResult.setTodoId(todo_id);
-			todoResult.setRealCount(count);
-			todoResultRepository.save(todoResult);
-		} else {
+
 		
 		int realCount = todoResult1.getRealCount() + count;
 		todoResult1.setRealCount(realCount);
 		
 		todoResultRepository.save(todoResult1);
-		};
+		
 
 		
 		Map<String, Object> res = new HashMap<String, Object>();
 		return res;
 	}
+		
+//		if (todoResult1 == null) {
+//			TodoResult todoResult = new TodoResult();
+//			todoResult.setToday(today);
+//			todoResult.setTodoId(todo_id);
+//			todoResult.setRealCount(count);
+//			todoResultRepository.save(todoResult);
+//		} else {
+//		
+//		int realCount = todoResult1.getRealCount() + count;
+//		todoResult1.setRealCount(realCount);
+//		
+//		todoResultRepository.save(todoResult1);
+//		};
+//
+//		
+//		Map<String, Object> res = new HashMap<String, Object>();
+//		return res;
+//	}
 
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());

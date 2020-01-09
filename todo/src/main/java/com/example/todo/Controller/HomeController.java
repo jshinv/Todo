@@ -1,6 +1,8 @@
 package com.example.todo.Controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +46,7 @@ public class HomeController {
 	TodoResultRepository todoResultrepository;
 
 	@GetMapping({ "/", "/home" })
-	public String index(Model model) {
+	public String index(Model model, TodoResult todoResult) {
 		User dbUser = (User) session.getAttribute("user_info");
 		if (dbUser != null) {
 			List<Invite> inviteUserList = inviteRepository.findAll();
@@ -66,6 +68,7 @@ public class HomeController {
 			}
 			model.addAttribute("list_real", list_real);
 
+			
 			List<TodoResult> list2 = todoResultRepository.findAll();
 			Map<Long, Integer> map_real = new HashMap<Long, Integer>();
 			for (TodoResult todoresult : list2) {
@@ -77,14 +80,20 @@ public class HomeController {
 			
 			
 			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Calendar c1 = Calendar.getInstance();
+			String today1 = sdf.format(c1.getTime());
 			
-			Map<String, Map<Long,Integer>> map_real2 = new HashMap<String, Map<Long,Integer>>();
-			for (TodoResult todoresult : list2) {
-				String today = todoresult.getToday();
-				map_real2.put(today, map_real);
+			TodoResult todoResult1 = todoResultRepository.findByTodoIdAndToday(todoResult.getTodoId(), todoResult.getToday());
+			
+			if (todoResult1 == null) {
+				TodoResult todoResult2 = new TodoResult();
+				todoResult2.setToday(today1);
+				todoResult2.setTodoId(todoResult.getTodoId());
+				todoResult2.setRealCount(0);
+				todoResultRepository.save(todoResult2);
 			}
-			model.addAttribute("map_real2", map_real2);
-			
+						
 		}
 		return "index";
 	}

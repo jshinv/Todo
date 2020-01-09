@@ -76,13 +76,23 @@
 									var todayY = today_split[0]
 									var todayM = today_split[1] - 1 // 1월~12월을 0월~	11월로 넣어줘야 인식함
 									var todayD = today_split[2]
-									event['id'] = obj.id;
-									event['title'] = goalCount + "번 중에 "+ obj.realCount + "번 완료!" ;
-									event['start'] = new Date (todayY, todayM, todayD)
-									event['url'] = '/'
-									event['className'] = color
-									events.push(event);
-									
+									var percent =  parseInt(obj.realCount/goalCount * 100)
+									if (goalCount == obj.realCount){ 
+										event['id'] = obj.id;
+										event['title'] = "all done^^!" ;
+										event['start'] = new Date (todayY, todayM, todayD)
+										event['url'] = '/'
+										event['className'] = color
+										events.push(event);	
+									}
+									else {
+										event['id'] = obj.id;
+										event['title'] = obj.realCount + "/"+ goalCount + " " + percent + "%\n done!!" ;
+										event['start'] = new Date (todayY, todayM, todayD)
+										event['url'] = '/'
+										event['className'] = color
+										events.push(event);
+									}
 								}
 						
 								/*  className colors

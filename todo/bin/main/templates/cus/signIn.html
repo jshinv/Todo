@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="utf-8">
 
-<head th:replace="common/head"></head>
+<head th:replace="common/head">
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+<title>Custom Login Demo - Kakao JavaScript SDK</title>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+</head>
 <body>
 
 	<div class="jumbotron todo_main_area">
@@ -18,9 +25,14 @@
 							<label for="passWord">비밀번호</label> <input type="password"
 								class="form-control" id="passWord" name="passWord">
 						</div>
-						<div class="alert alert-danger" id="alert-danger">닉네임 또는 비밀번호가 틀렸습니다. </div>
+						<div class="alert alert-danger" id="alert-danger">닉네임 또는
+							비밀번호가 틀렸습니다.</div>
 						<button class="btn btn-primary btn-block" id="signin">로그인</button>
-						<button class="btn btn-success btn-block" id="signup">회원가입</button>
+						<button class="btn btn-success btn-block" id="signup">회원가입</button> <br>
+						<a id="custom-login-btn" href="javascript:loginWithKakao()"> <img
+							src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"
+							width="318" height="45" />
+						</a>
 					</form>
 				</div>
 			</div>
@@ -29,7 +41,7 @@
 	</div>
 
 
-	
+
 
 	<script type="text/javascript" th:inline="javascript">
 		/*<![CDATA[*/
@@ -63,7 +75,26 @@
 			return false;
 		});
 		/*]]>*/
-		</script>
+	</script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<script type='text/javascript'>
+  //<![CDATA[
+    Kakao.init('Javascript App Key');
+    function loginWithKakao() {
+
+      Kakao.Auth.login({
+        success: function(authObj) {
+          alert(JSON.stringify(authObj));
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+    };
+  //]]>
+</script>
+
 </body>
 </html>
 

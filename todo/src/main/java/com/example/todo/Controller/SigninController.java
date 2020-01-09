@@ -48,6 +48,11 @@ public class SigninController {
 	
 	}
 
+	@GetMapping("/signintwo")
+	public String signin2() {
+		return "signintwo";
+	}
+	
 	@GetMapping("/signout")
 	public String signout() {
 		session.invalidate();

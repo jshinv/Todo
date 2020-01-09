@@ -34,8 +34,12 @@ li, ul {
 	padding-top: 20px !important;
 }
 
-.btn-primary, .btn-success {
-	height: 40px;
+.btn-primary {
+	height: 45px;
+}
+
+.btn-success {
+	height: 45px;
 }
 
 #alert-IDdanger, #alert-danger {

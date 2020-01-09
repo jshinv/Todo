@@ -8,8 +8,7 @@ import com.example.todo.Model.User;
 public interface TodoResultRepository extends JpaRepository<TodoResult, Long> {
 
 	public TodoResult findByTodoId(long todo_id);
-
-	public TodoResult findByTodoIdAndRealCount(long todoId, int realCount);
+	public TodoResult findByTodoIdAndToday(long todoId, String today);
 
 }
 

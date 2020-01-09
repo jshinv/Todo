@@ -66,10 +66,17 @@ public class TodoController {
 	public String signupPost(@RequestParam("title") String title, @RequestParam("color") String color,
 			@RequestParam("count") int count, @RequestParam("startDate") String startDate,
 			@RequestParam("endDate") String endDate, @RequestParam("range") String range) {
+		
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c1 = Calendar.getInstance();
+		String today = sdf.format(c1.getTime());
+		
 		Todo todo = new Todo();
 		User dbUser = (User) session.getAttribute("user_info");
 		todo.setUser_id(dbUser.getId());
 		todo.setHostId(dbUser.getNickName());
+		todo.setToday(today);
 		todo.setStartDate(startDate);
 		todo.setEndDate(endDate);
 		todo.setTitle(title);
@@ -77,11 +84,6 @@ public class TodoController {
 		todo.setGoalCount(count);
 		todo.setRange(range);
 		todoRepository.save(todo);
-
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-        Calendar c1 = Calendar.getInstance();
-        String today = sdf.format(c1.getTime());
         
 
 		TodoResult todoResult = new TodoResult();

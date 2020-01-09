@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
 body {
-	background-color: #e8e8e8 !important;
+	background-color: #ffc105 !important;
 }
 
 .jumbotron {
-	background-color: #e8e8e8 !important;
+	background-color: #ffc105 !important;
 }
 
 a {
@@ -34,9 +34,15 @@ li, ul {
 	padding-top: 20px !important;
 }
 
-.btn-primary {
-	height: 50px;
+.btn-primary, .btn-success {
+	height: 40px;
 }
+
+#alert-IDdanger, #alert-danger {
+		height: 40px;
+		padding: 8px;
+}
+
 
 .todo_nav {
 	width: 100%;
@@ -131,7 +137,18 @@ p.title_total {
 }
 
 .todo_total {
-	display: inline-block;
+	width: 48%;
+    height: 100%;
+    min-height: 150px;
+    margin: 1%;
+    background-color: light grey;
+    border: 2px solid black;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 10px;
+    float: left;
+	/* display: inline-block;
 	position: static;
 	width: 40%;
 	height: 100px;
@@ -141,7 +158,7 @@ p.title_total {
 	padding: 5px;
 	box-sizing: border-box;
 	text-align: center;
-	border-radius: 10px;
+	border-radius: 10px; */
 }
 
 .comp_btn {
@@ -195,20 +212,18 @@ i {
 }
 
 /* input */
-input[type=checkbox].FFB8B8{
-	background-color:#FFB8B8 !important;
-	
-}
-input[type=checkbox].A1CDFF{
-	background-color:#A1CDFF !important;
-}
-input[type=checkbox].FFAB6D{
-	background-color:#FFAB6D !important;
-}
-input[type=checkbox].B590FF{
-	background-color:#B590FF !important;
+input[type=checkbox]{
+	-webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #e8e8e8;
+    border-radius: 2px;
+    border: 1px solid #bbb;
 }
 
+.form_box{
+	margin-top: 20px;
+}
 
 
 

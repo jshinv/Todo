@@ -13,6 +13,7 @@ public interface  TodoRepository extends JpaRepository<Todo, Long>{
 	public Optional<Todo> findById(long id);
 
 	public Todo findByHostIdAndTitle(String nickName, String title);
+
 }
 
 

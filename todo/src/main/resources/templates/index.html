@@ -50,7 +50,7 @@
 			<div th:if="${session.user_info} == null">
 				<div
 					style="text-align: center; font-size: 40px; font-weight: bold; margin-top: 80px;">
-					^---^ <br> sign in please
+					^---^ <br> 로그인 하세요.
 				</div>
 			</div>
 			<div class="row footer_box">
@@ -71,6 +71,13 @@
 
 	<script type="text/javascript" th:inline="javascript">
 		/*<![CDATA[*/
+			
+
+		$("form").children().each(function() {
+			var color = $(this).attr('color');
+			$(this).find("[name=btn]:checked").css('background-color', color);
+		});
+
 		$("[name=btn]").change(function() {
 			if ($(this).is(":checked")) {
 				var todo_id = $(this).parent().parent().parent().attr('id');
@@ -80,13 +87,16 @@
 					"count" : count
 					
 				}
-
+				
+				var element = $(this);
 					
 				$.ajax({
 					url : "/todo_result",
 					type : "post",
 					data : objParams,
 					success : function(res) {
+						var todo_color = $(element).parent().parent().parent().attr('color');
+						element.css('background-color', todo_color);
 					},
 					error : function(request, status, error) {
 						alert('error')
@@ -99,12 +109,16 @@
 					"todo_id" : todo_id,
 					"count" : count
 				}
-
+				
+				var element = $(this);
+				
 				$.ajax({
 					url : "/todo_result",
 					type : "post",
 					data : objParams,
 					success : function(res) {
+						var todo_color = $(element).parent().parent().parent().attr('color');
+						element.css('background-color', '#e8e8e8');
 					},
 					error : function(request, status, error) {
 						alert('error')
@@ -141,8 +155,7 @@
 							+ "friend with me?");
 					var objParams = {
 						"invite" : invite.id,
-						"confirmflag" : confirmflag,
-						"todoinvite" :invite.todoinvite
+						"confirmflag" : confirmflag
 					};
 
 					$.ajax({
@@ -162,8 +175,7 @@
 					var confirmflag = confirm(invite.nickName1 + "todo go?");
 					var objParams = {
 						"invite" : invite.id,
-						"confirmflag" : confirmflag,
-						"todoinvite" :invite.todoinvite
+						"confirmflag" : confirmflag
 					};
 					console.log("2");
 					$.ajax({
@@ -194,32 +206,6 @@
 				var todo_color = $(this).parent().parent().parent().attr('color');
 					console.log(todo_color)
 				$(this).css('background-color', todo_color);
-			} else{
-				return false;
-			}
-		}); */
-		
-		
-		/* $("input[type=checkbox]").change(
-			function() {
-				if ($("input[type=checkbox]").is(":checked")) {
-					var todo_color = $(this).parent().parent().parent()
-							.attr('color');
-						console.log(todo_color)
-					var todo_color_class = todo_color.substr(1, 6);
-					console.log(todo_color_class)
-					$("input[type=checkbox]").addClass(todo_color_class);
-				} else {
-					return false;
-				}
-			}); */
-		/* $("input[type=checkbox]").change(function() {
-			if ($(this).is(":checked")) {
-				var sel = $(this);
-					console.log(sel)
-				var todo_color = $(this).parent().parent().parent().attr('color');
-					console.log(todo_color)
-				$(sel).css('backgroundcolor', todo_color);
 			} else{
 				return false;
 			}

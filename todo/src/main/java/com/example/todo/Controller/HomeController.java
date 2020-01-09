@@ -60,7 +60,6 @@ public class HomeController {
 				}
 			}
 
-			
 			List<Todo> list = todoRepository.findAll();
 			List<Todo> list_real = new ArrayList<Todo>();
 			for (Todo todo : list) {
@@ -71,8 +70,8 @@ public class HomeController {
 
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar c1 = Calendar.getInstance();
-			String today = sdf.format(c1.getTime());		
-			
+			String today = sdf.format(c1.getTime());
+
 			List<TodoResult> list2 = todoResultRepository.findAllByToday(today);
 			Map<Long, Integer> map_real = new HashMap<Long, Integer>();
 			for (TodoResult todoresult : list2) {
@@ -82,19 +81,20 @@ public class HomeController {
 			}
 			model.addAttribute("map_real", map_real);
 
-
 		}
 		System.out.println("===========================================");
 		System.out.println("home");
 		System.out.println("===========================================");
 		log.error("home ");
 		return "index";
+
 	}
 
 	@PostMapping("/home")
 	public String indexPost(@RequestParam("confirmflag") boolean confirmflag, @RequestParam("invite") long invite,
 			@RequestParam("todoinvite") boolean todoinvite) {
 		Invite invite2 = inviteRepository.findById(invite);
+
 		log.error("home controller");
 		log.error("home controller confirmflag " + confirmflag);
 		if (confirmflag) {
@@ -139,7 +139,7 @@ public class HomeController {
 
 				}
 
-//				���δ��
+//				占쏙옙占싸댐옙占�
 				System.out.println("===========================================");
 				todoRepository.save(todo);
 				System.out.println("===========================================");

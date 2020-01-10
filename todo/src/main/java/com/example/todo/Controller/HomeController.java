@@ -81,28 +81,13 @@ public class HomeController {
 				map_real.put(todoId, realCount);
 			}
 			model.addAttribute("map_real", map_real);
-			
-			
-//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//			Calendar c1 = Calendar.getInstance();
-//			String today = sdf.format(c1.getTime());		
-//			
-//			
-//			TodoResult a = todoResultRepository.findByTodoIdAndToday(todoId, today);
-//			if (a == null) {
-//				
-//			}
-//			Map<String, Map<Long,Integer>> map_real2 = new HashMap<String, Map<Long,Integer>>();
-//			for (TodoResult todoresult : list2) {
-//				String today = todoresult.getToday();
-//				map_real2.put(today, map_real);
-//			}
-//			model.addAttribute("map_real2", map_real2);
 
-			
-			
-						
+
 		}
+		System.out.println("===========================================");
+		System.out.println("home");
+		System.out.println("===========================================");
+		log.error("home ");
 		return "index";
 	}
 
@@ -129,7 +114,7 @@ public class HomeController {
 				List<Todo> list = todoRepository.findAll();
 				for (Todo temp : list) {
 					if (temp.getId() == invite2.getTodo_id()) {
-						
+
 						todo.setStartDate(temp.getStartDate());
 						todo.setEndDate(temp.getEndDate());
 						todo.setColor(temp.getColor());
@@ -140,6 +125,15 @@ public class HomeController {
 						todo.setGoalCount(temp.getGoalCount());
 						todo.setTitle(temp.getTitle());
 						temp.setParty_ID(temp.getId());
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+						Calendar c1 = Calendar.getInstance();
+						String today = sdf.format(c1.getTime());
+
+						TodoResult todoResult = new TodoResult();
+						todoResult.setToday(today);
+						todoResult.setTodoId(todo.getId());
+						todoResult.setRealCount(0);
+						todoResultrepository.save(todoResult);
 						break;
 					}
 

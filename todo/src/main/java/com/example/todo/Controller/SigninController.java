@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.todo.Model.User;
 import com.example.todo.Repository.UserRepository;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 public class SigninController {
 
@@ -29,7 +31,7 @@ public class SigninController {
 	@GetMapping("/signin")
 	public String signin(Model model) {
 		
-	
+		log.error("signin1");
 		model.addAttribute("userlist",userRepository.findAll());
 		return "cus/signin";
 	}
@@ -41,6 +43,7 @@ public class SigninController {
 			session.setAttribute("user_info", dbUser);
 			
 		}
+		log.error("signin2");
 		return "redirect:/";
 	
 	}

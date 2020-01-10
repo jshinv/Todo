@@ -27,26 +27,34 @@
 				<div class="container-fluid">
 					<form method="get" action="/calender">
 
-						<div id="todo" th:each="Todo : ${list_real}" th:attr="id=${Todo.id},color=${Todo.color}">
-							<div style="display: inline-block" class="todo_total" th:attr="id=${Todo.id}">
-								<p th:text="${Todo.title}"></p>
-								
-								
+						<div id="todo" th:each="Todo : ${list_real}"
+							th:attr="id=${Todo.id},color=${Todo.color}">
+							<div style="display: inline-block" class="todo_total"
+								th:attr="id=${Todo.id}">
+								<p>
+								<span th:text="${Todo.title}"></span>
+									<i th:if="${Todo.range}=='me'" class="fas fa-user"></i> <i
+										th:unless="${Todo.range}=='me'" class="fas fa-users"></i>
+								</p>
+
 								<div class="comp_btn_total">
-									<th:block th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
-										<input type="checkbox" name="btn" value="btn" checked th:if="${num} <= (${map_real[Todo.id]} == null ? 0 : ${map_real[Todo.id]})">
-										<input type="checkbox" name="btn" value="btn" th:unless="${num} <= (${map_real[Todo.id]} == null ? 0 : ${map_real[Todo.id]})">
+
+									<th:block
+										th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
+										<input type="checkbox" name="btn" value="btn" checked
+											th:if="${num} <= (${map_real[Todo.id]} == null ? 0 : ${map_real[Todo.id]})">
+										<input type="checkbox" name="btn" value="btn"
+											th:unless="${num} <= (${map_real[Todo.id]} == null ? 0 : ${map_real[Todo.id]})">
 
 									</th:block>
 								</div>
-								
-								
+
+
 							</div>
 						</div>
 					</form>
 				</div>
 			</div>
-
 			<div th:if="${session.user_info} == null">
 				<div
 					style="text-align: center; font-size: 40px; font-weight: bold; margin-top: 80px;">
@@ -71,66 +79,58 @@
 
 	<script type="text/javascript" th:inline="javascript">
 		/*<![CDATA[*/
-			
-
 		$("form").children().each(function() {
 			var color = $(this).attr('color');
 			$(this).find("[name=btn]:checked").css('background-color', color);
 		});
-
-		$("[name=btn]").change(function() {
-			if ($(this).is(":checked")) {
-				var todo_id = $(this).parent().parent().parent().attr('id');
-				var count = 1;
-				
-				var objParams = {
-					"todo_id" : todo_id,
-					"count" : count
-					
-				}
-				
-				var element = $(this);
-					
-				$.ajax({
-					url : "/todo_result",
-					type : "post",
-					data : objParams,
-					success : function(res) {
-						var todo_color = $(element).parent().parent().parent().attr('color');
-						element.css('background-color', todo_color);
-					},
-					error : function(request, status, error) {
-						alert('error')
+		$("[name=btn]").change(
+				function() {
+					if ($(this).is(":checked")) {
+						var todo_id = $(this).parent().parent().parent().attr(
+								'id');
+						var count = 1;
+						var objParams = {
+							"todo_id" : todo_id,
+							"count" : count
+						}
+						var element = $(this);
+						$.ajax({
+							url : "/todo_result",
+							type : "post",
+							data : objParams,
+							success : function(res) {
+								var todo_color = $(element).parent().parent()
+										.parent().attr('color');
+								element.css('background-color', todo_color);
+							},
+							error : function(request, status, error) {
+								alert('error')
+							}
+						})
+					} else {
+						var todo_id = $(this).parent().parent().parent().attr(
+								'id');
+						var count = -1;
+						var objParams = {
+							"todo_id" : todo_id,
+							"count" : count
+						}
+						var element = $(this);
+						$.ajax({
+							url : "/todo_result",
+							type : "post",
+							data : objParams,
+							success : function(res) {
+								var todo_color = $(element).parent().parent()
+										.parent().attr('color');
+								element.css('background-color', '#e8e8e8');
+							},
+							error : function(request, status, error) {
+								alert('error')
+							}
+						})
 					}
-				})
-			} else {
-				var todo_id = $(this).parent().parent().parent().attr('id');
-				var count = -1;
-				var objParams = {
-					"todo_id" : todo_id,
-					"count" : count
-				}
-				
-				var element = $(this);
-				
-				$.ajax({
-					url : "/todo_result",
-					type : "post",
-					data : objParams,
-					success : function(res) {
-						var todo_color = $(element).parent().parent().parent().attr('color');
-						element.css('background-color', '#e8e8e8');
-					},
-					error : function(request, status, error) {
-						alert('error')
-					}
-
-				})
-
-			}
-
-		});
-
+				});
 		/* this is daehyeonpark NoNoNoNoNoNoNO */
 		$("div.todo_total").click(function(event) {
 			if (event.target.type == 'checkbox') {
@@ -140,27 +140,23 @@
 				location = "/calender/" + id;
 				return false;
 			}
-
 		});
 		$(function() {
 			var invite = /*[[${inviteinform}]]*/
 			console.log(invite.bool1);
 			console.log(invite);
-
 			if (invite.bool1) {
 				console.log("0");
 				if (!invite.todoinvite) {
 					console.log("1");
-
 					var confirmflag = confirm(invite.nickName1
 							+ "friend with me?");
 					var objParams = {
 						"invite" : invite.id,
-						"confirmflag" : confirmflag
+						"confirmflag" : confirmflag,
+						"todoinvite" : invite.todoinvite
 					};
-
 					$.ajax({
-
 						url : "/home",
 						data : objParams,
 						type : "post",
@@ -170,17 +166,16 @@
 						error : function(request, status, error) {
 							console.log(error)
 						}
-
 					})
 				} else {
 					var confirmflag = confirm(invite.nickName1 + "todo go?");
 					var objParams = {
 						"invite" : invite.id,
-						"confirmflag" : confirmflag
+						"confirmflag" : confirmflag,
+						"todoinvite" : invite.todoinvite
 					};
 					console.log("2");
 					$.ajax({
-
 						url : "/home",
 						data : objParams,
 						type : "post",
@@ -190,14 +185,10 @@
 						error : function(request, status, error) {
 							console.log(error)
 						}
-
 					})
 				}
-
 				return false;
-
 			}
-
 		});
 		/*]]>*/
 	</script>

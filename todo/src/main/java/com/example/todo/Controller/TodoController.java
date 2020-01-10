@@ -74,7 +74,7 @@ public class TodoController {
 		User dbUser = (User) session.getAttribute("user_info");
 		todo.setUser_id(dbUser.getId());
 		todo.setHostId(dbUser.getNickName());
-		todo.setToday(today);
+		todo.setSetDate(today);
 		todo.setStartDate(startDate);
 		todo.setEndDate(endDate);
 		todo.setTitle(title);

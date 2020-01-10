@@ -34,8 +34,8 @@
 								
 								<div class="comp_btn_total">
 									<th:block th:each="num: ${#numbers.sequence(1, Todo.goalCount)}">
-										<input type="checkbox" name="btn" value="btn" checked th:if="${num} <= ${map_real[Todo.id]}">
-										<input type="checkbox" name="btn" value="btn" th:unless="${num} <= ${map_real[Todo.id]}">
+										<input type="checkbox" name="btn" value="btn" checked th:if="${num} <= (${map_real[Todo.id]} == null ? 0 : ${map_real[Todo.id]})">
+										<input type="checkbox" name="btn" value="btn" th:unless="${num} <= (${map_real[Todo.id]} == null ? 0 : ${map_real[Todo.id]})">
 
 									</th:block>
 								</div>
@@ -82,6 +82,7 @@
 			if ($(this).is(":checked")) {
 				var todo_id = $(this).parent().parent().parent().attr('id');
 				var count = 1;
+				
 				var objParams = {
 					"todo_id" : todo_id,
 					"count" : count

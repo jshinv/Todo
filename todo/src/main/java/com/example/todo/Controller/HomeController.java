@@ -60,6 +60,7 @@ public class HomeController {
 				}
 			}
 
+			
 			List<Todo> list = todoRepository.findAll();
 			List<Todo> list_real = new ArrayList<Todo>();
 			for (Todo todo : list) {
@@ -68,8 +69,11 @@ public class HomeController {
 			}
 			model.addAttribute("list_real", list_real);
 
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Calendar c1 = Calendar.getInstance();
+			String today = sdf.format(c1.getTime());		
 			
-			List<TodoResult> list2 = todoResultRepository.findAll();
+			List<TodoResult> list2 = todoResultRepository.findAllByToday(today);
 			Map<Long, Integer> map_real = new HashMap<Long, Integer>();
 			for (TodoResult todoresult : list2) {
 				long todoId = todoresult.getTodoId();
@@ -79,20 +83,24 @@ public class HomeController {
 			model.addAttribute("map_real", map_real);
 			
 			
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//			Calendar c1 = Calendar.getInstance();
+//			String today = sdf.format(c1.getTime());		
+//			
+//			
+//			TodoResult a = todoResultRepository.findByTodoIdAndToday(todoId, today);
+//			if (a == null) {
+//				
+//			}
+//			Map<String, Map<Long,Integer>> map_real2 = new HashMap<String, Map<Long,Integer>>();
+//			for (TodoResult todoresult : list2) {
+//				String today = todoresult.getToday();
+//				map_real2.put(today, map_real);
+//			}
+//			model.addAttribute("map_real2", map_real2);
+
 			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Calendar c1 = Calendar.getInstance();
-			String today1 = sdf.format(c1.getTime());
 			
-			TodoResult todoResult1 = todoResultRepository.findByTodoIdAndToday(todoResult.getTodoId(), todoResult.getToday());
-			
-			if (todoResult1 == null) {
-				TodoResult todoResult2 = new TodoResult();
-				todoResult2.setToday(today1);
-				todoResult2.setTodoId(todoResult.getTodoId());
-				todoResult2.setRealCount(0);
-				todoResultRepository.save(todoResult2);
-			}
 						
 		}
 		return "index";

@@ -68,3 +68,7 @@
 
 ![15_calendar](README.assets/15_calendar.png)
 
+16. 친구랑 Todo
+
+    ![todo_with_friends](README.assets/16_todo_with_friends.png)
+

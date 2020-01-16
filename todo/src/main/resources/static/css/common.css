@@ -93,7 +93,6 @@ li, ul {
 }
 
 .todo_main h1.title span {
-	border-bottom: 2px solid #333;
 	display: inline-block;
 	height: 35px;
 	margin-top: 20px;

@@ -18,9 +18,10 @@
 				<div class="row" style="display: block;">
 					<div class="col-md-12">
 						<div th:if="${session.user_info} !=null" class="welcome_area">
-							Welcome ! '[[${session.user_info.nickName}]]' ^-^</div>
+							[[${session.user_info.nickName}]] 님 반갑습니다 !</div>
 						<h1 class="title">
-							<span>My Today Todo!</span>
+							<span th:text="${value}"></span>
+							
 						</h1>
 					</div>
 				</div>
@@ -58,8 +59,7 @@
 			<div th:if="${session.user_info} == null">
 				<div
 					style="text-align: center; font-size: 40px; font-weight: bold; margin-top: 80px;">
-					<span>What To do?</span>
-					<br>^---^ <br> Sign in, please!
+					<br>^---^ <br> 로그인 해주세요 !
 				</div>
 			</div>
 			<div class="row footer_box">
@@ -151,7 +151,7 @@
 				if (!invite.todoinvite) {
 					console.log("1");
 					var confirmflag = confirm(invite.nickName1
-							+ "friend with me?");
+							+ "님과 친구하시겠습니까?");
 					var objParams = {
 						"invite" : invite.id,
 						"confirmflag" : confirmflag,
@@ -169,7 +169,7 @@
 						}
 					})
 				} else {
-					var confirmflag = confirm(invite.nickName1 + "todo go?");
+					var confirmflag = confirm(invite.nickName1 + "과 함께하기 Todo를 추가하시겠습니까?");
 					var objParams = {
 						"invite" : invite.id,
 						"confirmflag" : confirmflag,

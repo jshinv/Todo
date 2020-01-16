@@ -27,7 +27,7 @@ today = mm+'-'+dd+'-'+yyyy;
 				<div class="col-md-12 p-0 m-0">
 					<nav th:replace="common/nav"></nav>
 					<div th:if="${session.user_info} !=null" class="welcome_area">
-						[[${session.user_info.nickName} + 'Welcome!']]</div>
+						[[${session.user_info.nickName} + '님 반갑습니다 !']]</div>
 					<!--	<h1 class="title">
 						  <span>Todo + </span>
 					</h1>-->
@@ -37,38 +37,35 @@ today = mm+'-'+dd+'-'+yyyy;
 				<div class="col-md-12">
 					<form method="post" id="formif" action="/todo">
 						<div class="form-group">
-							<label for="title">title:</label> <input type="text"
+							<label for="title">Todo</label> <input type="text"
 								class="form-control" id="title" name="title">
 						</div>
 						<div class="range-group">
-							<label for="range">Range:</label> <input type="radio"
+							<label for="range">공개 범위</label> <input type="radio"
 								name="range" id="me" value="me" checked="checked"> <label
-								for="me"><span>Me </span></label> <input type="radio"
-								name="range" id="our" value="our"> <label for="our"><span>Our</span></label>
+								for="me"><span>혼자하기 </span></label> <input type="radio"
+								name="range" id="our" value="our"> <label for="our"><span>같이하기</span></label>
 						</div>
 
 
 						<div id="friendtab" style="display: none">
-							<h3>Friend Setting</h3>
+							<h3>친구 관리</h3>
 							<div class="form-group">
-								<label for="nickName" style="font-size: 15pt">Nickname</label> <input
+								<label for="nickName" style="font-size: 15pt">닉네임</label> <input
 									type="text" class="form-control" id="nickName" name="nickName">
 							</div>
 
-							<div class="alert alert-danger" id="alert-danger">Not found
-								ID</div>
-							<div class="alert alert-danger" id="alert-danger2">Already
-								Friend</div>
-							<button type="button" class="btn btn-danger btn-block" id="Add">Add
-								Friend</button>
-							<div id=addlist>FriendList</div>
+							<div class="alert alert-danger" id="alert-danger">존재하지 않는 닉네임입니다.</div>
+							<div class="alert alert-danger" id="alert-danger2">이미 친구입니다.</div>
+							<button type="button" class="btn btn-danger btn-block" id="Add">친구 추가</button>
+							<div id=addlist>친구 목록 </div>
 							<div id="tod"></div>
 						</div>
 
 
 
 						<div class="color-group">
-							<label for="color">color:</label> <input type="radio"
+							<label for="color">색상:</label> <input type="radio"
 								name="color" id="lightpink" value="#FFB8B8" checked="checked"><label
 								for="lightpink"><span style="color: #FFB8B8;">pink
 							</span></label> <input type="radio" name="color" id="lightblue" value="#A1CDFF"><label
@@ -89,21 +86,21 @@ today = mm+'-'+dd+'-'+yyyy;
 
 
 						<div class="form-group">
-							<label for="count">count:</label> <input type="text"
+							<label for="count">목표 횟수:</label> <input type="text"
 								class="form-control" id="count" name="count">
 						</div>
 
 						<div class="form-group">
-							<label for="startDate">StartDate:</label> <input type="date"
+							<label for="startDate">시작일:</label> <input type="date"
 								class="form-control" id="StartDate;" name="startDate"> <label
-								for="endDate">EndDate:</label> <input type="date"
+								for="endDate">마감일:</label> <input type="date"
 								class="form-control" id="endDate" name="endDate">
 						</div>
 
 
 						<div class="input-PartyList"></div>
 
-						<button class="btn btn-primary btn-block" id="todo">Submit</button>
+						<button class="btn btn-primary btn-block" id="todo">추가</button>
 
 
 					</form>

@@ -2,15 +2,15 @@
 	<nav class="todo_nav">
 		<ul th:if="${session.user_info} == null">
 			<li>
-				<a class="nav-link" href="/signin" style="margin-right:10px;">Sign in</a>
+				<a class="nav-link" href="/signin" style="margin-right:10px;">로그인</a>
 			</li>
 		</ul>
 		<ul th:if="${session.user_info} !=null">
 			<li>
-				<a class="" href="/todo">Add </a>
+				<a class="" href="/todo">Todo 추가</a>
 			</li>
 			<li>
-				<a href="javascript:;" onclick="logout();" style="margin-right:10px;">Sign out </a>
+				<a href="javascript:;" onclick="logout();" style="margin-right:10px;">로그아웃</a>
 			</li>
 		</ul>
 	</nav>

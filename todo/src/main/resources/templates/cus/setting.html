@@ -16,58 +16,54 @@
 				<div class="col-md-12 p-0 m-0">
 					<nav th:replace="common/nav"></nav>
 					<div th:if="${session.user_info} !=null" class="welcome_area">
-						'Welcome !'+ [[${session.user_info.nickName} + ' ^-^']]</div>
+						[[${session.user_info.nickName} + '님 반갑습니다 !']]</div>
 					<h1 class="title">
-						<span>Setting</span>
+						<span>관리</span>
 					</h1>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#tab1">Todo Set</a></li>
-						<li><a data-toggle="tab" href="#tab2">Friend Set</a></li>
-						<li><a data-toggle="tab" href="#tab3">App Set</a></li>
+						<li class="active"><a data-toggle="tab" href="#tab1">Todo 관리</a></li>
+						<li><a data-toggle="tab" href="#tab2">친구 관리</a></li>
+						<li><a data-toggle="tab" href="#tab3">앱 관리</a></li>
 					</ul>
 					<div class="tab-content">
 						<div id="tab1" class="tab-pane fade in active">
 							<p class="title_total">
-								Todo Total : <span th:text="${count}"></span>
+								Todo : <span th:text="${count}"></span>
 							</p>
 							<div id="todo" th:each="Todo : ${list_real}">
 								<div class="todo_set_list">
 									<ul>
 										<li><span th:text="${Todo.title}"></span></li>
-										<li>Start : <span th:text="${Todo.startDate}"></span></li>
-										<li>End : <span th:text="${Todo.endDate}"></span></li>
+										<li>시작일 : <span th:text="${Todo.startDate}"></span></li>
+										<li>마감일 : <span th:text="${Todo.endDate}"></span></li>
 									</ul>
 									<div class="btn_delete">
 										<a href="javascript:;" class="delete"
-											th:attr="t-id=${Todo.id}">Delete</a>
+											th:attr="t-id=${Todo.id}">삭제</a>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div id="tab2" class="tab-pane fade">
-							<h3>Friend Setting</h3>
 							<form method="post" action="/">
 
 								<div class="form-group">
-									<label for="nickName" style="font-size: 15pt">Nickname</label>
+									<label for="nickName" style="font-size: 15pt">추가할 닉네임</label>
 									<input type="text" class="form-control" id="nickName"
 										name="nickName">
 								</div>
 
-								<div class="alert alert-danger" id="alert-danger">Not
-									found ID</div>
-								<div class="alert alert-danger" id="alert-danger2">Already
-									Friend</div>
-								<button type="button" class="btn btn-danger btn-block" id="Add">Add
-									Friend</button>
+								<div class="alert alert-danger" id="alert-danger">존재하지 않는 닉네임입니다.</div>
+								<div class="alert alert-danger" id="alert-danger2">이미 친구입니다.</div>
+								<button type="button" class="btn btn-danger btn-block" id="Add">친구 추가</button>
 							</form>
 
 
-							<br> <label style="font-size: 15pt">FriendList</label> <br>
+							<br> <label style="font-size: 15pt">친구 목록</label> <br>
 
 							<div id="tod" th:each="Friend : ${friendlist}"
 								th:attr="id=${Friend.id}" style="display: inline-block">
@@ -78,14 +74,13 @@
 									class="friend">[[${Friend.usr1} ]]</div>
 
 							</div>
-							<!-- 					<a class="nav-link" href="todo"> <i class="fas fa-plus fa-5x"></i></a> -->
 
 						</div>
 						<div id="tab3" class="tab-pane fade">
 							<form>
 								<div class="form-group" style="margin-top: 30px;">
 									<button type="button" class="btn btn-block btn-primary"
-										onclick="logout();">Sign out</button>
+										onclick="logout();">로그아웃</button>
 								</div>
 							</form>
 						</div>
@@ -157,7 +152,7 @@
 
 	<script type="text/javascript" th:inline="javascript">
 		$(".delete").click(function() {
-			var con = confirm("Delete?");
+			var con = confirm("삭제하시겠습니까?");
 			if (con == true) {
 				var t_id = $(this).attr("t-id");
 				location = "/setting/delete/" + t_id;
@@ -170,7 +165,7 @@
 	</script>
 	<script type="text/javascript" th:inline="javascript">
 		function logout() {
-			var con = confirm("Sign out?");
+			var con = confirm("로그아웃 하시겠습니까?");
 			if (con == true) {
 				location = "/signout";
 				//logout占쎌뱽 占쎌맄占쎈퉸 占쎄쉭占쎈�∽옙�뱽 占쎌젫椰꾧퀬釉�占쎈뮉 占쎈읂占쎌뵠筌욑옙 占쎌깈�빊占�

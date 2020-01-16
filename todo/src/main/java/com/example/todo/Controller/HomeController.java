@@ -60,10 +60,15 @@ public class HomeController {
 				}
 			}
 
+			SimpleDateFormat sdff = new SimpleDateFormat("yyyy. MM. dd");
+			Calendar c11 = Calendar.getInstance();
+			String today1 = sdff.format(c11.getTime());
+			model.addAttribute("value", today1);
+			
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar c1 = Calendar.getInstance();
 			String today = sdf.format(c1.getTime());
-			
+		
 //			List<Todo> list = todoRepository.findAll();
 			List<Todo> list = todoRepository.findAllByStartDateLessThanEqualAndEndDateGreaterThanEqual(today, today);
 			// 오늘날짜가 기간안에 포함되는 것만 뽑아옴
